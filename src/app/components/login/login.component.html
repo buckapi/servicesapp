@@ -26,7 +26,7 @@
                                     <p class="text-secondary">Ingresa tu credencial para iniciar sesión</p>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="emailadd" placeholder="Enter email address" 
+                                    <input type="email" class="form-control" id="email" placeholder="Enter email address" 
                                     [(ngModel)]="email" name="email" required autofocus />
                          
                                          <label for="emailadd">Dirección de correo electrónico</label></div>
@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="col-auto"><a href="investment-forgot-password.html" class="">Olvidaste
                                             tu contrasena?</a></div>
-                                </div><a (click)="login()" class="btn btn-lg btn-theme w-100 mb-3">Iniciar sesión</a>
+                                </div><a (click)="login(email, password)" class="btn btn-lg btn-theme w-100 mb-3">Iniciar sesión</a>
                                 <div class="text-center mb-3">No tienes cuenta? <a href="investment-signup.html"
                                         class="">Crear cuenta</a></div>
                                 <div class="row gx-3 align-items-center mb-3">
