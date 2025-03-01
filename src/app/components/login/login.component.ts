@@ -16,9 +16,10 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private authService: AuthPocketbaseService) {}
+  constructor(public authService: AuthPocketbaseService) {}
 
   login() {
+    alert('datos: ' + this.email + ' ' + this.password);
     this.authService.loginUser(this.email, this.password).subscribe({
       next: (response) => {
         console.log('Inicio de sesión exitoso:', response);

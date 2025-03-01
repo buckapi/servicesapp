@@ -4,7 +4,7 @@
 <div class="adminuiux-wrap" >
     <div class="adminuiux-sidebar"  [hidden]="globalService.activeRoute=='login'" style="padding-top: 80px;">
         <div class="adminuiux-sidebar-inner">
-            <div class="px-3 not-iconic mt-2">
+            <div class="px-3 not-iconic mt-2" >
                 <div class="row gx-3">
                     <div class="col align-self-center">
                         <h6 class="fw-medium">Menú principal</h6>
@@ -13,7 +13,7 @@
                             data-bs-target="#usersidebarprofile" aria-expanded="false" role="button"
                             aria-controls="usersidebarprofile"><i data-feather="user"></i></a></div>
                 </div>
-                <div class="text-center collapse" id="usersidebarprofile">
+                <div class="text-center collapse" id="usersidebarprofile" *ngIf="authService.getCurrentUser().full_name!=undefined && authService.getCurrentUser().full_name!='' && authService.getCurrentUser().email!=undefined">
                     <figure class="avatar avatar-100 rounded-circle coverimg my-3"><img
                             src="assets/img/avatar.png" alt=""></figure>
                     <h5 class="mb-1 fw-medium">{{authService.getCurrentUser().full_name}}</h5>
