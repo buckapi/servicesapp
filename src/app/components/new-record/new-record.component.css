@@ -1,0 +1,26 @@
+.btn {
+    border-radius: 0.5rem; /* Bordes redondeados */
+  }
+  
+  .btn-success {
+    background-color: black; /* Color negro para el botón */
+    color: white; /* Color del texto */
+  }
+  
+  .btn-danger {
+    background-color: red; /* Color rojo para el botón de error */
+    color: white; /* Color del texto */
+  }
+  .img-hover {
+    border: 1px solid transparent; /* Borde transparente por defecto */
+    transition: border-radius 0.3s ease, border-color 0.3s ease; /* Transición suave para el borde redondeado y el color del borde */
+}
+
+.img-hover:hover {
+    border-radius: 15px; /* Borde redondeado al pasar el mouse */
+    border-color: #000; /* Cambiar el color del borde al pasar el mouse */
+}
+.selected {
+  border: 2px solid #000; /* Cambia el color y grosor del borde según tus preferencias */
+  border-radius: 15px; /* Mantén el borde redondeado si lo deseas */
+}

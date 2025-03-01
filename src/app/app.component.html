@@ -1,0 +1,106 @@
+<app-header *ngIf="globalService.activeRoute!='login'" ></app-header >
+<app-login *ngIf="globalService.activeRoute=='login'" ></app-login>
+
+<div class="adminuiux-wrap" >
+    <div class="adminuiux-sidebar"  [hidden]="globalService.activeRoute=='login'" style="padding-top: 80px;">
+        <div class="adminuiux-sidebar-inner">
+            <div class="px-3 not-iconic mt-2">
+                <div class="row gx-3">
+                    <div class="col align-self-center">
+                        <h6 class="fw-medium">Menú principal</h6>
+                    </div>
+                    <div class="col-auto"><a class="btn btn-link btn-square" data-bs-toggle="collapse"
+                            data-bs-target="#usersidebarprofile" aria-expanded="false" role="button"
+                            aria-controls="usersidebarprofile"><i data-feather="user"></i></a></div>
+                </div>
+                <div class="text-center collapse" id="usersidebarprofile">
+                    <figure class="avatar avatar-100 rounded-circle coverimg my-3"><img
+                            src="assets/img/avatar.png" alt=""></figure>
+                    <h5 class="mb-1 fw-medium">{{authService.getCurrentUser().full_name}}</h5>
+                    <p class="small">{{authService.getCurrentUser().email}}</p>
+                </div>
+            </div>
+            <ul class="nav flex-column menu-active-line">
+                <li class="nav-item" *ngIf="globalService.theme!='sun'">
+                        <a  class="nav-link"  (click)="globalService.setRoute('clients')" style="cursor:pointer;">
+                            <img *ngIf="globalService.theme=='light'" src="assets/img/equipo.png" alt="Icono" style="width: 24px; height: 24px; margin-right: 5px;"> 
+                        <img *ngIf="globalService.theme=='dark'" src="assets/img/equipo-sun.png" alt="Icono" style="width: 24px; height: 24px; margin-right: 5px;"> 
+                        <span class="menu-name">Clientes</span>
+                    </a>
+                </li>
+                          
+                <li class="nav-item" *ngIf="globalService.theme!='sun'"><a href="investment-wallet.html" class="nav-link">
+                    <img *ngIf="globalService.theme=='light'" src="assets/img/car.png" alt="Icono" style="width: 24px; height: 24px; margin-right: 5px;"> 
+                    <img *ngIf="globalService.theme=='dark'" src="assets/img/car-sun.png" alt="Icono" style="width: 24px; height: 24px; margin-right: 5px;"> 
+                  
+                    <span class="menu-name">Vehiculo</span></a></li>
+                    
+          </ul>
+            <div class="mt-auto"></div>
+            <div class="px-3 mb-3 not-iconic">
+                <h6 class="mb-3 fw-medium">Ajustes de Aplicación</h6>
+                <div class="card adminuiux-card">
+                    <div class="card-body p-2">
+                        <div class="row gx-2">
+                            <div class="col-12 d-flex justify-content-between">
+                                <a  href="investment-search-mutual-funds.html"
+                                    class="btn btn-square btn-link theme-red">
+                                    <span class="position-relative">
+                                        <i data-feather="heart"></i> 
+                                        <span   class="position-absolute top-0 start-100 translate-middle p-1 bg-success rounded-circle">
+                                            <span    class="visually-hidden">New alerts</span>
+                                         </span>
+                                        </span>
+                                 </a>
+                                <a   href="investment-schedule.html" class="btn btn-square btn-link"><span
+                                        class="position-relative"><i data-feather="calendar"></i> <span
+                                            class="position-absolute top-0 start-100 translate-middle p-1 bg-warning rounded-circle"><span
+                                                class="visually-hidden">New alerts</span> </span></span></a>
+                                <a
+                                    (click)="globalService.setRoute('new-record')" class="btn btn-square btn-link"><i
+                                        data-feather="inbox"></i> </a>
+                                        
+                                <a href="investment-help-center.html"
+                                    class="btn btn-square btn-link"><i data-feather="help-circle"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav flex-column menu-active-line">
+                <li class="nav-item"><a href="investment-referral.html" class="nav-link"><i class="menu-icon"
+                            data-feather="users"></i> <span class="menu-name">Usuarios</span></a></li>
+                <li class="nav-item"><a href="investment-settings.html" class="nav-link"><i class="menu-icon"
+                            data-feather="settings"></i> <span class="menu-name">Settings</span></a></li>
+            </ul>
+        </div>
+    </div>
+    <app-clients [hidden]="globalService.activeRoute!='clients'" style="margin-top: 50px !important;"></app-clients>
+    <app-new-record [hidden]="globalService.activeRoute!='new-record'" style="margin-top: 50px !important;"></app-new-record>
+    <app-home [hidden]="globalService.activeRoute!='home'" style="margin-top: 50px !important;"></app-home >
+    <footer class="adminuiux-footer has-adminuiux-sidebar mt-auto" [hidden]="globalService.activeRoute=='login'">
+        <div class="container-fluid">
+            <div class="row gx-3">
+                <div class="col-12 col-md col-lg text-center text-md-start py-2"><span class="small">&copy;2025, Services App by <a
+                            href="https://www.buckapi.com" target="_blank">Buckapi</a> </span>
+                </div>
+                <!-- <div class="col-12 col-md-auto col-lg-auto align-self-center">
+                    <ul class="nav small justify-content-center">
+                        <li class="nav-item"><a class="nav-link"
+                                href="https://adminuiux.com/adminuiux/investment-mobile-uiux/help-center.html">Help</a>
+                        </li>
+                        <li class="nav-item">|</li>
+                        <li class="nav-item"><a class="nav-link"
+                                href="https://adminuiux.com/adminuiux/investment-mobile-uiux/terms-of-use.html">Terms</a>
+                        </li>
+                        <li class="nav-item">|</li>
+                        <li class="nav-item"><a class="nav-link"
+                                href="https://adminuiux.com/adminuiux/investment-mobile-uiux/privacy-policy.html">Privacy
+                                Policy</a></li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+    </footer>
+</div>
+    
+<!-- <router-outlet /> -->

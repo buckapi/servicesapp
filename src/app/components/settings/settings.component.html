@@ -1,0 +1,92 @@
+	<!-- CONTENT -->
+    <div class="techwave_fn_content">
+		
+        <!-- PAGE (all pages go inside this div) -->
+        <div class="techwave_fn_page">
+            
+            <!-- User Profile Page -->
+            <div class="techwave_fn_user_profile_page">
+                <!-- Page Title -->
+                <div class="techwave_fn_pagetitle">
+                    <h2 class="title">Ajustes</h2>
+                </div>
+                <!-- !Page Title -->
+
+                <!-- Categorias -->
+                <div class="container small">
+                    <div class="techwave_fn_user_profile">
+                        <div class="user__interests">
+                            <h4 class="title">Categorias disponibles</h4>
+                            <div class="fn__options_list">
+                                <ul>
+                                    <li *ngFor="let category of realtimeCategoriesService.categories$ | async">
+                                        <a href="user-profile.html#" class="techwave_fn_button small__border disabled">
+                                            <span>{{ category.name }}</span>
+                                        </a>
+                                    </li>
+                                    <li >
+                                        <a  class="techwave_fn_button small__border  enabled" style="cursor:pointer" (click)="addCategory()">
+                                            <span>+</span>
+                                        </a>
+                                    </li>
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- !Categorias -->
+      
+                
+                <!-- Estilos -->
+                <div class="container small">
+                    <div class="techwave_fn_user_profile">
+                        <div class="user__interests">
+                            <h4 class="title">Estilos disponibles</h4>
+                            <div class="fn__options_list">
+                                <ul>
+                                    <li *ngFor="let style of realtimeStylesService.styles$ | async">
+                                        <a  class="techwave_fn_button small__border disabled" style="cursor:not-allowed">
+                                            <span>{{ style.name }}</span>
+                                        </a>
+                                    </li>
+                                    <li >
+                                        <a  class="techwave_fn_button small__border  enabled" style="cursor:pointer" (click)="addStyle()">
+                                            <span>+</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- !Estilos -->
+
+
+
+            </div>
+            <!-- !User Profile Page -->
+            
+        </div>
+        <!-- !PAGE (all pages go inside this div) -->
+        
+        
+        <!-- FOOTER (inside the content) -->
+        <footer class="techwave_fn_footer">
+            <div class="techwave_fn_footer_content">
+                <div class="copyright">
+                    <p>2025 Buckapi</p>
+                </div>
+                <div class="menu_items">
+                    <ul>
+                        <li><a href="terms.html">Sitio web</a></li>
+                        <li><a href="privacy.html">ivansantosart.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        <!-- !FOOTER (inside the content) -->
+        
+    </div>
+    <!-- !CONTENT -->
+    

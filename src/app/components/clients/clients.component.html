@@ -1,0 +1,192 @@
+<main class="adminuiux-content has-sidebar" onclick="contentClick()">
+       
+    <div class="container mt-3" id="main-content">
+        <div class="row gx-3">                
+            <div class="col">
+                <div class="card adminuiux-card mb-3" data-bs-target="#navbarpill" data-bs-spy="scroll">
+                    <div class="card-body py-0">
+                        <div class="position-sticky bg-card py-3 mb-0 z-index-7 header-pt mb-2" id="navbarpill">
+                            
+                        </div>
+                        <div id="scrollspayone" class="mb-4 mb-lg-5" style="scroll-margin: 150px;">
+                        
+                            <nav class="mb-3" [hidden]="showDetail">
+                                <div class="nav nav-underline" id="nav-tab-loc-1" role="tablist">
+                                    <button class="nav-link active" id="nav-user-tab-loc-1" data-bs-toggle="tab"
+                                        data-bs-target="#nav-user-loc-1" type="button" role="tab"
+                                        aria-controls="nav-user-loc-1" aria-selected="true">Clientes</button>
+                                    <input type="text" [(ngModel)]="searchTerm" placeholder="Campo de búsqueda" class="form-control" style="width: 250px; display: inline-block; margin-left: 10px;">
+                                    <button class="btn btn-sm btn-outline-theme" (click)="global.setRoute('new-record')"><i class="bi bi-plus me-1"></i> Registrar cliente</button>
+                                </div>
+                            </nav>
+                            <div class="tab-content" id="nav-tabContent" [hidden]="showDetail">
+                                <div class="tab-pane show active fade" id="nav-user-loc-1" role="tabpanel"
+                                    aria-labelledby="nav-user-tab-loc-1" tabindex="0">
+                                    <div class="row gx-3">
+                                        <div class="col-12 col-md-4 col-lg-3" (click)="onShowDetail(item.id)" *ngFor="let item of (filteredClients | async)">
+                                            <div class="card adminuiux-card border mb-3">
+                                                <div class="card-body">
+                                                    <div class="row gx-3">
+                                                        <div class="col"></div>
+                                                        <div class="col-auto">
+                                                            <div class="dropdown d-inline-block"><a
+                                                                    class="btn btn-link btn-square no-caret"
+                                                                    data-bs-toggle="dropdown"><i
+                                                                        class="bi bi-three-dots"></i></a>
+                                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                                    <li><a class="dropdown-item" href="javascript:void(0)">Edit</a></li>
+                                                                    <li><a class="dropdown-item" href="javascript:void(0)">Move</a></li>
+                                                                    <li><a class="dropdown-item theme-red" href="javascript:void(0)">Delete</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div class="avatar avatar-80 rounded-circle mb-3 mx-auto" style="display:block !important">
+                                                            <img src="assets/img/avatar.png" alt="">
+                                                        </div>
+                                                        <h6 class="mb-0"><span class="position-relative" style="font-size: 2rem;">{{item.name}}</span></h6>
+                                                        <p class="text-secondary small" style="font-size: 1rem;">Rut. {{item.rut}}</p>
+                                                        <span class="badge badge-light rounded-pill text-bg-theme-1 mb-2" style="font-size: 1rem;">
+                                                            <i class="bi bi-envelope me-2"></i>{{item.email}}
+                                                        </span>
+                                                        <span class="badge badge-light rounded-pill text-bg-theme-1 mb-2" style="font-size: 1rem;">
+                                                            <i class="bi bi-telephone me-2"></i>{{item.phone}}
+                                                        </span>
+                                                        <span class="badge badge-light rounded-pill text-bg-theme-accent-1" style="font-size: 1rem;">
+                                                            <img src="assets/img/drive.png" style="width: 48px; height: 48px; margin-left: 5px;">
+                                                            <span class="text-secondary small" style="margin-left: 5px; margin-right: 25px; font-size: 1.5rem;">
+                                                                {{ getPatente(item.id) }}
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                   
+                                </div>
+                                <div class="tab-pane fade" id="nav-staff-loc-1" role="tabpanel"
+                                    aria-labelledby="nav-staff-tab-loc-1" tabindex="0">...</div>
+                            </div>
+
+
+                            <nav class="mb-3"  [hidden]="!showDetail">
+                                <div class="nav nav-underline" id="nav-tab-loc-1" role="tablist"><button
+                                        class="nav-link active" id="nav-user-tab-loc-1" data-bs-toggle="tab"
+                                        data-bs-target="#nav-user-loc-1" type="button" role="tab"
+                                        aria-controls="nav-user-loc-1" aria-selected="true"></button>
+                                      
+                                        <button class="btn btn-sm btn-outline-theme" (click)="back()"><i class="bi bi-left-arrow me-1"></i> Volver</button>
+                                    </div>
+                            </nav>
+                            <div class="tab-content" id="nav-tabContent"  [hidden]="!showDetail">
+                                <div class="tab-pane show active fade" id="nav-user-loc-1" role="tabpanel"
+                                    aria-labelledby="nav-user-tab-loc-1" tabindex="0">
+                                    <div class="row gx-3">
+                                        <div class="col-12 col-md-6 col-lg-3">
+                                            <div class="card adminuiux-card border mb-3">
+                                                <div class="card-body">
+                                                    <div class="row gx-3">
+                                                        <div class="col"></div>
+                                                        <div class="col-auto">
+                                                            <div class="dropdown d-inline-block"><a
+                                                                    class="btn btn-link btn-square no-caret"
+                                                                    data-bs-toggle="dropdown"><i
+                                                                        class="bi bi-three-dots"></i></a>
+                                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                                    <li><a class="dropdown-item"
+                                                                            href="javascript:void(0)">Edit</a>
+                                                                    </li>
+                                                                    <li><a class="dropdown-item"
+                                                                            href="javascript:void(0)">Move</a>
+                                                                    </li>
+                                                                    <li><a class="dropdown-item theme-red"
+                                                                            href="javascript:void(0)">Delete</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center" *ngIf="global.clienteDetail">
+                                                        <div
+                                                            class="avatar avatar-80 rounded-circle  mb-3 mx-auto" style="display:block !important">
+                                                            <img src="assets/img/avatar.png"
+                                                                alt="" ></div>
+                                                                <h6 class="mb-0">
+                                                                    <span class="position-relative" style="font-size: 2rem;">
+                                                                        {{ global.clienteDetail ? global.clienteDetail.name : 'Cliente no encontrado' }}
+                                                                    </span>
+                                                                </h6>
+                                                                <p class="text-secondary small" style="font-size: 1rem;">
+                                                                    Rut. {{ global.clienteDetail ? global.clienteDetail.rut : 'Sin rut' }}
+                                                                </p>
+                                                        <span
+                                                            class="badge badge-light rounded-pill text-bg-theme-1 mb-2" style="font-size: 1rem;"><i
+                                                                class="bi bi-envelope me-2"></i>{{global.clienteDetail.email}}</span>
+                                                                <span
+                                                                class="badge badge-light rounded-pill text-bg-theme-1 mb-2" style="font-size: 1rem;"><i
+                                                                    class="bi bi-telephone me-2"></i>{{global.clienteDetail.phone}}</span>
+                                                       
+                                                              
+                                                                <span *ngFor="let car of global.clienteDetail.cars"
+                                                                class="badge badge-light rounded-pill text-bg-theme-accent-1" style="font-size: 1rem;"  >
+                                                                <img src="assets/img/drive.png" style="width: 48px; height: 48px; margin-left:  5px;">
+                                                                
+                                                                <span  class="text-secondary small"  style="margin-left: 5px; margin-right: 25px; font-size: 1.5rem; " >
+                                                                {{ car.patente }}
+                                                                </span>
+                                                            </span>
+    
+
+    
+
+                                                                
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                   
+                                </div>
+                                <div class="tab-pane fade" id="nav-staff-loc-1" role="tabpanel"
+                                    aria-labelledby="nav-staff-tab-loc-1" tabindex="0">...</div>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal adminuiux-modal fade" id="createuser" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <nav>
+                        <div class="nav nav-pills" id="nav-tab-user-1" role="tablist"><button
+                                class="nav-link active" id="nav-basic-tab-user-1" data-bs-toggle="tab"
+                                data-bs-target="#nav-basic-user-1" type="button" role="tab"
+                                aria-controls="nav-basic-user-1" aria-selected="true">Basic Info</button>
+                            <button class="nav-link" id="nav-prof-tab-user-2" data-bs-toggle="tab"
+                                data-bs-target="#nav-prof-user-2" type="button" role="tab"
+                                aria-controls="nav-prof-user-2" aria-selected="false">Professional</button>
+                            <button class="nav-link" id="nav-timing-tab-user-2" data-bs-toggle="tab"
+                                data-bs-target="#nav-timing-user-2" type="button" role="tab"
+                                aria-controls="nav-timing-user-2" aria-selected="false">Availability</button>
+                        </div>
+                    </nav><button type="button" class="btn btn-link btn-square ms-auto" data-bs-dismiss="modal"
+                        aria-label="Close"><i class="bi bi-x-lg"></i></button>
+                </div>
+                <div class="modal-body pt-0">
+<app-new-record></app-new-record>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</main>|

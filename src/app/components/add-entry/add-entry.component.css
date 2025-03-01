@@ -1,0 +1,8 @@
+.input_item {
+    display: flex;
+    align-items: center; /* Alinea verticalmente en el centro */
+}
+
+.input_item select {
+    margin-right: 10px; /* Espacio entre el select y el botón */
+}

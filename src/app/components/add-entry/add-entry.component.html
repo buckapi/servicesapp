@@ -1,0 +1,117 @@
+<!-- CONTENT -->
+<div class="techwave_fn_content">
+    <div class="techwave_fn_page">
+        <div class="techwave_fn_user_settings_page">
+            <div class="techwave_fn_pagetitle">
+                <h2 class="title">Agregar obra de arte</h2>
+            </div>
+
+            <div class="container small">
+                <div class="techwave_fn_user_settings">
+                    <form>
+                        <div class="user__settings">
+                            <div class="settings_left">
+                                <label class="fn__upload">
+                                    <span class="upload_content">
+                                        <img src="svg/upload.svg" alt="" class="fn__svg">
+                                        <span class="title">Arrastra una imagen</span>
+                                        <span class="fn__lined_text">
+                                            <span class="line"></span>
+                                            <span class="text">O</span>
+                                            <span class="line"></span>
+                                        </span>
+                                        <span class="title">Busca</span>
+                                        <span class="desc">Soporta JPG, JPEG, y PNG</span>
+                                    </span>
+                                    <input type="file" accept="image/*">
+                                </label>
+                            </div>
+
+                            <div class="settings_right">
+                                <div class="item">
+                                    <label class="input_label" for="title">Título de la Obra</label>
+                                    <div class="input_item">
+                                        <input class="input" type="text" id="title" placeholder="Ingrese el título de la obra">
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <label class="input_label" for="category">Categoría</label>
+                                    <div class="input_item">
+                                        <select class="input" id="category" (change)="onCategoryChange($event)">
+                                            <option value="" disabled selected>Seleccione una categoría</option>
+                                            <option *ngFor="let category of realtimeCategoriesService.categories$ | async" [value]="category.name">{{ category.name }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="item" *ngIf="selectedCategory === 'Pinturas'">
+                                    <label class="input_label" for="technique">Técnica</label>
+                                    <div class="input_item">
+                                        <input class="input" type="text" id="technique" placeholder="Ingrese la técnica utilizada">
+                                    </div>
+                                </div>
+
+                                <div class="item" *ngIf="selectedCategory === 'Pinturas'">
+                                    <label class="input_label" for="dimensions">Dimensiones (Alto y Ancho)</label>
+                                    <div class="input_item">
+                                        <input class="input" type="text" id="dimensions" placeholder="Ingrese las dimensiones (alto, ancho)">
+                                    </div>
+                                </div>
+
+                                <div class="item" *ngIf="selectedCategory === 'Pinturas'">
+                                    <label class="input_label" for="style">Estilo</label>
+                                    <div class="input_item">
+                                        <select class="input" id="style">
+                                            <option value="" disabled selected>Seleccione un estilo</option>
+                                            <option *ngFor="let style of realtimeStylesService.styles$ | async" [value]="style.id">{{ style.name }}</option>
+                                        </select>
+                                        <a  class="techwave_fn_button small__border  enabled" style="cursor:pointer" (click)="addNewStyle()">
+                                            <span> + </span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="item" *ngIf="selectedCategory === 'Esculturas'">
+                                    <label class="input_label" for="dimensions">Dimensiones (Ancho, Alto y Profundidad)</label>
+                                    <div class="input_item">
+                                        <input class="input" type="text" id="dimensions" placeholder="Ingrese las dimensiones (ancho, alto, profundidad)">
+                                    </div>
+                                </div>
+
+                                <div class="item" *ngIf="selectedCategory === 'Esculturas'">
+                                    <label class="input_label" for="weight">Peso</label>
+                                    <div class="input_item">
+                                        <input class="input" type="number" id="weight" placeholder="Ingrese el peso">
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <label class="fn__submit">
+                                        <input type="submit" value="Agregar Obra">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="techwave_fn_footer">
+        <div class="techwave_fn_footer_content">
+            <div class="copyright">
+                <p>2025 Buckapi</p>
+            </div>
+            <div class="menu_items">
+                <ul>
+                    <li><a href="terms.html">Sitio Web</a></li>
+                    <li><a href="ivansantosart.com.html">ivansantosart.com</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</div>
+<!-- !CONTENT -->

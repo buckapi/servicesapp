@@ -1,0 +1,153 @@
+<main class="adminuiux-content has-sidebar" onclick="contentClick()">
+    <div class="container mt-3" id="main-content">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12 col-xxl-4">
+                <h6 class="mb-3">Datos del cliente</h6>
+               
+                <div class="row">
+                    <div class="col-md-6 col-lg-12">       
+
+                <div class="row">
+                    <div class="col">
+                        <span style="margin: 25px !important; padding:25px !important;">
+                            <img src="assets/img/avatar.png" width="50%" style="margin: 25px !important; padding:0px !important;">
+                        </span>
+                    </div>
+                    <div class="col-auto">
+                        <figure class="">
+                            <button class="btn btn-square btn-accent" onclick="$(this).next().click()">
+                                <i class="bi bi-upload"></i>
+                            </button>
+                            <input type="file" class="d-none">
+                        </figure>
+                    </div>
+                </div>
+              
+             </div>
+       
+                <div class="col"> 
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="nombre" [(ngModel)]="nombre" placeholder="Nombre del cliente">
+                    <label for="nombre">Nombre del cliente</label>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="rut" [(ngModel)]="rut" placeholder="RUT">
+                            <label for="rut">RUT</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="telefono" [(ngModel)]="telefono" placeholder="Teléfono">
+                            <label for="telefono">Teléfono</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="email" [(ngModel)]="email" placeholder="Ingrese su email">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+        </div>
+
+
+
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-xxl-8">
+                <div class="card adminuiux-card mb-3">
+                    <div class="card-body">
+                        <h6 class="mb-3">Información de ingreso vehicular</h6>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="patente" [(ngModel)]="patente" placeholder="Patente">
+                                    <label for="patente">Patente</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="kilometraje" [(ngModel)]="kilometraje" placeholder="Kilometraje">
+                                    <label for="kilometraje">Kilometraje</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="modelo" [(ngModel)]="modelo" placeholder="Modelo">
+                                    <label for="modelo">Modelo</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="marca" [(ngModel)]="marca" placeholder="Marca">
+                                    <label for="marca">Marca</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                            <div class="row gx-2 mb-3">
+                                <h6 class="mb-3">Tipo de combustible <small class="text-secondary fw-normal"></small></h6>
+                                <div class="col-auto" (click)="fuelType = 'gasolina'; selectedFuel = 'gasolina'">
+                                    <div class="img-hover" [ngClass]="{'selected': selectedFuel === 'gasolina'}" style="padding: 5px;">
+                                        <img src="assets/img/gasolina.png" width="70" style="padding: 5px;" alt="Gasolina">
+                                        <div class="overlay"></div>
+                                    </div>
+                                </div>
+                                <div class="col-auto" (click)="fuelType = 'diesel'; selectedFuel = 'diesel'">
+                                    <div class="img-hover" [ngClass]="{'selected': selectedFuel === 'diesel'}" style="padding: 5px;">
+                                        <img src="assets/img/diesel.png" width="70" style="padding: 5px;" alt="Diesel">
+                                        <div class="overlay"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="col">
+
+                            <div class="row gx-2 mb-3">
+                                <h6 class="mb-3">Tipo de transmisión <small class="text-secondary fw-normal"></small></h6>
+                                <div class="col-auto" (click)="transmissionType = '2wd'; selectedTransmission = '2wd'">
+                                    <div class="img-hover" [ngClass]="{'selected': selectedTransmission === '2wd'}" style="padding: 5px;">
+                                        <img src="assets/img/2wd.png" width="70" style="padding: 5px;" alt="2WD">
+                                        <div class="overlay"></div>
+                                    </div>
+                                </div>
+                                <div class="col-auto" (click)="transmissionType = '4wd';selectedTransmission = '4wd'">
+                                    <div class="img-hover" [ngClass]="{'selected': selectedTransmission === '4wd'}" style="padding: 5px;">
+                                        <img src="assets/img/4wd.png" width="70" style="padding: 5px;" alt="4WD">
+                                        <div class="overlay"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <h6 class="mb-3">Fotografías del vehículo <small class="text-secondary fw-normal">(Opcional)</small></h6>
+                        <form action="https://adminuiux.com/target" class="dropzone mb-2" id="myDropzone2">
+                            <div class="dz-default dz-message my-2">
+                                <i class="h1 bi bi-cloud-upload"></i><br>
+                                <button class="dz-button" type="button">Arrastra y suelta o haz clic aquí para subir</button>
+                            </div>
+                        </form>
+                        <p class="text-secondary small">Formatos soportados: .jpeg, .png, .mp4, .mpeg4. Tamaño máximo 6MB</p><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row gx-3 mb-3">
+            <div class="col">
+                <button class="btn btn-light my-2" (click)="global.setRoute('clients')"> Cancelar</button>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-theme my-2" (click)="createRecord()">Crear</button>
+            </div>
+        </div>
+        <div class="alert alert-success" [hidden]="!loading">
+            <p><span class="spinner-border spinner-border-sm me-2" role="status">
+                <span class="visually-hidden">Cargando...</span>
+            </span>Por favor, espere un momento.</p>
+        </div>
+        <hr>
+    </div>
+</main>

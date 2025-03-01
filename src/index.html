@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <title>Services App</title>
+  <script>
+    if (!localStorage.frenify_skin) {
+      localStorage.frenify_skin = 'dark';
+    }
+    if (!localStorage.frenify_panel) {
+      localStorage.frenify_panel = '';
+    }
+    document.documentElement.setAttribute("data-bs-theme", localStorage.frenify_skin);
+    if(localStorage.frenify_panel !== ''){
+      document.documentElement.classList.add(localStorage.frenify_panel);
+    }
+      
+  </script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@100;400;500;600&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --adminuiux-content-font: 'Roboto';
+            --adminuiux-content-font-weight: 400;
+            --adminuiux-title-font: "Fira Sans Condensed";
+            --adminuiux-title-font-weight: 500
+        }
+    </style>
+    <script defer="defer" src="assets/js/app.js?a420ab3a19270efb30bb"></script>
+    <link href="assets/css/app.css?a420ab3a19270efb30bb" rel="stylesheet">
+
+
+
+
+</head>
+<body  class="main-bg main-bg-opac main-bg-blur adminuiux-sidebar-fill-white adminuiux-sidebar-boxed theme-blue roundedui"
+    data-theme="theme-blue" data-sidebarfill="adminuiux-sidebar-fill-white" data-bs-spy="scroll"
+    data-bs-target="#list-example" data-bs-smooth-scroll="true" tabindex="0">
+
+
+		
+		
+
+		
+
+		
+		
+    <app-root></app-root>
+	</div>
+</div>
+<!-- !MAIN WRAPPER -->
+
+</body>
+
+
+<script src="assets/js/investment/investment-dashboard.js"></script>
+
+</html>
+
+
+

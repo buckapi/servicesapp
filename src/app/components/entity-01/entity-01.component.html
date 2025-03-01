@@ -1,0 +1,164 @@
+	<!-- CONTENT -->
+    <div class="techwave_fn_content">
+		
+        <!-- PAGE (all pages go inside this div) -->
+        <div class="techwave_fn_page">
+            
+            <!-- Models Page -->
+            <div class="techwave_fn_models_page">
+                <div class="fn__title_holder" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="container">
+                        <h1 class="title" *ngIf="entityName">{{ entityName }}</h1>
+                        <p class="desc" *ngIf="entityCaption">{{ entityCaption }}</p>
+                    </div>
+                <!-- <a (click)=" globalService.setRoute('add-picture')" class="techwave_fn_button"><span>+ Agregar</span></a> -->
+
+                </div>
+
+                <!-- Models -->
+                <div class="techwave_fn_models">
+                    
+                    <div class="fn__tabs">
+                        <div class="container">
+                            <div class="tab_in">
+                                <a class="active" href="#tab1">Todos</a>
+                                <a *ngFor="let category of (realtimeCategoriesService.categories$ | async)" [href]="'#tab' + category.id">{{ category.name }}</a>
+                              
+                            </div>
+                        </div>
+                    </div>
+                
+
+                    <!-- models filter -->
+                    <div class="container">
+                        <div class="models__filter">
+                            <div class="filter__left">
+                                <div class="filter__search">
+                                    <input type="text" placeholder="Buscar">
+                                    <a href="#" class="techwave_fn_button"><span>Buscar</span></a>
+                                </div>
+                            </div>
+                            <div class="filter__right">
+                                <!-- <div class="filter__category">
+                                    <select>
+                                        <option value="all" selected>Todos</option>
+                                        <option value="Buildings">Buildings</option>
+                                        <option value="Characters">Characters</option>
+                                        <option value="Environments">Environments</option>
+                                        <option value="Fashion">Fashion</option>
+                                        <option value="Illustration">Illustration</option>
+                                        <option value="Graphical">Graphical</option>
+                                        <option value="Photography">Photography</option>
+                                        <option value="Textures">Textures</option>
+                                    </select>
+                                </div> -->
+                                <div class="filter__order">
+                                    <div class="fn__icon_options medium_size align_right">
+                                        <span class="fn__icon_button">
+                                            <img src="svg/filter.svg" alt="" class="fn__svg">
+                                        </span>
+                                        <div class="fn__icon_popup">
+                                            <ul>
+                                                <li>
+                                                    <a href="#">Recientes</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Antiguos</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">A-Z</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- !models filter -->
+                    
+                    
+                    
+                    <div class="container">
+                        <!-- models content -->
+                        <div class="models__content">
+                            <div class="models__results">
+                                <div class="fn__preloader">
+                                    <div class="icon"></div>
+                                    <div class="text">Loading</div>
+                                </div>
+                                <div class="fn__tabs_content">
+                                    <div id="tab1" class="tab__item active">
+                                        <ul class="fn__model_items">
+                                            <li class="fn__model_item new">
+                                                <div class="item">
+                                                    <a (click)="globalService.setRoute('add-entry')" class="fn__full_link"></a>
+                                                    <span class="add"></span>
+                                                    <span class="text">Agregar</span>
+                                                </div>
+                                            </li>
+                                            <!-- #1 model item -->
+                                            <li class="fn__model_item" *ngFor="let item of (realtimeEntriesService.entries$ | async)"> 
+                                                <div class="item">
+                                                    <a href="#" class="fn__bookmark has__bookmark">
+                                                        <img src="{{item.images[0]}}" alt="" class="fn__svg hasntbook">
+                                                        <img src="{{item.images[1]}}" alt="" class="fn__svg hasbook">
+                                                    </a>
+                                                    <div class="img">
+                                                        <img src="{{item.images[0]}}" alt="">
+                                                    </div>
+                                                    <div class="item__info">
+                                                        <h3 class="title">{{item.name}}</h3>
+                                                        <p class="desc">{{item.description}}</p>
+                                                    </div>
+                                                    <div class="item__author">
+                                                        <img src="img/user/user.jpg" alt="">
+                                                        <h3 class="author_name">Caden</h3>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <!-- !#1 model item -->
+
+                                        
+                                        </ul>
+                                    </div>
+                                </div>
+                                        
+                            </div>
+                            <div class="models__more">
+                                <a href="#" class="medium techwave_fn_button"><span>Load More</span></a>
+                            </div>
+                        </div>
+                        <!-- !models content -->
+                    </div>
+                    
+                    
+
+                </div>
+                <!-- !Models -->
+                    
+            </div>
+            <!-- !Models Page -->
+            
+        </div>
+        <!-- !PAGE (all pages go inside this div) -->
+        
+        
+        <!-- FOOTER (inside the content) -->
+        <footer class="techwave_fn_footer">
+            <div class="techwave_fn_footer_content">
+                <div class="copyright">
+                    <p>2025 Buckapi</p>
+                </div>
+                <div class="menu_items">
+                    <ul>
+                        <li><a href="terms.html">Sitio Web</a></li>
+                        <li><a href="ivansantosart.com.html">ivansantosart.com </a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        <!-- !FOOTER (inside the content) -->
+        
+    </div>
+    <!-- !CONTENT -->
