@@ -5,15 +5,15 @@
                 <div class="col-12 col-md-12 col-xl-4 minvheight-100 d-flex flex-column px-0">
                     <header class="adminuiux-header">
                         <nav class="navbar">
-                            <div class="container-fluid"><a class="navbar-brand"
-                                    href="investment-dashboard.html"><img data-bs-img="light"
-                                        src="assets/img/logo-light.png" alt=""> <img data-bs-img="dark"
-                                        src="assets/img/logo-light.png" alt="">
-                                    <div class="d-block ms-3"><span class="h5">Services<b>App</b></span>
+                            <div class="container-fluid">
+                                <a class="navbar-brand" href="investment-dashboard.html">
+                                    <img data-bs-img="light" src="assets/img/logo-light.png" alt="">
+                                    <img data-bs-img="dark" src="assets/img/logo-light.png" alt="">
+                                    <div class="d-block ms-3">
+                                        <span class="h5">Services<b>App</b></span>
                                         <p class="fs-12 opacity-75">Felipe's Garage</p>
                                     </div>
                                 </a>
-                                <div class="ms-auto"></div>
                                 <div class="ms-auto"></div>
                             </div>
                         </nav>
@@ -25,83 +25,79 @@
                                     <h1 class="mb-2">Bienvenido&#9996;</h1>
                                     <p class="text-secondary">Ingresa tu credencial para iniciar sesión</p>
                                 </div>
-                                <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="email" placeholder="Enter email address" 
-                                    [(ngModel)]="email" name="email" required autofocus />
-                         
-                                         <label for="emailadd">Dirección de correo electrónico</label></div>
-                                <div class="position-relative">
+                                <form (ngSubmit)="login()">
                                     <div class="form-floating mb-3">
-                                        <input type="password" class="form-control" id="passwd" placeholder="Enter your password" 
-                                               [(ngModel)]="password" name="password" required />
-                                        <label for="passwd">Contraseña</label>
+                                        <input type="email" class="form-control" id="emailadd" placeholder="Enter email address" 
+                                        [(ngModel)]="email" name="email" required autofocus />
+                                        <label for="emailadd">Dirección de correo electrónico</label>
                                     </div>
-                                    <button class="btn btn-square btn-link text-theme-1 position-absolute end-0 top-0 mt-2 me-2">
-                                        <i class="bi bi-eye"></i>
-                                    </button>
+                                    <div class="position-relative">
+                                        <div class="form-floating mb-3">
+                                            <input type="password" class="form-control" id="passwd" placeholder="Enter your password" 
+                                                   [(ngModel)]="password" name="password" required />
+                                            <label for="passwd">Contraseña</label>
+                                        </div>
+                                        <button class="btn btn-square btn-link text-theme-1 position-absolute end-0 top-0 mt-2 me-2">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="row gx-3 align-items-center mb-3">
+                                        <div class="col">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="rememberme" id="rememberme"> 
+                                                <label class="form-check-label" for="rememberme">Recordarme</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <a href="investment-forgot-password.html" class="">Olvidaste tu contrasena?</a>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-lg btn-theme w-100 mb-3">Iniciar sesión</button>
+                                </form>
+                                <div class="text-center mb-3">No tienes cuenta? <a href="investment-signup.html" class="">Crear cuenta</a></div>
+                                <div class="row gx-3 align-items-center mb-3">
+                                    <div class="col">
+                                        <hr class="">
+                                    </div>
+                                    <div class="col">
+                                        <hr class="">
+                                    </div>
                                 </div>
-                                <div class="row gx-3 align-items-center mb-3">
-                                    <div class="col">
-                                        <div class="form-check"><input class="form-check-input" type="checkbox"
-                                                name="rememberme" id="rememberme"> <label class="form-check-label"
-                                                for="rememberme">Recordarme</label></div>
-                                    </div>
-                                    <div class="col-auto"><a href="investment-forgot-password.html" class="">Olvidaste
-                                            tu contrasena?</a></div>
-                                </div><a (click)="login(email, password)" class="btn btn-lg btn-theme w-100 mb-3">Iniciar sesión</a>
-                                <div class="text-center mb-3">No tienes cuenta? <a href="investment-signup.html"
-                                        class="">Crear cuenta</a></div>
-                                <div class="row gx-3 align-items-center mb-3">
-                                    <div class="col">
-                                        <hr class="">
-                                    </div>
-                                    <div class="col">
-                                        <hr class="">
-                                    </div>
-                                </div><button class="btn btn-outline-theme w-100 mb-3 text-start"><img
-                                        src="assets/img/g-logo.png" alt="" class="me-2"> Entrar 
-                                    Google</button> <button class="btn btn-outline-theme w-100 text-start"><img
-                                        src="assets/img/f-logo.png" alt="" class="me-2"> Sign in with
-                                    Facebook</button><br>
+                                <button class="btn btn-outline-theme w-100 mb-3 text-start"><img src="assets/img/g-logo.png" alt="" class="me-2"> Entrar Google</button>
+                                <button class="btn btn-outline-theme w-100 text-start"><img src="assets/img/f-logo.png" alt="" class="me-2"> Sign in with Facebook</button>
                             </div>
                         </div>
                     </div>
                     <footer class="adminuiux-footer mt-auto">
-                        <div class="container-fluid text-center"><span class="small">Copyright  202, <a
-                                    href="../../index.html" target="_blank">Services App</a> Junior Márquez
-                                </span></div>
+                        <div class="container-fluid text-center">
+                            <span class="small">Copyright 202, <a href="../../index.html" target="_blank">Services App</a> Junior Márquez</span>
+                        </div>
                     </footer>
                 </div>
                 <div class="col-12 col-md-6 col-xl-8 p-4 d-none d-md-block">
                     <div class="card adminuiux-card bg-theme-1-space position-relative overflow-hidden h-100">
-                        <div class="position-absolute start-0 top-0 h-100 w-100 coverimg opacity-75 z-index-0"><img
-                                src="assets/img/background-image/backgorund-image-8.jpg" alt=""></div>
+                        <div class="position-absolute start-0 top-0 h-100 w-100 coverimg opacity-75 z-index-0">
+                            <img src="assets/img/background-image/backgorund-image-8.jpg" alt="">
+                        </div>
                         <div class="card-body position-relative z-index-1">
-                            <div
-                                class="row h-100 d-flex flex-column justify-content-center align-items-center gx-0 text-center">
+                            <div class="row h-100 d-flex flex-column justify-content-center align-items-center gx-0 text-center">
                                 <div class="col-10 col-md-11 col-xl-8 mb-4 mx-auto">
                                     <div class="swiper swipernavpagination pb-5">
                                         <div class="swiper-wrapper">
-                                            <div class="swiper-slide"><img src="assets/img/investment/slider.png"
-                                                    alt="" class="mw-100 mb-3">
-                                                <h2 class="text-white mb-3">Create and Manage your Investment
-                                                    appointments easily at your own very personalized space.</h2>
-                                                <p class="lead opacity-75">You are at the best Adminuiux Investment
-                                                    UX<br>HTML template demo preview</p>
+                                            <div class="swiper-slide">
+                                                <img src="assets/img/investment/slider.png" alt="" class="mw-100 mb-3">
+                                                <h2 class="text-white mb-3">Create and Manage your Investment appointments easily at your own very personalized space.</h2>
+                                                <p class="lead opacity-75">You are at the best Adminuiux Investment UX<br>HTML template demo preview</p>
                                             </div>
-                                            <div class="swiper-slide"><img src="assets/img/investment/slider.png"
-                                                    alt="" class="mw-100 mb-3">
-                                                <h2 class="text-white mb-3">Create and Manage your Investment
-                                                    appointments easily at your own very personalized space.</h2>
-                                                <p class="lead opacity-75">You are at the best Adminuiux Investment
-                                                    UX<br>HTML template demo preview</p>
+                                            <div class="swiper-slide">
+                                                <img src="assets/img/investment/slider.png" alt="" class="mw-100 mb-3">
+                                                <h2 class="text-white mb-3">Create and Manage your Investment appointments easily at your own very personalized space.</h2>
+                                                <p class="lead opacity-75">You are at the best Adminuiux Investment UX<br>HTML template demo preview</p>
                                             </div>
-                                            <div class="swiper-slide"><img src="assets/img/investment/slider.png"
-                                                    alt="" class="mw-100 mb-3">
-                                                <h2 class="text-white mb-3">Create and Manage your Investment
-                                                    appointments easily at your own very personalized space.</h2>
-                                                <p class="lead opacity-75">You are at the best Adminuiux Investment
-                                                    UX<br>HTML template demo preview</p>
+                                            <div class="swiper-slide">
+                                                <img src="assets/img/investment/slider.png" alt="" class="mw-100 mb-3">
+                                                <h2 class="text-white mb-3">Create and Manage your Investment appointments easily at your own very personalized space.</h2>
+                                                <p class="lead opacity-75">You are at the best Adminuiux Investment UX<br>HTML template demo preview</p>
                                             </div>
                                         </div>
                                         <div class="swiper-pagination white bottom-0"></div>

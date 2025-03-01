@@ -18,9 +18,9 @@ export class LoginComponent {
 
   constructor(public authService: AuthPocketbaseService) {}
 
-  login(email:string, password:string) {
-    alert('datos: ' + email + ' ' + password);
-    this.authService.loginUser(email, password).subscribe({
+  login() {
+    alert('datos: ' + this.email + ' ' + this.password);
+    this.authService.loginUser(this.email, this.password).subscribe({
       next: (response) => {
         console.log('Inicio de sesión exitoso:', response);
         localStorage.setItem('isLoggedin', 'true'); // Guardar el estado de login
