@@ -3,7 +3,7 @@
 		<div class="row gx-3 align-items-center">
 			<div class="col-12 col-lg mb-3">
 				<h3 class="fw-normal mb-0 text-secondary">Bienvenido,</h3>
-				<h1 *ngIf="auth.getCurrentUser().full_name!=undefined && auth.getCurrentUser().full_name!=''">{{auth.getCurrentUser().full_name}}</h1>
+				<h1 *ngIf="auth.getCurrentUser().full_name!=undefined ">{{auth.getCurrentUser().full_name}}</h1>
 			</div>
 			<div class="col-6 col-sm-4 col-lg-3 col-xl-2 mb-3">
 				<div class="card adminuiux-card">
