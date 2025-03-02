@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { AuthPocketbaseService } from '@app/services/auth.service';
 import { GlobalService } from '@app/services/global.service';
 
 @Component({
@@ -10,11 +11,18 @@ import { GlobalService } from '@app/services/global.service';
 })
 export class HeaderComponent {
 theme='light'
-  constructor(public global: GlobalService) {}
+  constructor(public global: GlobalService,
+    public auth:AuthPocketbaseService 
+  ) {}
 
   ngOnInit() {
     this.toggleTheme();
   }
+goConfig() {
+  this.global.flag='ui';
+
+  this.global.setRoute('config');
+}
 
   toggleTheme() {
     this.theme = this.theme === 'light' ? 'dark' : 'light';

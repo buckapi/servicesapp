@@ -6,12 +6,16 @@ import { RealtimeCarsService } from '@app/services/realtime-cars.service';
 import { RealtimeClientsService } from '@app/services/realtime-clients.service';
 import { map } from 'rxjs/operators'; // Asegúrate de importar map
 import { FormsModule } from '@angular/forms';
+import { HistorialComponent } from '../historial/historial.component';
+import { WinzardComponent } from '../winzard/winzard.component';
 
 @Component({
   selector: 'app-clients',
   standalone: true,
   imports: [CommonModule,
-    NewRecordComponent,
+    HistorialComponent,
+    WinzardComponent,
+    // NewRecordComponent,
     FormsModule
   ],
   templateUrl: './clients.component.html',

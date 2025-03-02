@@ -45,7 +45,7 @@
                                                         <div class="avatar avatar-80 rounded-circle mb-3 mx-auto" style="display:block !important">
                                                             <img src="assets/img/avatar.png" alt="">
                                                         </div>
-                                                        <h6 class="mb-0"><span class="position-relative" style="font-size: 2rem;">{{item.name}}</span></h6>
+                                                        <h6 class="mb-0"><span class="position-relative" style="font-size: 1.2rem;">{{item.name}}</span></h6>
                                                         <p class="text-secondary small" style="font-size: 1rem;">Rut. {{item.rut}}</p>
                                                         <span class="badge badge-light rounded-pill text-bg-theme-1 mb-2" style="font-size: 1rem;">
                                                             <i class="bi bi-envelope me-2"></i>{{item.email}}
@@ -130,14 +130,16 @@
                                                                     class="bi bi-telephone me-2"></i>{{global.clienteDetail.phone}}</span>
                                                        
                                                               
-                                                                <span *ngFor="let car of global.clienteDetail.cars"
-                                                                class="badge badge-light rounded-pill text-bg-theme-accent-1" style="font-size: 1rem;"  >
-                                                                <img src="assets/img/drive.png" style="width: 48px; height: 48px; margin-left:  5px;">
-                                                                
-                                                                <span  class="text-secondary small"  style="margin-left: 5px; margin-right: 25px; font-size: 1.5rem; " >
-                                                                {{ car.patente }}
-                                                                </span>
-                                                            </span>
+                                                                    <span *ngFor="let car of global.clienteDetail.cars" (click)="global.showHistorialComponent(car.patente)"
+                                                                    class="badge badge-light rounded-pill text-bg-theme-accent-1 elevate" style="font-size: 1rem;">
+                                                                  <img src="assets/img/drive.png" style="width: 48px; height: 48px; margin-left: 5px;">
+                                                                  <span class="text-secondary small" style="margin-left: 5px; margin-right: 25px; font-size: 1.5rem; cursor: pointer;">
+                                                                      {{ car.patente }}
+                                                                      <i class="bi bi-eye-fill " style="color: black;" [hidden]="!global.showHistorial"></i>
+                                                                      <i class="bi bi-eye " [hidden]="global.showHistorial"></i>
+                                                                  </span>
+                                                                  
+                                                              </span>
     
 
     
@@ -146,6 +148,10 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="col">
+                                            <app-historial [hidden]="!global.showHistorial || global.showWinzard"></app-historial>
+                                            <app-winzard [hidden]="!global.showWinzard"></app-winzard>
                                         </div>
                                         
                                     </div>
@@ -163,7 +169,7 @@
             </div>
         </div>
     </div>
-    <div class="modal adminuiux-modal fade" id="createuser" tabindex="-1" aria-hidden="true">
+    <!-- <div class="modal adminuiux-modal fade" id="createuser" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -188,5 +194,5 @@
                 
             </div>
         </div>
-    </div>
-</main>|
+    </div> -->
+</main>

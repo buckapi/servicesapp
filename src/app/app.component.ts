@@ -17,11 +17,13 @@ import { LoginComponent } from './components/login/login.component';
 import { NewRecordComponent } from "./components/new-record/new-record.component";
 import { ClientsComponent } from './components/clients/clients.component';
 import { AuthPocketbaseService } from './services/auth.service';
+import { ConfigComponent } from './components/config/config.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
+    ConfigComponent,
     ClientsComponent,
     NewRecordComponent,
     CommonModule,
@@ -40,7 +42,10 @@ export class AppComponent {
   constructor(public authService: AuthPocketbaseService,  public globalService: GlobalService, private renderer: Renderer2) {
     this.toggleTheme();
   }
-
+goconfig(){
+  this.globalService.flag='app';
+  this.globalService.setRoute('config');
+}
   toggleTheme() {
     this.theme = this.theme === 'light' ? 'dark' : 'light';
     this.globalService.toggleTheme();

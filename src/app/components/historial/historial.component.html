@@ -1,0 +1,46 @@
+<div class="col-12">
+    <div class="card adminuiux-card mb-3">
+        <div class="card-body">
+            <div class="row gx-3 align-items-center">
+                <div class="col-12 col-sm mb-3 mb-sm-0">
+                    <h6>Hitorial de mantenciones</h6>
+                </div>
+                <div class="text-end">
+                    <button class="btn btn-sm btn-outline-theme" (click)="global.showWinzard=true">
+                        <i class="bi bi-plus me-1"></i> Agregar Mantención
+                    </button>
+                </div>
+
+                <div class="col col-sm-auto px-0"><select class="form-select form-select-sm">
+                        <option selected="selected">All Trend</option>
+                        <option>Bullish</option>
+                        <option>Bearish</option>
+                    </select></div>
+                <div class="col-auto"><button class="btn btn-sm btn-square btn-link"><i
+                            class="bi bi-arrow-clockwise"></i></button></div>
+            </div>
+            <table class="table mb-0" id="dataTable">
+                <thead>
+                    <tr>
+                        <th class="all"># ORDEN</th>
+                        <th class="all">Fecha de Mantenimiento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>    
+                        <td>1</td>
+                        <td>2024-01-01</td>
+                    </tr>
+                    <tr>    
+                        <td>2</td>
+                        <td>2024-01-02</td>
+                    </tr>
+                    <tr>    
+                        <td>3</td>
+                        <td>2024-01-03</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

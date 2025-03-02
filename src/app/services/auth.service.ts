@@ -189,7 +189,7 @@ export class AuthPocketbaseService {
     this.pb.authStore.clear();
     
     // Redireccionar a home
-    this.global.setRoute('home');
+    this.global.setRoute('login');
 
     return new Observable<any>((observer) => {
       observer.next(); // Indicar que la operación de cierre de sesión ha completado

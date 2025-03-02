@@ -38,8 +38,8 @@
           </ul>
             <div class="mt-auto"></div>
             <div class="px-3 mb-3 not-iconic">
-                <h6 class="mb-3 fw-medium">Ajustes de Aplicación</h6>
-                <div class="card adminuiux-card">
+                <h6 class="mb-3 fw-medium">Ajustes </h6>
+                <!-- <div class="card adminuiux-card">
                     <div class="card-body p-2">
                         <div class="row gx-2">
                             <div class="col-12 d-flex justify-content-between">
@@ -64,16 +64,17 @@
                                     class="btn btn-square btn-link"><i data-feather="help-circle"></i></a></div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <ul class="nav flex-column menu-active-line">
-                <li class="nav-item"><a href="investment-referral.html" class="nav-link"><i class="menu-icon"
+                <li class="nav-item"><a   class="nav-link"><i class="menu-icon"
                             data-feather="users"></i> <span class="menu-name">Usuarios</span></a></li>
-                <li class="nav-item"><a href="investment-settings.html" class="nav-link"><i class="menu-icon"
-                            data-feather="settings"></i> <span class="menu-name">Settings</span></a></li>
+                <li class="nav-item"><a style="cursor: pointer;" (click)="goconfig()" class="nav-link"><i class="menu-icon"
+                            data-feather="settings"></i> <span class="menu-name">Ajustes de Aplicación</span></a></li>
             </ul>
         </div>
     </div>
+    <app-config [hidden]="globalService.activeRoute!='config'" style="margin-top: 50px !important;"></app-config>
     <app-clients [hidden]="globalService.activeRoute!='clients'" style="margin-top: 50px !important;"></app-clients>
     <app-new-record [hidden]="globalService.activeRoute!='new-record'" style="margin-top: 50px !important;"></app-new-record>
     <app-home [hidden]="globalService.activeRoute!='home'" style="margin-top: 50px !important;"></app-home >

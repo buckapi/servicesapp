@@ -58,15 +58,15 @@
 					<ul class="group__list">
 						
 						<li>
-							<a (click)="globalService.setRoute('settings')" class="fn__tooltip menu__item" data-position="right" title="Log Out">
+							<a (click)="goConfig()" class="fn__tooltip menu__item" data-position="right" title="Log Out">
 								<span class="icon"><img src="svg/setting.svg" alt="" class="fn__svg"></span>
 							
 								<!-- <span class="icon"><img src="svg/logout.svg" alt="" class="fn__svg"></span> -->
-								<span class="text">Ajustes</span>
+								<span class="text">Ajustes de interfaz</span>
 							</a>
 						</li>
 						<li>
-							<a href="sign-in.html" class="fn__tooltip menu__item" data-position="right" title="Log Out">
+							<a (click)="globalService.setRoute('login')" class="fn__tooltip menu__item" data-position="right" title="Log Out">
 								<span class="icon"><img src="svg/logout.svg" alt="" class="fn__svg"></span>
 								<span class="text">Salir</span>
 							</a>

@@ -14,26 +14,30 @@ export class RealtimeClientsService implements OnDestroy {
   public clients$: Observable<any[]> =
     this.clientsSubject.asObservable();
 
-  constructor() {
+  constructor(
+
+    
+  ) {
     this.pb = new PocketBase('https://db.buckapi.lat:8095');
     this.subscribeToSlients();
   }
 
   private async subscribeToSlients() {
     // (Opcional) Autenticación
-    await this.pb
-      .collection('users')
-      .authWithPassword('platform@buckapi.lat', 'sw8K4jRuMW5x6jn');
+    await this.pb.collection('users').authWithPassword('platform@buckapi.lat', 'sw8K4jRuMW5x6jn');
 
     // Suscribirse a cambios en cualquier registro de la colección 'clients'
-    this.pb.collection('clients').subscribe('*', (e) => {
-      this.handleRealtimeEvent(e);
+    this.pb.collection('clients').subscribe('*', async (e) => {
+        await this.updateSlientsList(); // Actualiza la lista de clientes cuando hay un cambio
+        this.handleRealtimeEvent(e);
     });
 
-    // Inicializar la lista de eslientas
-    this.updateSlientsList();
-  }
-
+    // Inicializar la lista de clientes
+    await this.updateSlientsList();
+}
+  getClientesCount(): number {
+    return this.clientsSubject.getValue().length; // Obtiene la lista actual de clientes y devuelve su longitud
+}
   private handleRealtimeEvent(event: any) {
     // Aquí puedes manejar las acciones 'create', 'update' y 'delete'
     console.log(event.action);
@@ -44,14 +48,11 @@ export class RealtimeClientsService implements OnDestroy {
   }
 
   private async updateSlientsList() {
-    // Obtener la lista actualizada de eslientas
-    const records = await this.pb
-      .collection('clients')
-      .getFullList(200 /* cantidad máxima de registros */, {
+    const records = await this.pb.collection('clients').getFullList(200, {
         sort: '-created', // Ordenar por fecha de creación
-      });
-    this.clientsSubject.next(records);
-  }
+    });
+    this.clientsSubject.next(records); // Actualiza el BehaviorSubject con la nueva lista
+}
 
   ngOnDestroy() {
     // Desuscribirse cuando el servicio se destruye

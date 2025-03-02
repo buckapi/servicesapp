@@ -19,7 +19,7 @@ export class LoginComponent {
   constructor(public authService: AuthPocketbaseService) {}
 
   login() {
-    alert('datos: ' + this.email + ' ' + this.password);
+    // alert('datos: ' + this.email + ' ' + this.password);
     this.authService.loginUser(this.email, this.password).subscribe({
       next: (response) => {
         console.log('Inicio de sesión exitoso:', response);

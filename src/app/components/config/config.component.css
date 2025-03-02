@@ -1,0 +1,15 @@
+.img-hover {
+    position: relative;
+    cursor: pointer;
+}
+
+.img-hover.selected {
+    border: 2px solid #007bff; /* Change this color as needed */
+    border-radius: 8px; /* Match the border-radius */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Optional shadow effect */
+}
+.selected {
+    border: 2px solid #007bff; /* Change this color as needed */
+    border-radius: 8px; /* Match the border-radius */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Optional shadow effect */
+}

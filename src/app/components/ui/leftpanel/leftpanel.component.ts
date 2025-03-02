@@ -14,4 +14,9 @@ export class LeftpanelComponent {
 
   constructor(public globalService: GlobalService) {}
 
+  goConfig() {
+    this.globalService.flag='app';
+
+    this.globalService.setRoute('config');
+  }
 }

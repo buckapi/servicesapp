@@ -30,9 +30,14 @@ interface ClienteDetail{
   providedIn: 'root'
 })
 export class GlobalService  {
+  totalClientes=0;
+  flag='';
+  totalCars=0;
   activeRoute = 'login';
   theme: string = 'light';
-
+  showHistorial = false;
+  showWinzard = false;
+  patente = '';
   clienteDetail:ClienteDetail={
     cars:[],
     email:'',
@@ -71,6 +76,13 @@ entityCaption = '';
     this.activeRoute = route;
   }
 
+  showHistorialComponent(patente:string){
+    this.showHistorial = !this.showHistorial;
+    this.patente = patente;
+  }
+  hideHistorialComponent(){
+    this.showHistorial = false;
+  }
   getRoute() {
     return this.activeRoute;
   }

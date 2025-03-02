@@ -1,0 +1,537 @@
+<div class="adminuiux-wrap">
+  
+    <main class="adminuiux-content has-sidebar" onclick="contentClick()">
+        <div class="container-fluid mt-3">
+            <div class="row gx-1 align-items-center">
+                <div class="col col-sm">
+                    <h5 [hidden]="global.flag !== 'app'">Ajustes de Aplicación</h5>
+                    <h5 [hidden]="global.flag !== 'ui'">Ajustes de Interfaz</h5>
+                </div>
+           
+            </div>
+        </div>
+        <div class="container mt-3" id="main-content">
+            <div class="row gx-3 mb-4" [hidden]="global.flag !== 'ui'">
+                <div class="col text-center">
+                    <h5>Personaliza </h5>
+                    <p class="text-secondary">¿Por qué no para tu aplicación? Personaliza ahora la experiencia de interfaz de usuario de tu aplicación.
+                    </p>
+                </div>
+            </div>
+            <div class="accordion adminuiux-accordion" id="personalizeAccord">
+                <div class="accordion-item mb-3" [hidden]="global.flag !== 'ui'">
+                    <div class="accordion-header" id="personalizeAccordHOne"><button class="accordion-button"
+                            type="button" data-bs-toggle="collapse" data-bs-target="#personalizeAccordOne"
+                            aria-expanded="true" aria-controls="personalizeAccordOne"><span
+                                class="h6 fw-bold">
+                                Elige tu color de tema deseado y amado</span></button></div>
+                    <div id="personalizeAccordOne" class="accordion-collapse collapse show"
+                        aria-labelledby="personalizeAccordHOne" data-bs-parent="#personalizeAccord" style="">
+                        <div class="accordion-body">
+                            <p class="text-secondary">El color de tema en el diseño web es fundamental ya que influye en las emociones, percepciones y acciones. El color de tema en el diseño web es fundamental ya que influye en las emociones, percepciones y acciones.
+                                influence user emotions, perceptions, and actions.</p>
+                            <div class="row theme-select">
+                                <div class="col-auto">
+                                    <div class="select-box text-center mb-2" data-title=""><span
+                                            class="avatar avatar-40 rounded-circle mb-2 bg-default"><i
+                                                class="bi bi-arrow-clockwise"></i></span>
+                                        <p class="small">Default</p>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="select-box text-center mb-2" data-title="theme-blue"><span
+                                            class="avatar avatar-40 rounded-circle mb-2 bg-blue"></span>
+                                        <p class="small">Blue</p>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="select-box text-center mb-2" data-title="theme-indigo"><span
+                                            class="avatar avatar-40 rounded-circle mb-2 bg-indigo"></span>
+                                        <p class="small">Indigo</p>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="select-box text-center mb-2" data-title="theme-purple"><span
+                                            class="avatar avatar-40 rounded-circle mb-2 bg-purple"></span>
+                                        <p class="small">Purple</p>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="select-box text-center mb-2" data-title="theme-pink"><span
+                                            class="avatar avatar-40 rounded-circle mb-2 bg-pink"></span>
+                                        <p class="small">Pink</p>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="select-box text-center mb-2" data-title="theme-red"><span
+                                            class="avatar avatar-40 rounded-circle mb-2 bg-red"></span>
+                                        <p class="small">Red</p>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="select-box text-center mb-2" data-title="theme-orange"><span
+                                            class="avatar avatar-40 rounded-circle mb-2 bg-orange"></span>
+                                        <p class="small">Orange</p>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="select-box text-center mb-2" data-title="theme-yellow"><span
+                                            class="avatar avatar-40 rounded-circle mb-2 bg-yellow"></span>
+                                        <p class="small">Yellow</p>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="select-box text-center mb-2" data-title="theme-green"><span
+                                            class="avatar avatar-40 rounded-circle mb-2 bg-green"></span>
+                                        <p class="small">Green</p>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="select-box text-center mb-2" data-title="theme-teal"><span
+                                            class="avatar avatar-40 rounded-circle mb-2 bg-teal"></span>
+                                        <p class="small">Teal</p>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="select-box text-center mb-2" data-title="theme-cyan"><span
+                                            class="avatar avatar-40 rounded-circle mb-2 bg-cyan"></span>
+                                        <p class="small">Cyan</p>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="select-box text-center mb-2" data-title="theme-grey"><span
+                                            class="avatar avatar-40 rounded-circle mb-2 bg-grey"></span>
+                                        <p class="small">Grey</p>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="select-box text-center mb-2" data-title="theme-brown"><span
+                                            class="avatar avatar-40 rounded-circle mb-2 bg-brown"></span>
+                                        <p class="small">Brown</p>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="select-box text-center mb-2" data-title="theme-chocolate"><span
+                                            class="avatar avatar-40 rounded-circle mb-2 bg-chocolate"></span>
+                                        <p class="small">Choco</p>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="select-box text-center mb-2" data-title="theme-black"><span
+                                            class="avatar avatar-40 rounded-circle mb-2 bg-dark"></span>
+                                        <p class="small">Black</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-3" [hidden]="global.flag !== 'app'">
+                    <div class="accordion-header" id="personalizeAccordHTwo"><button class="accordion-button"
+                            type="button" data-bs-toggle="collapse" data-bs-target="#personalizeAccordTwo"
+                            aria-expanded="true" aria-controls="personalizeAccordTwo"><span
+                                class="h6 fw-bold">Items de inspección
+                            
+                            
+                            </span></button>
+                            
+                            
+                            
+                            </div>
+                    <div id="personalizeAccordTwo" class="accordion-collapse collapse show"
+                        aria-labelledby="personalizeAccordHTwo" data-bs-parent="#personalizeAccord" style="">
+                        <div class="accordion-body row">
+                            <div class="text-end">
+                                <button class="btn btn-sm btn-outline-theme" data-bs-toggle="modal" data-bs-target="#scrollingmodal">
+                                    <i class="bi bi-plus me-1"></i> Agregar Item
+                                </button>
+                            </div>
+
+                      <div class="row">
+                        <div class="col-6 col-lg-6 col-xl-4 mb-3">
+                            <div >
+                                <div class="card adminuiux-card">
+                                    <div class="card-header">
+                                        <h6>Items de revision general</h6>
+                                    </div>
+                                    <ul class="list-group list-group-flush border-top bg-none">
+                                        <li class="list-group-item" *ngFor="let inspection of inspections"     [hidden]="inspection.inspectionType!='general'">
+                                            <div class="row gx-3 align-items-center">
+                                                <div class="col-auto"><i class="bi bi-gear avatar avatar-40 h5 rounded-circle border"></i></div>
+                                                <div class="col">
+                                                    <p class="mb-1 fw-medium"> {{ inspection.name }}</p>
+                                                    <!-- <p class="small text-secondary">INTERVALO: {{ inspection.interval }}</p> -->
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-6 col-xl-4 mb-3">
+                            <div >
+                                <div class="card adminuiux-card">
+                                    <div class="card-header">
+                                        <h6>Items de revision mecanica</h6>
+                                    </div>
+                                    <ul class="list-group list-group-flush border-top bg-none" >
+                                        <li class="list-group-item" *ngFor="let inspection of inspections"     [hidden]="inspection.inspectionType!='tecnica'">
+                                            <div class="row gx-3 align-items-center">
+                                                <div class="col-auto"><i class="bi bi-gear avatar avatar-40 h5 rounded-circle border"></i></div>
+                                                <div class="col">
+                                                    <p class="mb-1 fw-medium"> {{ inspection.name }}</p>
+                                                    <p class="small text-secondary">INTERVALO: {{ inspection.interval }}</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                  
+
+
+                
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row gx-3" [hidden]="global.flag !== 'ui'">
+                    <div class="col-12 col-lg-6">
+                        <div class="accordion-item mb-3">
+                            <div class="accordion-header" id="personalizeAccordHThree"><button
+                                    class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#personalizeAccordThree" aria-expanded="true"
+                                    aria-controls="personalizeAccordThree"><span class="h6 fw-bold">Sidebar fill
+                                        color</span></button></div>
+                            <div id="personalizeAccordThree" class="accordion-collapse collapse show"
+                                aria-labelledby="personalizeAccordHThree" data-bs-parent="#personalizeAccord"
+                                style="">
+                                <div class="accordion-body">
+                                    <div class="row" id="personalise-preview-sidebar">
+                                        <div class="col-auto">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-sidebar-fill-none"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-default"><i
+                                                        class="bi bi-arrow-clockwise"></i></span>
+                                                <p class="small">None</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto" data-bs-img="dark">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-sidebar-fill-white"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-black"></span>
+                                                <p class="small">Black</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto" data-bs-img="light">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-sidebar-fill-white"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-white"></span>
+                                                <p class="small">White</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-sidebar-fill-bg"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-body-1"></span>
+                                                <p class="small">Background</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-sidebar-fill-theme"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-theme-1"></span>
+                                                <p class="small">Theme</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-sidebar-fill-accent"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-theme-accent-1"></span>
+                                                <p class="small">Accent</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item mb-3">
+                            <div class="accordion-header" id="personalizeAccordHFive"><button
+                                    class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#personalizeAccordFive" aria-expanded="true"
+                                    aria-controls="personalizeAccordFive"><span class="h6 fw-bold">Sidebar
+                                        layout</span></button></div>
+                            <div id="personalizeAccordFive" class="accordion-collapse collapse show"
+                                aria-labelledby="personalizeAccordHFive" data-bs-parent="#personalizeAccord"
+                                style="">
+                                <div class="accordion-body">
+                                    <div class="row sidebar-layout">
+                                        <div class="col-auto">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-sidebar-standard"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-default"><i
+                                                        class="bi bi-arrow-clockwise"></i></span>
+                                                <p class="small">Standard</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-sidebar-iconic"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-default"><i
+                                                        class="bi bi-bezier h4"></i></span>
+                                                <p class="small">Iconic</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-sidebar-boxed"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-default"><i
+                                                        class="bi bi-box h5"></i></span>
+                                                <p class="small">Boxed</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-sidebar-boxed adminuiux-sidebar-iconic"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-default"><i
+                                                        class="bi bi-bounding-box h5"></i></span>
+                                                <p class="small">IconicBox</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="accordion-item mb-3">
+                            <div class="accordion-header" id="personalizeAccordHFour"><button
+                                    class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#personalizeAccordFour" aria-expanded="true"
+                                    aria-controls="personalizeAccordFour"><span class="h6 fw-bold">Header fill
+                                        color</span></button></div>
+                            <div id="personalizeAccordFour" class="accordion-collapse collapse show"
+                                aria-labelledby="personalizeAccordHFour" data-bs-parent="#personalizeAccord"
+                                style="">
+                                <div class="accordion-body">
+                                    <div class="row" id="personalise-preview-header">
+                                        <div class="col-auto">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-header-transparent"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-default"><i
+                                                        class="bi bi-arrow-clockwise"></i></span>
+                                                <p class="small">None</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto" data-bs-img="dark">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-header-fill-white"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-black"></span>
+                                                <p class="small">Black</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto" data-bs-img="light">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-header-fill-white"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-white"></span>
+                                                <p class="small">White</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-header-fill-bg"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-body-1"></span>
+                                                <p class="small">Background</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-header-fill-theme"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-theme-1"></span>
+                                                <p class="small">Theme</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-header-fill-accent"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-theme-accent-1"></span>
+                                                <p class="small">Accent</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item mb-3">
+                            <div class="accordion-header" id="personalizeAccordHSix"><button
+                                    class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#personalizeAccordSix" aria-expanded="true"
+                                    aria-controls="personalizeAccordSix"><span class="h6 fw-bold">Header
+                                        layout</span></button></div>
+                            <div id="personalizeAccordSix" class="accordion-collapse collapse show"
+                                aria-labelledby="personalizeAccordHSix" data-bs-parent="#personalizeAccord"
+                                style="">
+                                <div class="accordion-body">
+                                    <div class="row" id="header-layout">
+                                        <div class="col-auto">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-header-standard"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-default"><i
+                                                        class="bi bi-arrow-clockwise"></i></span>
+                                                <p class="small">None</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="select-box text-center mb-2"
+                                                data-title="adminuiux-header-boxed"><span
+                                                    class="avatar avatar-40 rounded-circle mb-2 bg-default"><i
+                                                        class="bi bi-box h5"></i></span>
+                                                <p class="small">Boxed</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row gx-3 " [hidden]="global.flag !== 'ui'">
+                <div class="col-12 col-md-6">
+                    <div class="card adminuiux-card mb-3">
+                        <div class="card-header">
+                            <h6>Cambia el modo de color</h6>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-secondary">El modo claro es preferido en condiciones de buena iluminación para una mejor legibilidad y puede ser más accesible para los usuarios con ciertas discapacidades visuales. El modo oscuro reduce el deslumbramiento y puede ayudar a reducir la fatiga ocular en condiciones de poca luz.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row align-items-center no-rtl">
+                                <div class="col-auto">Light</div>
+                                <div class="col-auto px-0">
+                                    <div class="form-check form-switch sunmoon"><input class="form-check-input"
+                                            type="checkbox" role="switch" id="btn-layout-modes-dark"> <label
+                                            class="form-check-label" for="btn-layout-modes-dark"><i
+                                                class="bi bi-brightness-low sun"></i> <i
+                                                class="bi bi-moon-stars moon"></i></label></div>
+                                </div>
+                                <div class="col-auto">Dark</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+    </main>
+</div>
+<div class="modal adminuiux-modal fade" id="createuser" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <nav>
+                    <div class="nav nav-pills" id="nav-tab-user-1" role="tablist"><button
+                            class="nav-link active" id="nav-basic-tab-user-1" data-bs-toggle="tab"
+                            data-bs-target="#nav-basic-user-1" type="button" role="tab"
+                            aria-controls="nav-basic-user-1" aria-selected="true">Basic Info</button>
+                        <button class="nav-link" id="nav-prof-tab-user-2" data-bs-toggle="tab"
+                            data-bs-target="#nav-prof-user-2" type="button" role="tab"
+                            aria-controls="nav-prof-user-2" aria-selected="false">Professional</button>
+                        <button class="nav-link" id="nav-timing-tab-user-2" data-bs-toggle="tab"
+                            data-bs-target="#nav-timing-user-2" type="button" role="tab"
+                            aria-controls="nav-timing-user-2" aria-selected="false">Availability</button>
+                    </div>
+                </nav><button type="button" class="btn btn-link btn-square ms-auto" data-bs-dismiss="modal"
+                    aria-label="Close"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <div class="modal-body pt-0">
+            </div>
+            
+        </div>
+    </div>
+</div> 
+<div class="modal fade" id="scrollingmodal" tabindex="-1" aria-labelledby="scrollingmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="scrollingmodalLabel">Agregar item de Inspección</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input id="name" class="form-control mb-3" placeholder="Nombre">
+                <input id="interval" type="number" class="form-control mb-3" placeholder="intervalo en Km">
+                <div class="row">
+                    <div class="mb-3">
+                        <h6 class="mb-3">Selecciona el tipo de inspección:</h6>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="inspectionType" id="inspectionTypeTecnico" value="tecnica">
+                            <label class="form-check-label" for="inspectionTypeTecnico">Técnico</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="inspectionType" id="inspectionTypeVisual" value="general">
+                            <label class="form-check-label" for="inspectionTypeVisual">General</label>
+                        </div>
+                    </div>
+                </div>       
+<div class="row">
+    <div class="col-6">
+        <div class="row gx-2 mb-3">
+            <h6 class="mb-3">
+                <div class="form-check form-switch form-check-md">
+                    <input class="form-check-input" type="checkbox" role="switch" id="color1" [checked]="!isFuelChecked" (change)="isFuelChecked = !isFuelChecked">
+                    <label class="form-check-label" for="color1">Aplica para motores a gasolina y diesel</label>
+                </div>
+            </h6>
+            <h6 class="mb-3">o aplica para motores a</h6>
+            <div class="col-auto" (click)="selectFuelType('gasolina')">
+                <div class="img-hover" [ngClass]="{'selected': selectedFuel === 'gasolina'}" style="padding: 5px;">
+                    <img src="assets/img/gasolina.png" width="70" alt="Gasolina">
+                </div>
+            </div>
+            <div class="col-auto" (click)="selectFuelType('diesel')">
+                <div class="img-hover" [ngClass]="{'selected': selectedFuel === 'diesel'}" style="padding: 5px;">
+                    <img src="assets/img/diesel.png" width="70" alt="Diesel">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="row gx-2 mb-3">
+            <h6 class="mb-3">
+                <div class="form-check form-switch form-check-md">
+                    <input class="form-check-input" type="checkbox" role="switch" id="color2" [checked]="!isTransmissionChecked" (change)="isTransmissionChecked = !isTransmissionChecked">
+                    <label class="form-check-label" for="color2">Aplica para ambos</label>
+                </div>
+            </h6>
+            <h6 class="mb-3">o aplica para</h6>
+            <div class="col-auto" (click)="selectTransmissionType('2wd')">
+                <div class="img-hover" [ngClass]="{'selected': selectedTransmission === '2wd'}" style="padding: 5px;">
+                    <img src="assets/img/2wd.png" width="70" alt="2WD">
+                </div>
+            </div>
+            <div class="col-auto" (click)="selectTransmissionType('4wd')">
+                <div class="img-hover" [ngClass]="{'selected': selectedTransmission === '4wd'}" style="padding: 5px;">
+                    <img src="assets/img/4wd.png" width="70" alt="4WD">
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+</div>
+
+                
+                
+<input type="hidden" id="fuelType" value="">
+                <input type="hidden" id="transmissionType" value="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="onModalHidden()">Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
