@@ -18,7 +18,7 @@ import { NewRecordComponent } from "./components/new-record/new-record.component
 import { ClientsComponent } from './components/clients/clients.component';
 import { AuthPocketbaseService } from './services/auth.service';
 import { ConfigComponent } from './components/config/config.component';
-
+import { VisitTrackerService } from './services/visit-tracker.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -39,8 +39,13 @@ import { ConfigComponent } from './components/config/config.component';
 export class AppComponent {
   title = 'administrator-techwave';
   theme='light'
-  constructor(public authService: AuthPocketbaseService,  public globalService: GlobalService, private renderer: Renderer2) {
-    this.toggleTheme();
+  constructor(
+    private visitTrackerService: VisitTrackerService,
+    public authService: AuthPocketbaseService,  public globalService: GlobalService, private renderer: Renderer2) {
+   
+      this.visitTrackerService.trackVisit();
+
+      this.toggleTheme();
   }
 goconfig(){
   this.globalService.flag='app';

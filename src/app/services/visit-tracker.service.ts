@@ -7,7 +7,7 @@ import { UAParser } from 'ua-parser-js';
 })
 export class VisitTrackerService {
   private apiUrl = 'https://db.conectavet.cl:8080';
-  private appName = 'ConectaVet';
+  private appName = 'SERVICES-APP';
   private deviceId: string;
 
   constructor() {
