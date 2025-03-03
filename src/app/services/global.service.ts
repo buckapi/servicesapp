@@ -6,7 +6,7 @@ interface Car{
   modelo:string;
   phone:string;
   marca:string;
-  kilometraje:string;
+  mileage:number;
   fuelType:string;
   transmissionType:string;
 }
@@ -22,7 +22,7 @@ interface ClienteDetail{
   modelo:string;
   phone:string;
   marca:string;
-  kilometraje:string;
+  mileage:number;
   fuelType:string;
   transmissionType:string;
 }
@@ -49,7 +49,7 @@ export class GlobalService  {
     patente:'',
     modelo:'',
     marca:'',
-    kilometraje:'',
+    mileage:0,
     fuelType:'',
     transmissionType:''
   }

@@ -73,6 +73,10 @@ onShowDetail(clientId: string) {
       }
   });
 }
+getMileage(clientId: string): string {
+  const car = this.cars.find(car => car.idUser === clientId);
+  return car ? car.mileage : 0;
+}
 
 
   getPatente(clientId: string): string {
