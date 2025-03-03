@@ -14,12 +14,12 @@ constructor(
 ){}
 
 ngAfterViewInit(): void {
-  $('#dataTable').DataTable({
-      columns: [
-          { data: 0 }, // # ORDEN
-          { data: 1 }  // Fecha de Mantenimiento
-          // No incluyas data: 2
-      ]
-  });
+  // $('#dataTable').DataTable({
+  //     columns: [
+  //         { data: 0 }, // # ORDEN
+  //         { data: 1 }  // Fecha de Mantenimiento
+  //         // No incluyas data: 2
+  //     ]
+  // });
 }
 }
