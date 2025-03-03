@@ -30,6 +30,7 @@ interface ClienteDetail{
   providedIn: 'root'
 })
 export class GlobalService  {
+  mileage=0;
   totalClientes=0;
   flag='';
   totalCars=0;

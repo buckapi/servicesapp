@@ -57,6 +57,8 @@ export class ClientsComponent implements OnInit {
 
 toggleDetail(){
   this.showDetail=!this.showDetail;
+  this.getMileage(this.global.clienteDetail.id);
+  
 }
 onShowDetail(clientId: string) {
   this.realtimeClientsService.clients$.subscribe(clients => {
@@ -73,9 +75,10 @@ onShowDetail(clientId: string) {
       }
   });
 }
-getMileage(clientId: string): string {
+getMileage(clientId: string): number {
   const car = this.cars.find(car => car.idUser === clientId);
-  return car ? car.mileage : 0;
+  this.global.mileage= car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
+  return car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
 }
 
 

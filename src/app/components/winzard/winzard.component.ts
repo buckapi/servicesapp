@@ -1,12 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { GlobalService } from '@app/services/global.service';
 import { RealtimeCarsService } from '@app/services/realtime-cars.service';
 import { RealtimeItemInspectionsService } from '@app/services/realtime-iteminspections.service';
 
 @Component({
   selector: 'app-winzard',
-  imports: [CommonModule  ],
+  imports: [CommonModule,
+    FormsModule
+    ],
   templateUrl: './winzard.component.html',
   styleUrl: './winzard.component.css'
 })
@@ -28,6 +31,7 @@ constructor(public global: GlobalService,
 }
 getMileage(clientId: string): number {
   const car = this.cars.find(car => car.idUser === clientId);
+  this.global.mileage= car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
   return car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
 }
 }

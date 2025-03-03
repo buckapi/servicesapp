@@ -1,10 +1,13 @@
 <div class="card adminuiux-card mb-3">
     <div class="card-header">
         <div class="row gx-3 align-items-center">
-            <div class="col">
-                <p class="h6">Nueva Mantención</p>
+            <div class="col-6">
+                <p class="h6">Nueva Mantención a los :</p>
             </div>
-            <div class="col-auto"></div>
+            <div class="col-6">
+                <input type="number" class="form-control" [(ngModel)]="global.mileage" /> Km.
+
+            </div>
         </div>
     </div>
     <div class="card-body">
@@ -52,10 +55,11 @@
                     <div id="step-11" class="tab-pane px-0" role="tabpanel" aria-labelledby="step-1">
                         <div class="row gx-3 align-items-center mb-2">
                             <div class="col">
-                                <p class="h6 py-2">Kilometraje: {{getMileage(global.clienteDetail.id ) | number :'1.0-0'}} Km.</p>
+                                <p class="h6 py-2"></p>
                             </div>
-                            <div class="col-auto"><button class="btn btn-link"><i
-                                        data-feather="plus"></i> Proximo Mantencion</button></div>
+                            <div class="col-auto"
+                            >
+                            </div>
                         </div>
                         <div class="row" *ngFor="let inspection of inspections" [hidden] ="inspection.inspectionType != 'tecnica'">
                             <div class="col-4">
@@ -73,7 +77,7 @@
                                 </label>
                             </div>
                             <div class="col-2">
-                                <label> Prox. M.{{inspection.interval+(getMileage(global.clienteDetail.id)) | number : '1.0-0'  }} Km.
+                                <label> Prox. {{inspection.interval+(global.mileage) | number : '1.0-0'  }} Km.
                                 </label>
                             </div>
                         </div>                       
