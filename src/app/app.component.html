@@ -22,6 +22,13 @@
             </div>
             <ul class="nav flex-column menu-active-line">
                 <li class="nav-item" *ngIf="globalService.theme!='sun'">
+                    <a  class="nav-link"  (click)="globalService.setRoute('home')" style="cursor:pointer;">
+                        <img *ngIf="globalService.theme=='light'" src="assets/img/home-sun.png" alt="Icono" style="width: 24px; height: 24px; margin-right: 5px;"> 
+                    <img *ngIf="globalService.theme=='dark'" src="assets/img/home-moon.png" alt="Icono" style="width: 24px; height: 24px; margin-right: 5px;"> 
+                    <span class="menu-name">Home</span>
+                </a>
+            </li>
+                <li class="nav-item" *ngIf="globalService.theme!='sun'">
                         <a  class="nav-link"  (click)="globalService.setRoute('clients')" style="cursor:pointer;">
                             <img *ngIf="globalService.theme=='light'" src="assets/img/equipo.png" alt="Icono" style="width: 24px; height: 24px; margin-right: 5px;"> 
                         <img *ngIf="globalService.theme=='dark'" src="assets/img/equipo-sun.png" alt="Icono" style="width: 24px; height: 24px; margin-right: 5px;"> 
@@ -81,9 +88,9 @@
     <footer class="adminuiux-footer has-adminuiux-sidebar mt-auto" [hidden]="globalService.activeRoute=='login'">
         <div class="container-fluid">
             <div class="row gx-3">
-                <div class="col-12 col-md col-lg text-center text-md-start py-2"><span class="small">&copy;2025, Services App by <a
+                <!-- <div class="col-12 col-md col-lg text-center text-md-start py-2"><span class="small">&copy;2025, Services App by <a
                             href="https://www.buckapi.com" target="_blank">Buckapi</a> </span>
-                </div>
+                </div> -->
                 <!-- <div class="col-12 col-md-auto col-lg-auto align-self-center">
                     <ul class="nav small justify-content-center">
                         <li class="nav-item"><a class="nav-link"

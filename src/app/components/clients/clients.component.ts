@@ -25,7 +25,6 @@ export class ClientsComponent implements OnInit {
   public searchTerm: string = ''; // Nueva propiedad para el término de búsqueda
 
   public cars: any[] = []; // Agregar esta línea para almacenar los coches
-  public showDetail =false;
   constructor(
     public global: GlobalService, 
     public realtimeClientsService: RealtimeClientsService,
@@ -39,7 +38,7 @@ export class ClientsComponent implements OnInit {
     });
   }
   back(){
-    this.showDetail=false
+    this.global.showDetail=false
     this.global.setRoute('clients')
   }
 
@@ -56,7 +55,7 @@ export class ClientsComponent implements OnInit {
 }
 
 toggleDetail(){
-  this.showDetail=!this.showDetail;
+  this.global.showDetail=!this.global.showDetail;
   this.getMileage(this.global.clienteDetail.id);
   
 }

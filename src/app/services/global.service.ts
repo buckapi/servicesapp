@@ -34,8 +34,9 @@ export class GlobalService  {
   totalClientes=0;
   flag='';
   totalCars=0;
-  activeRoute = 'login';
+  activeRoute = 'home';
   theme: string = 'light';
+  showDetail = false;
   showHistorial = false;
   showWinzard = false;
   patente = '';

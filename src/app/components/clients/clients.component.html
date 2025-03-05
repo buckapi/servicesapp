@@ -10,7 +10,7 @@
                         </div>
                         <div id="scrollspayone" class="mb-4 mb-lg-5" style="scroll-margin: 150px;">
                         
-                            <nav class="mb-3" [hidden]="showDetail">
+                            <nav class="mb-3" [hidden]="global.showDetail">
                                 <div class="nav nav-underline" id="nav-tab-loc-1" role="tablist">
                                     <button class="nav-link active" id="nav-user-tab-loc-1" data-bs-toggle="tab"
                                         data-bs-target="#nav-user-loc-1" type="button" role="tab"
@@ -19,7 +19,7 @@
                                     <button class="btn btn-sm btn-outline-theme" (click)="global.setRoute('new-record')"><i class="bi bi-plus me-1"></i> Registrar cliente</button>
                                 </div>
                             </nav>
-                            <div class="tab-content" id="nav-tabContent" [hidden]="showDetail">
+                            <div class="tab-content" id="nav-tabContent" [hidden]="global.showDetail">
                                 <div class="tab-pane show active fade" id="nav-user-loc-1" role="tabpanel"
                                     aria-labelledby="nav-user-tab-loc-1" tabindex="0">
                                     <div class="row gx-3">
@@ -72,7 +72,7 @@
                             </div>
 
 
-                            <nav class="mb-3"  [hidden]="!showDetail">
+                            <nav class="mb-3"  [hidden]="!global.showDetail">
                                 <div class="nav nav-underline" id="nav-tab-loc-1" role="tablist"><button
                                         class="nav-link active" id="nav-user-tab-loc-1" data-bs-toggle="tab"
                                         data-bs-target="#nav-user-loc-1" type="button" role="tab"
@@ -81,7 +81,7 @@
                                         <button class="btn btn-sm btn-outline-theme" (click)="back()"><i class="bi bi-left-arrow me-1"></i> Volver</button>
                                     </div>
                             </nav>
-                            <div class="tab-content" id="nav-tabContent"  [hidden]="!showDetail">
+                            <div class="tab-content" id="nav-tabContent"  [hidden]="!global.showDetail">
                                 <div class="tab-pane show active fade" id="nav-user-loc-1" role="tabpanel"
                                     aria-labelledby="nav-user-tab-loc-1" tabindex="0">
                                     <div class="row gx-3">
