@@ -67,7 +67,7 @@ onShowDetail(clientId: string) {
 toggleDetail(){
   this.globalService.showDetail=!this.globalService.showDetail;
   this.getMileage(this.globalService.clienteDetail.id);
-  this.globalService.setRoute('clients');
+  this.globalService.setRoute('car-detail');
   
 }
 getMileage(clientId: string): number {

@@ -19,6 +19,7 @@ import { ClientsComponent } from './components/clients/clients.component';
 import { AuthPocketbaseService } from './services/auth.service';
 import { ConfigComponent } from './components/config/config.component';
 import { VisitTrackerService } from './services/visit-tracker.service';
+import { CarDetailComponent } from './car-detail/car-detail.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -31,6 +32,7 @@ import { VisitTrackerService } from './services/visit-tracker.service';
     LoginComponent,
     MatDialogModule,
     MatFormFieldModule,
+    CarDetailComponent,
     MatInputModule,
     MatButtonModule, HomeComponent, NewRecordComponent],
   templateUrl: './app.component.html',

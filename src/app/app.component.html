@@ -81,6 +81,7 @@
             </ul>
         </div>
     </div>
+    <app-car-detail [hidden]="globalService.activeRoute!='car-detail'" style="margin-top: 50px !important;"></app-car-detail>
     <app-config [hidden]="globalService.activeRoute!='config'" style="margin-top: 50px !important;"></app-config>
     <app-clients [hidden]="globalService.activeRoute!='clients'" style="margin-top: 50px !important;"></app-clients>
     <app-new-record [hidden]="globalService.activeRoute!='new-record'" style="margin-top: 50px !important;"></app-new-record>
