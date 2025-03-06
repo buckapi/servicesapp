@@ -3,13 +3,14 @@
 		<div class="row gx-3 align-items-center">
 			<div class="col-12 col-lg mb-3">
 				<h3 class="fw-normal mb-0 text-secondary">Bienvenido,</h3>
-				<h1 ></h1>
+				<h1></h1>
 			</div>
 			<div class="col-6 col-sm-4 col-lg-3 col-xl-2 mb-3">
 				<div class="card adminuiux-card">
 					<div class="card-body">
 						<p class="text-secondary small mb-2">Total Clientes</p>
-						<h4 class="mb-3">{{globalService.totalClientes}}</h4><span class="badge badge-light text-bg-success"><i
+						<h4 class="mb-3">{{globalService.totalClientes}}</h4><span
+							class="badge badge-light text-bg-success"><i
 								class="me-1 bi bi-arrow-up-short"></i>28.50%</span>
 					</div>
 				</div>
@@ -18,12 +19,14 @@
 				<div class="card adminuiux-card">
 					<div class="card-body">
 						<p class="text-secondary small mb-2">Total vehículos</p>
-						<h4 class="mb-3">{{globalService.totalCars}}</h4><span class="badge badge-light text-bg-success"><i
+						<h4 class="mb-3">{{globalService.totalCars}}</h4><span
+							class="badge badge-light text-bg-success"><i
 								class="me-1 bi bi-arrow-up-short"></i>54.35%</span>
 					</div>
 				</div>
 			</div>
-			<div class="col-12 col-sm-4 col-lg-3 col-xl-2 mb-3 d-none d-sm-block" style="cursor:pointer;" (click)="globalService.setRoute('new-record')">
+			<div class="col-12 col-sm-4 col-lg-3 col-xl-2 mb-3 d-none d-sm-block" style="cursor:pointer;"
+				(click)="globalService.setRoute('new-record')">
 				<div class="card adminuiux-card bg-theme-1 mb-3 card-hover"> <!-- Agrega la clase aquí -->
 					<div class="card-body">
 						<!-- <p class="text-secondary small mb-2">Registrar nuevo cliente</p> -->
@@ -47,74 +50,72 @@
 							<div class="col px-0">
 								<h6>Búsqueda de vehículo por patente</h6>
 							</div>
-							<!-- <div class="col-auto px-0"><select class="form-select form-select-sm">
-									<option>USD</option>
-									<option>CAD</option>
-									<option>AUD</option>
-								</select></div> -->
 							<div class="col-auto"><button class="btn btn-sm btn-square btn-link"><i
 										class="bi bi-arrow-clockwise"></i></button></div>
 						</div>
 					</div>
 					<div class="card-body">
-						<input type="text" [(ngModel)]="searchTerm2" (ngModelChange)="filterResults()" placeholder="PATENTE" class="form-control" />     
-						<p class="text-secondary small" [hidden]="searchTerm2===''" *ngIf="searchTerm2 === '' || filteredResults.length === 0" style="cursor:pointer; padding: 15px">
-							Patente no registrada<b class="text-theme-1" (click)="globalService.setRoute('new-record')" style="cursor:pointer; padding: 15px"> Procesar registro</b>
+						<input type="text" [(ngModel)]="searchTerm2" (ngModelChange)="filterResults()"
+							placeholder="PATENTE" class="form-control" />
+						<p class="text-secondary small" [hidden]="searchTerm2===''"
+							*ngIf="searchTerm2 === '' || filteredResults.length === 0"
+							style="cursor:pointer; padding: 15px">
+							Patente no registrada<b class="text-theme-1" (click)="globalService.setRoute('new-record')"
+								style="cursor:pointer; padding: 15px"> Procesar registro</b>
 						</p>
-						<!-- <div class="summarychart height-110 w-100 mb-3"><canvas id="areachartblue1"></canvas>
-						</div> -->
-						<!-- div> -->
 					</div>
 				</div>
 			</div>
-			<div class="col-12 col-lg-12 col-xl-8 mb-3" [hidden]="searchTerm2==='' || filteredResults.length === 0" *ngIf="searchTerm2 != ''"> 
+			<div class="col-12 col-lg-12 col-xl-8 mb-3" [hidden]="searchTerm2==='' || filteredResults.length === 0"
+				*ngIf="searchTerm2 != ''">
 				<div class="card adminuiux-card">
 					<div class="row gx-3 align-items-center">
 						<div class="col-12 ">
 							<div class="card-header">
-								<h6 class="my-1" style="font-weight: 900;">	{{ filteredResults.length }} resultados</h6>
+								<h6 class="my-1" style="font-weight: 900;"> {{ filteredResults.length }} resultados</h6>
 							</div>
 							<div class="card-body">
 								<div class="row">
-									<div class="col-lg-4 col-md-6 col-sm-12" style="cursor:pointer;" (click)="onShowDetail(result.idUser)" *ngFor="let result of filteredResults"
-									>
+									<div class="col-lg-4 col-md-6 col-sm-12" style="cursor:pointer;"
+										(click)="onShowDetail(result.idUser)" *ngFor="let result of filteredResults">
 										<div class="card mb-3 elevate">
 											<div class="card-body">
 												<h5 class="card-title">{{ result.name }}</h5>
 
-												<div class="text-center"   >
-													<span class="badge badge-light rounded-pill text-bg-theme-accent-1" style="font-size: 1.2rem;">
-														<img src="assets/img/drive.png" style="width: 48px; height: 48px; margin-left: 2px;">
-														<span class="text-secondary small" style="margin-left: 5px; margin-right: 25px; font-size: 1.7rem;">
+												<div class="text-center">
+													<span class="badge badge-light rounded-pill text-bg-theme-accent-1"
+														style="font-size: 1.2rem;">
+														<img src="assets/img/drive.png"
+															style="width: 48px; height: 48px; margin-left: 2px;">
+														<span class="text-secondary small"
+															style="margin-left: 5px; margin-right: 25px; font-size: 1.7rem;">
 															{{ result.patente | uppercase }}
 														</span>
 													</span>
 												</div>
-<br>
-<div class="text-center">
-    <span
-        class="badge badge-light rounded-pill text-bg-theme-1 mb-2" style="font-size: 1rem;">
-        <i class="bi bi-circle-info"></i> {{ getClientDetail(result.idUser)?.name | uppercase }}
-    </span>
-</div>			
+												<br>
+												<div class="text-center">
+													<span class="badge badge-light rounded-pill text-bg-theme-1 mb-2"
+														style="font-size: 1rem;">
+														<i class="bi bi-circle-info"></i> {{
+														getClientDetail(result.idUser)?.name | uppercase }}
+													</span>
+												</div>
 											</div>
 										</div>
 									</div>
-								
+
 								</div>
 							</div>
 						</div>
 						<div class="col-12 col-sm">
 							<div class="card-body">
-								
+
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		
-		
-			
 		</div>
 	</div>
 	<!-- <footer class="adminuiux-mobile-footer hide-on-scrolldown style-2">
@@ -127,7 +128,6 @@
 					<span class="menu-name">Clientes</span>
 				</a>
 			</li>
-					  
 			<li class="nav-item" *ngIf="globalService.theme!='sun'"><a class="nav-link">
 				<img *ngIf="globalService.theme=='light'" src="assets/img/car.png" alt="Icono" style="width: 24px; height: 24px; margin-right: 5px;"> 
 				<img *ngIf="globalService.theme=='dark'" src="assets/img/car-sun.png" alt="Icono" style="width: 24px; height: 24px; margin-right: 5px;"> 

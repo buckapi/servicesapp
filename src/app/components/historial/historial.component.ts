@@ -1,40 +1,62 @@
-import { Component,AfterViewInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, AfterViewInit } from '@angular/core';
 import { GlobalService } from '@app/services/global.service';
+import { RealtimeInspectionsService } from '@app/services/realtime-inspections.service';
 declare var $: any; // Asegúrate de declarar jQuery
+import { FilterInspectionsPipe } from '@app/pipes/filter-inspections';
+import { Observable, } from 'rxjs';
+interface Item{
+  id:string,
+  name:string,
+  interval:number,
+  inspectionType:string,
+  fuelType:string,
+  transmissionType:string,
+}
+interface Inspection{
 
+  id: string;
+  date:Date,
+  mileage:number,
+  status:string
+  itms:Item[];
+  }
 @Component({
   selector: 'app-historial',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule,
+    FilterInspectionsPipe
+  ],
   templateUrl: './historial.component.html',
-  styleUrl: './historial.component.css'
+  styleUrls: ['./historial.component.css'] // Corrected 'styleUrl' to 'styleUrls'
 })
 export class HistorialComponent implements AfterViewInit {
-constructor(
-  public global:GlobalService
-){}
-onShowWizard(){
-  this.global.showWinzard=true
-}
-ngAfterViewInit(): void {
-  // $('#dataTable').DataTable({
-  //     columns: [
-  //         { data: 0 }, // # ORDEN
-  //         { data: 1 }  // Fecha de Mantenimiento
-  //         // No incluyas data: 2
-  //     ]
-  // });
-}
+  // Existing class content...
 
-formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
-  const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-  
-  const diaSemana = diasSemana[date.getDay()];
-  const dia = date.getDate();
-  const mes = meses[date.getMonth()];
-  const anio = date.getFullYear();
+  // carId: string;
+inspections$: Observable<Inspection[]>;
 
-  return `${diaSemana} ${dia} de ${mes} de ${anio}`;
-}
+  constructor(
+    public realtimeInspections: RealtimeInspectionsService,
+    public global: GlobalService
+  ) {
+    this.inspections$ = this.realtimeInspections.inspections$;
+  }
+  onShowWizard() {
+    this.global.showWinzard = true
+  }
+  ngAfterViewInit(): void {
+  }
+
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+    const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    const diaSemana = diasSemana[date.getDay()];
+    const dia = date.getDate();
+    const mes = meses[date.getMonth()];
+    const anio = date.getFullYear();
+
+    return `${diaSemana} ${dia} de ${mes} de ${anio}`;
+  }
 }

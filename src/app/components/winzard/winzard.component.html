@@ -1,89 +1,97 @@
 <div class="card adminuiux-card mb-3">
+    <div >
+        <div class="card-body">
 
+            <div class="row align-items-center">
+                <div class="col">
+                    <span *ngIf="global.mileage==0" style="font-size: 2rem !important;">Ingresa el </span>
+                    <span style="font-size: 2rem !important;">Kilometraje actual del vehículo</span>
+                    <input type="number" class="form-control d-inline " [(ngModel)]="global.mileage"  style="margin-left: 20px; width: 250px !important; font-size: 2rem;" />
+                    <span style="font-size: 2rem !important;"> Km.</span>
+                </div>
+                <div class="col-auto">
+                    <div style="text-align: left;">
+                        <button class="btn btn-lg btn-outline-theme" style="font-weight: 900;" (click)="steep = 1">
+                            <i class="bi bi-check me-1"></i> Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-<div [hidden]="steep==2">
-    <div class="card-body">
-
-<span *ngIf="global.mileage==0" >Ingresa el </span>
-<span>Kilometraje actual del vehículo</span>
-
-        <input type="number" class="form-control d-inline" [(ngModel)]="global.mileage" style="display: inline; width: auto;" />
-
+           
+        </div>
     </div>
-</div>
-
-
     <div class="card-body" *ngIf="global.mileage!=0">
-        <!-- <p class="text-secondary">script option <code>theme:'dots',</code></p> -->
-      
+        <div class="row">
+            <div class="col text-center">
+                <button *ngIf="steep==1" class="btn btn-lg btn-theme " style="font-weight: 900;" (click)="steep = 1">
+                    <i class="bi bi-plus me-1"></i> Técnico Mecánica
+                </button>
+                <button *ngIf="steep==2" class="btn btn-lg btn-outline-theme " style="font-weight: 900;" (click)="steep = 1">
+                    <i class="bi bi-plus me-1"></i> Técnico Mecánica
+                </button>
+            </div>
+            <div class="col">
+            <div class="text-center">
+                <button *ngIf="steep==2" class="btn btn-lg btn-theme " style="font-weight: 900;" (click)="steep = 2">
+                    <i class="bi bi-plus me-1"></i> General
+                </button>
+                <button *ngIf="steep==1" class="btn btn-lg btn-outline-theme " style="font-weight: 900;" (click)="steep = 2">
+                    <i class="bi bi-plus me-1"></i> General
+                </button>
+            </div>
+            </div>
+            <!-- <div class="col">
+                <div class="text-end">
+                    <button class="btn btn-lg btn-theme " style="font-weight: 900;">
+                        <i class="bi bi-plus me-1"></i> Procesar
+                    </button>
+                </div>
+            </div> -->
+        </div>
         <div class="table-responsive" [hidden]="steep != 1">
             <table class="table">
                 <thead>
                     <tr>
                         <th style="width: 30%;">Nombre</th>
                         <th style="width: 10%;">Intervalo</th>
-                        <th style="width: 30%;">Descripción</th>
+                        <th style="width: 30%;">Ultima Mantención</th>
                         <th style="width: 30%;">Próxima Mantención</th>
                     </tr>
                 </thead>
                 <tbody>
-                  
-                    <tr *ngFor="let inspection of inspections" [hidden] ="inspection.inspectionType != 'tecnica'" style="cursor: pointer;" class="elevate">
+                    <tr *ngFor="let inspection of inspections" [hidden]="inspection.inspectionType != 'tecnica'"
+                        style="cursor: pointer;" class="elevate">
                         <td>{{ inspection.name }}</td>
                         <td>{{ inspection.interval | number : '1.0-0' }} Km</td>
                         <td>{{ inspection.description }}</td>
-                        <td>{{inspection.interval+(global.mileage) | number : '1.0-0'  }} Km.</td>
+                        <td>{{inspection.interval+(global.mileage) | number : '1.0-0' }} Km.</td>
                     </tr>
-                    <!-- Puedes agregar más filas según sea necesario -->
                 </tbody>
             </table>
         </div>
-        <div class="text-end" [hidden]="steep != 1 ">
-            <button class="btn btn-lg btn-theme "style="font-weight: 900;" (click)="steep = 2">
-                <i class="bi bi-plus me-1" ></i> Siguiente
+        <!-- <div class="text-end" [hidden]="steep != 1 ">
+            <button class="btn btn-lg btn-theme " style="font-weight: 900;" (click)="steep = 2">
+                <i class="bi bi-plus me-1"></i> Siguiente
             </button>
-        </div>
+        </div> -->
 
         <div [hidden]="steep != 2">
             <div class="row">
+                
                 <div class="row">
-                    <div class=" gx-3 align-items-center col-6"  *ngFor="let inspection of inspections"  [hidden] ="inspection.inspectionType != 'general'">
+                    <div class=" gx-3 align-items-center col-6" *ngFor="let inspection of inspections"
+                        [hidden]="inspection.inspectionType != 'general'">
                         <div class="o py-2 mb-3">
-                            <div class="form-check form-switch form-check-md"><input
-                                    class="form-check-input" type="checkbox" role="switch"
-                                    id="sundaya"> <label class="form-check-label"
+                            <div class="form-check form-switch form-check-md"><input class="form-check-input"
+                                    type="checkbox" role="switch" id="sundaya"> <label class="form-check-label"
                                     for="sundaya">{{inspection.name}}</label></div>
                         </div>
-                      
                     </div>
                 </div>
-             
-                  
-                  
 
-<div class="row">
-    <div class="col">
-        <button class="btn btn-lg btn-outline-theme "style="font-weight: 900;" (click)="steep = 1" >
-            <i class="bi bi-plus me-1" ></i> Atras
-        </button>
-    </div>
-    <div class="col">
-        <div class="text-end">
-            <button class="btn btn-lg btn-theme "style="font-weight: 900;" >
-                <i class="bi bi-plus me-1" ></i> Procesar
-            </button>
+               
+            </div>
         </div>
-    </div>
-  
-</div>
-
-                  
-                 
-                </div>
-        </div>
-      
-      
-      
-        
     </div>
 </div>

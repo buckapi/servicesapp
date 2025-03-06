@@ -19,35 +19,21 @@
                                 <th>Estado</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>2023-10-01</td>
-                                <td>250.000 km</td>
-                                <td>Completada</td>
+                        <tbody >
+                            <tr *ngFor="let inspection of (inspections$ | async) ?? [] | filterInspections: (this.global.clienteDetail.cars?.[0]?.id || '')">
+                                <td>{{ formatDate(inspection.date) }}</td>
+                                <td>{{ inspection.mileage | number: '1.0-0' }} Km.</td>
+                                <td [ngClass]="{
+                                    'text-success': inspection.status === 'completada',
+                                    'text-primary': inspection.status === 'pendiente'
+                                }">
+                                    {{ inspection.status | uppercase }}
+                                </td>
                             </tr>
-                            <tr>
-                                <td>2023-10-15</td>
-                                <td>155.000 km</td>
-                                <td>Completada</td>
-                            </tr>
-                            <tr>
-                                <td>2023-11-01</td>
-                                <td>160.000 km</td>
-                                <td>Completada</td>
-                            </tr>
-                            <!-- Puedes agregar más filas según sea necesario -->
                         </tbody>
                     </table>
                 </div>
-                <!-- <div class="col col-sm-auto px-0"><select class="form-select form-select-sm">
-                        <option selected="selected">All Trend</option>
-                        <option>Bullish</option>
-                        <option>Bearish</option>
-                    </select></div> -->
-                <!-- <div class="col-auto"><button class="btn btn-sm btn-square btn-link"><i
-                            class="bi bi-arrow-clockwise"></i></button></div> -->
             </div>
-           
         </div>
     </div>
 </div>
