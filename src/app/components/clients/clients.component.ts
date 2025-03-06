@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators'; // Asegúrate de importar map
 import { FormsModule } from '@angular/forms';
 import { HistorialComponent } from '../historial/historial.component';
 import { WinzardComponent } from '../winzard/winzard.component';
+import { RealtimeInspectionsService } from '@app/services/realtime-inspections.service';
 
 @Component({
   selector: 'app-clients',
@@ -27,6 +28,7 @@ export class ClientsComponent implements OnInit {
   public cars: any[] = []; // Agregar esta línea para almacenar los coches
   constructor(
     public global: GlobalService, 
+    public realtimeInspectionsService: RealtimeInspectionsService,
     public realtimeClientsService: RealtimeClientsService,
     public realtimeCarsService: RealtimeCarsService
   ) {}
@@ -59,6 +61,21 @@ toggleDetail(){
   this.getMileage(this.global.clienteDetail.id);
   
 }
+
+
+getMileage(clientId: string): number {
+  let mileage = 0; // Valor temporal para almacenar el kilometraje
+  this.realtimeInspectionsService.inspections$.subscribe(inspections => {
+      const hasPreviousInspections = inspections.some(inspection => inspection.carId === this.global.clienteDetail.cars[0].id);
+      if (hasPreviousInspections) {
+          this.global.mileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
+      }
+  });
+
+  const car = this.cars.find(car => car.idUser === clientId);
+  mileage = (car && typeof car.mileage === 'number') ? car.mileage : mileage; // Asegúrate de que car.mileage sea un número
+  return mileage; // Devuelve el kilometraje
+}
 onShowDetail(clientId: string) {
   this.realtimeClientsService.clients$.subscribe(clients => {
       console.log('Clients:', clients); // Verifica los clientes disponibles
@@ -67,6 +84,7 @@ onShowDetail(clientId: string) {
           this.global.clienteDetail = client;
           this.realtimeCarsService.getCarsByUserId(client.id).then(cars => {
               this.global.clienteDetail.cars = cars;
+              this.global.carId=cars[0].id;
           });
           this.toggleDetail();
       } else {
@@ -74,11 +92,11 @@ onShowDetail(clientId: string) {
       }
   });
 }
-getMileage(clientId: string): number {
-  const car = this.cars.find(car => car.idUser === clientId);
-  this.global.mileage= car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
-  return car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
-}
+// getMileage(clientId: string): number {
+//   const car = this.cars.find(car => car.idUser === clientId);
+//   this.global.mileage= car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
+//   return car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
+// }
 
 
   getPatente(clientId: string): string {

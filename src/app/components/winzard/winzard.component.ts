@@ -41,9 +41,18 @@ constructor(public global: GlobalService,
 next(steep:number){
 this.steep =steep;
 }
+
 getMileage(clientId: string): number {
+  let mileage = 0; // Valor temporal para almacenar el kilometraje
+  this.realtimeItemInspectionsService.itemInspections$.subscribe(inspections => {
+      const hasPreviousInspections = inspections.some(inspection => inspection.carId === this.global.clienteDetail.cars[0].id);
+      if (hasPreviousInspections) {
+          mileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
+      }
+  });
+
   const car = this.cars.find(car => car.idUser === clientId);
-  this.global.mileage= car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
-  return car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
+  mileage = (car && typeof car.mileage === 'number') ? car.mileage : mileage; // Asegúrate de que car.mileage sea un número
+  return mileage; // Devuelve el kilometraje
 }
 }

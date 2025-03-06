@@ -21,17 +21,17 @@
            
         </div>
     </div>
-    <div class="card-body" *ngIf="global.mileage!=0">
-        <div class="row">
+    <div class="card-body mb-3" *ngIf="global.mileage!=0">
+        <div class="row mb-3">
             <div class="col text-center">
                 <button *ngIf="steep==1" class="btn btn-lg btn-theme " style="font-weight: 900;" (click)="steep = 1">
-                    <i class="bi bi-plus me-1"></i> Técnico Mecánica
+                    <img src="assets/img/technician.png" alt="Técnico Mecánica"> Técnico Mecánica
                 </button>
                 <button *ngIf="steep==2" class="btn btn-lg btn-outline-theme " style="font-weight: 900;" (click)="steep = 1">
-                    <i class="bi bi-plus me-1"></i> Técnico Mecánica
+                    <i class="bi bi-gear  me-1"></i> Técnico Mecánica
                 </button>
             </div>
-            <div class="col">
+            <div class="col mv-3">
             <div class="text-center">
                 <button *ngIf="steep==2" class="btn btn-lg btn-theme " style="font-weight: 900;" (click)="steep = 2">
                     <i class="bi bi-plus me-1"></i> General
@@ -41,15 +41,8 @@
                 </button>
             </div>
             </div>
-            <!-- <div class="col">
-                <div class="text-end">
-                    <button class="btn btn-lg btn-theme " style="font-weight: 900;">
-                        <i class="bi bi-plus me-1"></i> Procesar
-                    </button>
-                </div>
-            </div> -->
         </div>
-        <div class="table-responsive" [hidden]="steep != 1">
+        <div class="table-responsive mt-3" [hidden]="steep != 1">
             <table class="table">
                 <thead>
                     <tr>

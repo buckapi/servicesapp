@@ -32,6 +32,9 @@ interface ClienteDetail{
   providedIn: 'root'
 })
 export class GlobalService  {
+  carId:string='';
+  prevInspection=true;
+  prevInspectionValue:any=[];
   mileage=0;
   totalClientes=0;
   flag='';

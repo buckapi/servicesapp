@@ -2,9 +2,15 @@ import { CommonModule } from '@angular/common';
 import { Component, AfterViewInit } from '@angular/core';
 import { GlobalService } from '@app/services/global.service';
 import { RealtimeInspectionsService } from '@app/services/realtime-inspections.service';
+import { RealtimeCarsService } from '@app/services/realtime-cars.service';
 declare var $: any; // Asegúrate de declarar jQuery
 import { FilterInspectionsPipe } from '@app/pipes/filter-inspections';
 import { Observable, } from 'rxjs';
+
+
+
+
+
 interface Item{
   id:string,
   name:string,
@@ -12,6 +18,9 @@ interface Item{
   inspectionType:string,
   fuelType:string,
   transmissionType:string,
+}
+interface Car{
+  id:string
 }
 interface Inspection{
 
@@ -35,16 +44,25 @@ export class HistorialComponent implements AfterViewInit {
 
   // carId: string;
 inspections$: Observable<Inspection[]>;
+cars$: Observable<Car[]>;
 
   constructor(
     public realtimeInspections: RealtimeInspectionsService,
+    public realtimeCars: RealtimeCarsService,
     public global: GlobalService
   ) {
     this.inspections$ = this.realtimeInspections.inspections$;
+    this.cars$  = this.realtimeCars.cars$;
   }
   onShowWizard() {
-    this.global.showWinzard = true
-  }
+    this.global.showWinzard = true;
+    const inspections = this.realtimeInspections.inspections$;
+    const filteredInspections = this.realtimeInspections.getInspectionsByCarId(this.global.clienteDetail.cars?.[0]?.id);
+    if (filteredInspections) {
+        this.global.prevInspectionValue = filteredInspections;
+        this.global.prevInspection = true;
+    }
+}
   ngAfterViewInit(): void {
   }
 

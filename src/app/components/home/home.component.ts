@@ -5,6 +5,7 @@ import { AuthPocketbaseService } from '@app/services/auth.service';
 import { GlobalService } from '@app/services/global.service';
 import { RealtimeCarsService } from '@app/services/realtime-cars.service';
 import { RealtimeClientsService } from '@app/services/realtime-clients.service';
+import { RealtimeInspectionsService } from '@app/services/realtime-inspections.service';
 import { map } from 'rxjs';
 
 @Component({
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
   public clients: any[] = []; // Agregar esta línea para almacenar los clientes
   public showDetail =false;
 constructor(
+  public realtimeInspectionsService: RealtimeInspectionsService,
   public auth:AuthPocketbaseService,
   public clientsService: RealtimeClientsService,
   public carsService: RealtimeCarsService,
@@ -57,6 +59,9 @@ onShowDetail(clientId: string) {
           this.globalService.clienteDetail = client;
           this.carsService.getCarsByUserId(client.id).then(cars => {
               this.globalService.clienteDetail.cars = cars;
+              this.globalService.carId=cars[0].id;
+              this.getMileage(client.id);
+              
           });
           this.toggleDetail();
           this.globalService.showHistorial = true;
@@ -67,18 +72,47 @@ onShowDetail(clientId: string) {
 }
 toggleDetail(){
   this.globalService.showDetail=!this.globalService.showDetail;
-  this.getMileage(this.globalService.clienteDetail.id);
   this.globalService.setRoute('car-detail');
 
   
 }
-getMileage(clientId: string): number {
-  const car = this.cars.find(car => car.idUser === clientId);
-  this.globalService.mileage= car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
-  return car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
+// getMileage(clientId: string): number {
+//   const car = this.cars.find(car => car.idUser === clientId);
+//   this.globalService.mileage= car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
+//   return car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
+// }
+getMileage(clientId: string): void {
+  this.realtimeInspectionsService.inspections$.subscribe(inspections => {
+      console.log('Inspecciones:', inspections); // Verifica las inspecciones
+
+      // Verifica si clienteDetail y cars están definidos
+      if (this.globalService.clienteDetail && this.globalService.clienteDetail.cars && this.globalService.clienteDetail.cars.length > 0) {
+          console.log('Car ID:', this.globalService.carId); // Verifica el carId
+      } else {
+          console.error('clienteDetail o cars no están definidos o están vacíos.');
+          alert('No se puede obtener el ID del coche.');
+          return; // Sal de la función si no hay coche
+      }
+
+      // Verifica si hay inspecciones y su estructura
+      if (inspections.length === 0) {
+          console.log('No hay inspecciones disponibles.');
+          this.globalService.mileage =  this.globalService.clienteDetail.cars[0].mileage;
+
+          alert('No hay inspecciones disponibles. por lo tanto se usara la de registro: ' +this.globalService.clienteDetail.cars[0].mileage );
+          return;
+      }
+
+      const hasPreviousInspections = inspections.some(inspection => inspection.carId === this.globalService.carId);
+      console.log('¿Hay inspecciones previas?', hasPreviousInspections); // Verifica el resultado de la búsqueda
+
+      if (hasPreviousInspections) {
+          this.globalService.mileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
+      } else {
+          alert('no hasPreviousInspections');
+      }
+  });
 }
-
-
 
 getClientDetail(idUser:string){
   this.clientsService.clients$.subscribe(clients => {
