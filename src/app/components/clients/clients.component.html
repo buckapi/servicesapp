@@ -14,7 +14,7 @@
                                 <div class="nav nav-underline" id="nav-tab-loc-1" role="tablist">
                                     <button class="nav-link active" id="nav-user-tab-loc-1" data-bs-toggle="tab"
                                         data-bs-target="#nav-user-loc-1" type="button" role="tab"
-                                        aria-controls="nav-user-loc-1" aria-selected="true">Clientes</button>
+                                        aria-controls="nav-user-loc-1" aria-selected="true">Clientes ( {{realtimeClientsService.getClientesCount()}} )</button>
                                     <input type="text" [(ngModel)]="searchTerm" placeholder="Campo de búsqueda" class="form-control" style="width: 250px; display: inline-block; margin-left: 10px;">
                                     <button class="btn btn-sm btn-outline-theme" (click)="global.setRoute('new-record')"><i class="bi bi-plus me-1"></i> Registrar cliente</button>
                                 </div>
@@ -23,8 +23,8 @@
                                 <div class="tab-pane show active fade" id="nav-user-loc-1" role="tabpanel"
                                     aria-labelledby="nav-user-tab-loc-1" tabindex="0">
                                     <div class="row gx-3">
-                                        <div class="col-12 col-md-4 col-lg-3" (click)="onShowDetail(item.id)" *ngFor="let item of (filteredClients | async)">
-                                            <div class="card adminuiux-card border mb-3">
+                                        <div class="col-12 col-md-4 col-lg-3"  style="cursor: pointer;" (click)="onShowDetail(item.id)" *ngFor="let item of (filteredClients | async)">
+                                            <div class="card elevate adminuiux-card border mb-3">
                                                 <div class="card-body">
                                                     <div class="row gx-3">
                                                         <div class="col"></div>

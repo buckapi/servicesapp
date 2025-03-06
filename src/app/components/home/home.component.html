@@ -58,8 +58,8 @@
 					</div>
 					<div class="card-body">
 						<input type="text" [(ngModel)]="searchTerm2" (ngModelChange)="filterResults()" placeholder="PATENTE" class="form-control" />     
-						<p class="text-secondary small" [hidden]="searchTerm2===''" *ngIf="searchTerm2 === '' || filteredResults.length === 0">
-							Patente no registrada<b class="text-theme-1"> Procesar registro</b>
+						<p class="text-secondary small" [hidden]="searchTerm2===''" *ngIf="searchTerm2 === '' || filteredResults.length === 0" style="cursor:pointer; padding: 15px">
+							Patente no registrada<b class="text-theme-1" (click)="globalService.setRoute('new-record')" style="cursor:pointer; padding: 15px"> Procesar registro</b>
 						</p>
 						<!-- <div class="summarychart height-110 w-100 mb-3"><canvas id="areachartblue1"></canvas>
 						</div> -->
@@ -72,17 +72,17 @@
 					<div class="row gx-3 align-items-center">
 						<div class="col-12 ">
 							<div class="card-header">
-								<h6 class="my-1">Veículos encontrados</h6>
+								<h6 class="my-1" style="font-weight: 900;">	{{ filteredResults.length }} resultados</h6>
 							</div>
 							<div class="card-body">
 								<div class="row">
-									<div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let result of filteredResults"
+									<div class="col-lg-4 col-md-6 col-sm-12" style="cursor:pointer;" (click)="onShowDetail(result.idUser)" *ngFor="let result of filteredResults"
 									>
-										<div class="card mb-3">
+										<div class="card mb-3 elevate">
 											<div class="card-body">
 												<h5 class="card-title">{{ result.name }}</h5>
 
-												<div class="text-center" (click)="onShowDetail(result.idUser)" style="cursor:pointer;" >
+												<div class="text-center"   >
 													<span class="badge badge-light rounded-pill text-bg-theme-accent-1" style="font-size: 1.2rem;">
 														<img src="assets/img/drive.png" style="width: 48px; height: 48px; margin-left: 2px;">
 														<span class="text-secondary small" style="margin-left: 5px; margin-right: 25px; font-size: 1.7rem;">

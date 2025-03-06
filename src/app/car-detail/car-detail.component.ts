@@ -23,6 +23,9 @@ export class CarDetailComponent {
 goTohome(){
   this.global.activeRoute='home';
   this.global.showDetail=!this.global.showDetail;
-
+}
+goToCarDetail(){
+  this.global.showWinzard=false;
+  this.global.showHistorial=true;
 }
 }

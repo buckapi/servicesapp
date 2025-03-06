@@ -1,240 +1,89 @@
 <div class="card adminuiux-card mb-3">
-    <div class="card-header">
-        <div class="row gx-3 align-items-center">
-            <div class="col-6">
-                <p class="h6">Nueva Mantención a los :</p>
-            </div>
-            <div class="col-6">
-                <input type="number" class="form-control d-inline" [(ngModel)]="global.mileage" style="display: inline; width: auto;" />
-                <span class="align-middle">Km.</span>
-            </div>
-        </div>
-    </div>
+
+
+<div [hidden]="steep==2">
     <div class="card-body">
+
+<span *ngIf="global.mileage==0" >Ingresa el </span>
+<span>Kilometraje actual del vehículo</span>
+
+        <input type="number" class="form-control d-inline" [(ngModel)]="global.mileage" style="display: inline; width: auto;" />
+
+    </div>
+</div>
+
+
+    <div class="card-body" *ngIf="global.mileage!=0">
         <!-- <p class="text-secondary">script option <code>theme:'dots',</code></p> -->
-        <div class="card border overflow-hidden mb-4" id="smartwizard2">
-            <ul class="nav mt-4">
-                <li class="nav-item"><a class="nav-link" href="component-smartwizard.html#step-1">
-                        <div class="num">1</div>
-                        <div>
-                            <p class="h5 mb-0">TECNICO MECANICA</p>
-                            <p class="opacity-75 small">Revision técnico mecánica </p>
+      
+        <div class="table-responsive" [hidden]="steep != 1">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="width: 30%;">Nombre</th>
+                        <th style="width: 10%;">Intervalo</th>
+                        <th style="width: 30%;">Descripción</th>
+                        <th style="width: 30%;">Próxima Mantención</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  
+                    <tr *ngFor="let inspection of inspections" [hidden] ="inspection.inspectionType != 'tecnica'" style="cursor: pointer;" class="elevate">
+                        <td>{{ inspection.name }}</td>
+                        <td>{{ inspection.interval | number : '1.0-0' }} Km</td>
+                        <td>{{ inspection.description }}</td>
+                        <td>{{inspection.interval+(global.mileage) | number : '1.0-0'  }} Km.</td>
+                    </tr>
+                    <!-- Puedes agregar más filas según sea necesario -->
+                </tbody>
+            </table>
+        </div>
+        <div class="text-end" [hidden]="steep != 1 ">
+            <button class="btn btn-lg btn-theme "style="font-weight: 900;" (click)="steep = 2">
+                <i class="bi bi-plus me-1" ></i> Siguiente
+            </button>
+        </div>
+
+        <div [hidden]="steep != 2">
+            <div class="row">
+                <div class="row">
+                    <div class=" gx-3 align-items-center col-6"  *ngFor="let inspection of inspections"  [hidden] ="inspection.inspectionType != 'general'">
+                        <div class="o py-2 mb-3">
+                            <div class="form-check form-switch form-check-md"><input
+                                    class="form-check-input" type="checkbox" role="switch"
+                                    id="sundaya"> <label class="form-check-label"
+                                    for="sundaya">{{inspection.name}}</label></div>
                         </div>
-                    </a></li>
-                    <li class="nav-item"><a class="nav-link" href="component-smartwizard.html#step-2">
-                        <div class="num">2</div>
-                        <div>
-                            <p class="h5 mb-0">VISUAL</p>
-                            <p class="opacity-75 small">Estado visual</p>
-                        </div>
-                    </a></li>
-                <!-- <li class="nav-item"><a class="nav-link" href="component-smartwizard.html#step-2">
-                        <div class="num">2</div>
-                        <div>
-                            <p class="h5 mb-0">Location</p>
-                            <p class="opacity-75 small">Guide to reach you</p>
-                        </div>
-                    </a></li>
-                <li class="nav-item"><a class="nav-link" href="component-smartwizard.html#step-3">
-                        <div class="num">3</div>
-                        <div>
-                            <p class="h5 mb-0">Working Hours</p>
-                            <p class="opacity-75 small">Availability and Opening hours</p>
-                        </div>
-                    </a></li>
-                <li class="nav-item"><a class="nav-link" href="component-smartwizard.html#step-4">
-                        <div class="num">4</div>
-                        <div>
-                            <p class="h5 mb-0">Services</p>
-                            <p class="opacity-75 small">Add at least 1 service</p>
-                        </div>
-                    </a></li> -->
-            </ul>
-            <div class="card-body pb-0">
-                <div class="tab-content">
-                    <div id="step-11" class="tab-pane px-0" role="tabpanel" aria-labelledby="step-1">
-                        <div class="row gx-3 align-items-center mb-2">
-                            <div class="col">
-                                <p class="h6 py-2"></p>
-                            </div>
-                            <div class="col-auto"
-                            >
-                            </div>
-                        </div>
-                        <div class="row" *ngFor="let inspection of inspections" [hidden] ="inspection.inspectionType != 'tecnica'">
-                            <div class="col-4">
-                                <label>{{inspection.name}}
-                                </label>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-floating mb-3"><input class="form-control"
-                                        placeholder="Enter price" value=""> <label>Descripcion
-                                        </label></div>
-                            </div>
-                           
-                            <div class="col-2">
-                                <label>Int.: {{inspection.interval | number : '1.0-0' }} Km.
-                                </label>
-                            </div>
-                            <div class="col-2">
-                                <label> Prox. {{inspection.interval+(global.mileage) | number : '1.0-0'  }} Km.
-                                </label>
-                            </div>
-                        </div>                       
-                        
-                    </div>
-                    <div id="step-21" class="tab-pane px-0 pb-0" role="tabpanel"
-                        aria-labelledby="step-21">
-                        <p class="h6 py-2 mb-2">Working Hours</p>
-                        <div class="row gx-3">
-                            <div class="col-12 col-lg-6">
-                                <div class="row gx-3 align-items-center"  *ngFor="let inspection of inspections" [hidden] ="inspection.inspectionType != 'general'">
-                                    <div class="col-auto py-2 mb-3">
-                                        <div class="form-check form-switch form-check-md"><input
-                                                class="form-check-input" type="checkbox" role="switch"
-                                                id="sundaya"> <label class="form-check-label"
-                                                for="sundaya">{{inspection.name}}</label></div>
-                                    </div>
-                                  
-                                </div>
-                            </div>
-                        </div>
-                        <div class="">
-                            <!-- <div class="form-check"><input class="form-check-input" type="checkbox"
-                                    name="wokringhours" id="wokringhoursa" checked=""> <label
-                                    class="form-check-label" for="wokringhoursa">Working hours same for
-                                    online bookings</label></div> -->
-                        </div><br>
                       
                     </div>
-                    <div id="step-31" class="tab-pane px-0 pb-0" role="tabpanel"
-                        aria-labelledby="step-31">
-                        <div class="row gx-3">
-                            <div class="col-12 col-lg-3 text-center">
-                                <p class="h6 py-2 mb-2">Locate on Map</p><iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d788.4385190507815!2d-122.4278138198206!3d37.772364180178094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1712990839970!5m2!1sen!2sin"
-                                    height="280" style="border:0;" allowfullscreen="" loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"
-                                    class="w-100 rounded mb-3"></iframe>
-                            </div>
-                            <div class="col">
-                                <div class="row gx-3 align-items-center mb-2">
-                                    <div class="col">
-                                        <p class="h6 py-2">Company Address</p>
-                                    </div>
-                                    <div class="col-auto"
-                                    >
-                                    <!-- <button class="btn btn-link"><i   data-feather="plus"></i> Add Another</button> -->
-                                            </div>
-                                </div>
-                                <div class="form-floating mb-3"><input class="form-control" id="house1"
-                                        placeholder="Enter branch name"> <label for="house1">Branch
-                                        Name</label></div>
-                                <div class="row gx-3 mb-2">
-                                    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-                                        <div class="form-floating mb-3"><input class="form-control"
-                                                id="house3" placeholder="Enter Shop/Door number"
-                                                value="12"> <label for="house3">Shop/Door Number</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-                                        <div class="form-floating mb-3"><input class="form-control"
-                                                id="street" placeholder="Enter Street"
-                                                value="Feather stone Street"> <label
-                                                for="street">Street</label></div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-                                        <div class="form-floating mb-3"><input class="form-control"
-                                                id="locality" placeholder="Enter locality" value="Ward">
-                                            <label for="locality">Locality</label></div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-                                        <div class="form-floating mb-3"><input class="form-control"
-                                                id="town" placeholder="Enter Town" value="London">
-                                            <label for="town">Town</label></div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-                                        <div class="form-floating mb-3"><input class="form-control"
-                                                id="city" placeholder="Enter City" value="London">
-                                            <label for="city">City</label></div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-                                        <div class="form-floating mb-3"><input class="form-control"
-                                                id="postcode" placeholder="Enter Postcode"
-                                                value="NG25 5AY"> <label for="postcode">Postcode</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-                                        <div class="form-floating mb-3"><input class="form-control"
-                                                id="country" placeholder="Enter Country"
-                                                value="United Kingdom"> <label
-                                                for="country">Country</label></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="step-41" class="tab-pane px-0 pb-0" role="tabpanel"
-                        aria-labelledby="step-41">
-                        <div class="row gx-3 align-items-center">
-                            <div class="col-12 col-lg-3 text-center mb-3">
-                                <figure class="avatar avatar-140 coverimg rounded-circle mt-3 mb-3"><img
-                                        src="assets/img/modern-ai-image/user-6.jpg" alt=""> <button
-                                        class="btn btn-square btn-accent rounded-circle"
-                                        onclick="$(this).next().click()"><i
-                                            class="bi bi-upload"></i></button> <input type="file"
-                                        class="d-none"></figure>
-                                <p class="h5">AdminUIUX</p>
-                            </div>
-                            <div class="col">
-                                <p class="h6 py-2 mb-2">Company Details</p>
-                                <div class="row">
-                                    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-                                        <div class="form-floating mb-3"><input class="form-control"
-                                                id="investmentname" placeholder="Enter companyName"
-                                                value="AdminUIUX"> <label for="investmentname">Company
-                                                Name</label></div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-                                        <div class="form-floating mb-3"><input class="form-control"
-                                                id="investmentmname"
-                                                placeholder="Enter company tagline"> <label
-                                                for="investmentmname">Company Tagline (Optional)</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-                                        <div class="form-floating mb-3"><input class="form-control"
-                                                id="phoneon2" placeholder="Enter phone"
-                                                value="+91 4152 21A45488004"> <label
-                                                for="phoneon2">Enter Phone</label></div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-                                        <div class="form-floating mb-3"><input type="email"
-                                                class="form-control" id="emailaddresson1"
-                                                placeholder="Enter Email Address"
-                                                value="alexa.smith@tgmails.com"> <label
-                                                for="emailaddresson1">Email Address</label></div>
-                                    </div>
-                                </div>
-                                <p class="h6 py-2 mb-2">Describe Services and Facilities</p>
-                                <div class="row gx-3">
-                                    <div class="col-12">
-                                        <div class="form-floating mb-3"><textarea
-                                                class="form-control height-150" id="describe3"
-                                                placeholder="Enter description about services"></textarea>
-                                            <label for="describe3">Short description about
-                                                services</label></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>
-            <div class="progress bg-theme-1-subtle rounded-0">
-                <div class="progress-bar bg-theme-accent-l-gradient h-100 rounded-0" role="progressbar"
-                    style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
+             
+                  
+                  
+
+<div class="row">
+    <div class="col">
+        <button class="btn btn-lg btn-outline-theme "style="font-weight: 900;" (click)="steep = 1" >
+            <i class="bi bi-plus me-1" ></i> Atras
+        </button>
+    </div>
+    <div class="col">
+        <div class="text-end">
+            <button class="btn btn-lg btn-theme "style="font-weight: 900;" >
+                <i class="bi bi-plus me-1" ></i> Procesar
+            </button>
         </div>
+    </div>
+  
+</div>
+
+                  
+                 
+                </div>
+        </div>
+      
+      
+      
+        
     </div>
 </div>

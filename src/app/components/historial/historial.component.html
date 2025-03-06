@@ -3,14 +3,42 @@
         <div class="card-body">
             <div class="row gx-3 align-items-center">
                 <div class="col-12 col-sm mb-3 mb-sm-0">
-                    <h6>Hitorial de mantenciones</h6>
+                    <h6 style="font-weight: 900">Hitorial de mantenciones</h6>
                 </div>
-                <div class="text-end">
-                    <button class="btn btn-sm btn-theme" (click)="global.showWinzard=true">
-                        <i class="bi bi-plus me-1"></i> Agregar Mantención
+                <div class="text-end mb-3">
+                    <button class="btn btn-sm btn-theme "style="font-weight: 900;" (click)="onShowWizard()">
+                        <i class="bi bi-plus me-1" ></i> Agregar Mantención
                     </button>
                 </div>
-
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Kilometraje</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2023-10-01</td>
+                                <td>15000 km</td>
+                                <td>Bueno</td>
+                            </tr>
+                            <tr>
+                                <td>2023-10-15</td>
+                                <td>15500 km</td>
+                                <td>Regular</td>
+                            </tr>
+                            <tr>
+                                <td>2023-11-01</td>
+                                <td>16000 km</td>
+                                <td>Óptimo</td>
+                            </tr>
+                            <!-- Puedes agregar más filas según sea necesario -->
+                        </tbody>
+                    </table>
+                </div>
                 <!-- <div class="col col-sm-auto px-0"><select class="form-select form-select-sm">
                         <option selected="selected">All Trend</option>
                         <option>Bullish</option>

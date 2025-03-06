@@ -1,0 +1,15 @@
+.elevate {
+    transition: transform 0.3s, box-shadow 0.3s; /* Transición suave para el efecto */
+}
+
+.elevate:hover {
+    transform: translateY(-1px); /* Eleva el elemento al pasar el mouse */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra al pasar el mouse */
+}
+table {
+    border-collapse: collapse; /* Ensures borders do not show */
+}
+
+th, td {
+    border: none; /* Removes borders from table cells */
+}

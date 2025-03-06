@@ -49,9 +49,9 @@ ngOnInit() {
   });
 }
 onShowDetail(clientId: string) {
+  this.globalService.showHistorial = true;
   this.searchTerm2 = ''; // Reinicia el valor de searchTerm2
   this.clientsService.clients$.subscribe(clients => {
-      console.log('Clients:', clients); // Verifica los clientes disponibles
       const client = clients.find(c => c.id === clientId);
       if (client) {
           this.globalService.clienteDetail = client;
@@ -59,6 +59,7 @@ onShowDetail(clientId: string) {
               this.globalService.clienteDetail.cars = cars;
           });
           this.toggleDetail();
+          this.globalService.showHistorial = true;
       } else {
           console.error('Client not found for ID:', clientId);
       }
@@ -68,6 +69,7 @@ toggleDetail(){
   this.globalService.showDetail=!this.globalService.showDetail;
   this.getMileage(this.globalService.clienteDetail.id);
   this.globalService.setRoute('car-detail');
+
   
 }
 getMileage(clientId: string): number {

@@ -14,6 +14,11 @@ import { RealtimeItemInspectionsService } from '@app/services/realtime-iteminspe
   styleUrl: './winzard.component.css'
 })
 export class WinzardComponent {
+steep = 1;
+inspectionsFirstHalf: any[] = [];
+    inspectionsSecondHalf: any[] = [];
+
+   
   inspections: any[] = [];
   public cars: any[] = []; // Agregar esta línea para almacenar los coches
  
@@ -22,12 +27,19 @@ constructor(public global: GlobalService,
   
   public realtimeItemInspectionsService: RealtimeItemInspectionsService
 ) {
+  const midpoint = Math.ceil(this.inspections.length / 2);
+  this.inspectionsFirstHalf = this.inspections.slice(0, midpoint);
+  this.inspectionsSecondHalf = this.inspections.slice(midpoint);
+
   this.realtimeItemInspectionsService.itemInspections$.subscribe(items => {
     this.inspections = items;
   });
   this.realtimeCarsService.cars$.subscribe(cars => {
     this.cars = cars;
   });
+}
+next(steep:number){
+this.steep =steep;
 }
 getMileage(clientId: string): number {
   const car = this.cars.find(car => car.idUser === clientId);

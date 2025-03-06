@@ -1,9 +1,18 @@
 .card-hover {
-    transform: translateY(5px); /* Cambiar a 5px hacia abajo */
+   
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Hacer la sombra más oscura */
 }
 
 .card-hover:hover {
+    transform: translateY(5px); /* Cambiar a 5px hacia abajo */
     transition: transform 0.3s, box-shadow 0.3s;
     box-shadow: none; /* Ocultar la sombra al pasar el mouse */
+}
+.elevate {
+    transition: transform 0.3s, box-shadow 0.3s; /* Transición suave para el efecto */
+}
+
+.elevate:hover {
+    transform: translateY(-5px); /* Eleva el elemento al pasar el mouse */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra al pasar el mouse */
 }
