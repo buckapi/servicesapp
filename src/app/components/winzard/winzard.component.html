@@ -1,77 +1,17 @@
-<div class="card adminuiux-card mb-3">
-    <div >
-        <div class="card-body">
 
+    <div>
+        <div class="card-body" style="margin-top: -40px;">
             <div class="row align-items-center">
                 <div class="col">
                     <span *ngIf="global.mileage==0" style="font-size: 2rem !important;">Ingresa el </span>
                     <span style="font-size: 2rem !important;">Kilometraje actual del vehículo</span>
-                    <input type="number" class="form-control d-inline " [(ngModel)]="global.mileage"  style="margin-left: 20px; width: 250px !important; font-size: 2rem;" />
+                    <input type="number" class="form-control d-inline " [(ngModel)]="global.mileage"
+                        style="margin-left: 20px; width: 250px !important; font-size: 2rem; background-color: #333; color: #fff;" />
                     <span style="font-size: 2rem !important;"> Km.</span>
                 </div>
-                <div class="col-auto">
-                    <div style="text-align: left;">
-                        <button class="btn btn-lg btn-outline-theme" style="font-weight: 900;" (click)="steep = 1">
-                            <i class="bi bi-check me-1"></i> Aceptar
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-           
-        </div>
-    </div>
-    <div class="card-body mb-3" *ngIf="global.mileage!=0">
-        <div class="row mb-3">
-            <div class="col text-center">
-                <button *ngIf="steep==1" class="btn btn-lg btn-theme " style="font-weight: 900;" (click)="steep = 1">
-                    <img src="assets/img/technician.png" alt="Técnico Mecánica"> Técnico Mecánica
-                </button>
-                <button *ngIf="steep==2" class="btn btn-lg btn-outline-theme " style="font-weight: 900;" (click)="steep = 1">
-                    <i class="bi bi-gear  me-1"></i> Técnico Mecánica
-                </button>
-            </div>
-            <div class="col mv-3">
-            <div class="text-center">
-                <button *ngIf="steep==2" class="btn btn-lg btn-theme " style="font-weight: 900;" (click)="steep = 2">
-                    <i class="bi bi-plus me-1"></i> General
-                </button>
-                <button *ngIf="steep==1" class="btn btn-lg btn-outline-theme " style="font-weight: 900;" (click)="steep = 2">
-                    <i class="bi bi-plus me-1"></i> General
-                </button>
-            </div>
-            </div>
-        </div>
-        <div class="table-responsive mt-3" [hidden]="steep != 1">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th style="width: 30%;">Nombre</th>
-                        <th style="width: 10%;">Intervalo</th>
-                        <th style="width: 30%;">Ultima Mantención</th>
-                        <th style="width: 30%;">Próxima Mantención</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let inspection of inspections" [hidden]="inspection.inspectionType != 'tecnica'"
-                        style="cursor: pointer;" class="elevate">
-                        <td>{{ inspection.name }}</td>
-                        <td>{{ inspection.interval | number : '1.0-0' }} Km</td>
-                        <td>{{ inspection.description }}</td>
-                        <td>{{inspection.interval+(global.mileage) | number : '1.0-0' }} Km.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <!-- <div class="text-end" [hidden]="steep != 1 ">
-            <button class="btn btn-lg btn-theme " style="font-weight: 900;" (click)="steep = 2">
-                <i class="bi bi-plus me-1"></i> Siguiente
-            </button>
-        </div> -->
-
-        <div [hidden]="steep != 2">
+                <div class="col">
+                    <div >
             <div class="row">
-                
                 <div class="row">
                     <div class=" gx-3 align-items-center col-6" *ngFor="let inspection of inspections"
                         [hidden]="inspection.inspectionType != 'general'">
@@ -82,9 +22,90 @@
                         </div>
                     </div>
                 </div>
-
-               
+            </div>
+        </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="card-body mb-3" *ngIf="global.mileage!=0">
+        <!-- <div class="row mb-3">
+            <div class="col text-center">
+                <button *ngIf="steep==1" class="btn btn-lg btn-theme " style="font-weight: 900;" (click)="steep = 1">
+                    <img src="assets/img/technician.png" alt="Técnico Mecánica"> Técnico Mecánica
+                </button>
+                <button *ngIf="steep==2" class="btn btn-lg btn-outline-theme " style="font-weight: 900;"
+                    (click)="steep = 1">
+                    <i class="bi bi-gear  me-1"></i> Técnico Mecánica
+                </button>
+            </div>
+            <div class="col mv-3">
+                <div class="text-center">
+                    <button *ngIf="steep==2" class="btn btn-lg btn-theme " style="font-weight: 900;"
+                        (click)="steep = 2">
+                        <i class="bi bi-plus me-1"></i> General
+                    </button>
+                    <button *ngIf="steep==1" class="btn btn-lg btn-outline-theme " style="font-weight: 900;"
+                        (click)="steep = 2">
+                        <i class="bi bi-plus me-1"></i> 
+                        <img src="assets/img/eye.png" alt="General"> General
+                    </button>
+                </div>
+            </div>
+        </div> -->
+        
+        <div class="table-responsive mt-3" >
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="width: 30%;">Nombre</th>
+                        <th style="width: 10%;">Intervalo</th>
+                        <th style="width: 30%;">Descripción</th>
+
+                        <th style="width: 15%;">Límite</th>
+                        <th style="width: 15%;">Próxima Mantención</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr 
+                    *ngFor="let inspection of inspections; let i = index"
+                        [hidden]="inspection.inspectionType != 'tecnica'" style="cursor: pointer;" class="elevate" [ngClass]="getInspectionClass((isItemRegistered(inspection.id)+inspection.interval) ,global.mileage)">
+                        <td>{{ inspection.name }}</td>
+                        <td>{{ inspection.interval | number : '1.0-0' }} Km</td>
+                        <td>
+<input type="text" class="form-control" [(ngModel)]="inspection.description">
+
+                        </td>
+                        <td>
+                            <ng-container
+                                *ngIf="(isItemRegistered(inspection.id)+inspection.interval) >  (global.mileage)">
+                                <span class="badge bg-success" style="font-size: 1rem!important; ">
+                                    {{ isItemRegistered(inspection.id)+inspection.interval | number : '1.0-0' }} Km (Al día)
+                                </span>
+                            </ng-container>
+                            <ng-container
+                                *ngIf="(isItemRegistered(inspection.id)+inspection.interval) <  (global.mileage)"
+                                style="background-color: red !important;">
+                                <span class="badge bg-danger text-white " style="font-size: 1rem;" >
+                                    {{ isItemRegistered(inspection.id)+inspection.interval | number : '1.0-0' }} Km (Atrasada)
+                                </span>
+                              
+                            </ng-container>
+                          
+                        </td>
+                        <td>
+                            <span>
+                                {{ inspection.interval + (global.mileage) | number : '1.0-0' }} Km.
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-end">
+            <button  class="btn btn-lg btn-theme  " style="font-weight: 900;"
+            >
+        <i class="bi bi-check"></i> Aceptar
+    </button>
+        
+    </div>

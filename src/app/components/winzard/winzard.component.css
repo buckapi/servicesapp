@@ -13,3 +13,10 @@ table {
 th, td {
     border: none; /* Removes borders from table cells */
 }
+.text-green {
+    color: green;
+}
+
+.text-red {
+    color: red;
+}

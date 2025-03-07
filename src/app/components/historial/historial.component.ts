@@ -15,6 +15,7 @@ interface Item{
   id:string,
   name:string,
   interval:number,
+  nextInspection:number,
   inspectionType:string,
   fuelType:string,
   transmissionType:string,
@@ -28,7 +29,7 @@ interface Inspection{
   date:Date,
   mileage:number,
   status:string
-  itms:Item[];
+  items:Item[];
   }
 @Component({
   selector: 'app-historial',
@@ -58,10 +59,7 @@ cars$: Observable<Car[]>;
     this.global.showWinzard = true;
     const inspections = this.realtimeInspections.inspections$;
     const filteredInspections = this.realtimeInspections.getInspectionsByCarId(this.global.clienteDetail.cars?.[0]?.id);
-    if (filteredInspections) {
-        this.global.prevInspectionValue = filteredInspections;
-        this.global.prevInspection = true;
-    }
+
 }
   ngAfterViewInit(): void {
   }

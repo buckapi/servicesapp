@@ -1,5 +1,19 @@
 import { Injectable } from '@angular/core';
 
+interface Inspection {
+  id: string;
+  date: Date;
+  mileage: number;
+  status: string;
+  items: Item[];
+}
+
+interface Item {
+  id: string;
+  name: string;
+  nextInspection: number;
+  interval: number;
+}
 interface Car{
 
   id:string,
@@ -34,7 +48,9 @@ interface ClienteDetail{
 export class GlobalService  {
   carId:string='';
   prevInspection=true;
-  prevInspectionValue:any=[];
+  // prevInspectionValue:Inspection[]=[];
+  prevInspectionValue: Inspection | undefined; // Asegúrate de que sea un solo objeto
+  lastItems:Item[]=[];
   mileage=0;
   totalClientes=0;
   flag='';

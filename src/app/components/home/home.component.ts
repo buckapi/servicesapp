@@ -87,10 +87,10 @@ getMileage(clientId: string): void {
 
       // Verifica si clienteDetail y cars están definidos
       if (this.globalService.clienteDetail && this.globalService.clienteDetail.cars && this.globalService.clienteDetail.cars.length > 0) {
-          console.log('Car ID:', this.globalService.carId); // Verifica el carId
+          // console.log('Car ID:', this.globalService.carId); // Verifica el carId
       } else {
-          console.error('clienteDetail o cars no están definidos o están vacíos.');
-          alert('No se puede obtener el ID del coche.');
+          // console.error('clienteDetail o cars no están definidos o están vacíos.');
+          // alert('No se puede obtener el ID del coche.');
           return; // Sal de la función si no hay coche
       }
 
@@ -107,9 +107,16 @@ getMileage(clientId: string): void {
       console.log('¿Hay inspecciones previas?', hasPreviousInspections); // Verifica el resultado de la búsqueda
 
       if (hasPreviousInspections) {
-          this.globalService.mileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
-      } else {
-          alert('no hasPreviousInspections');
+        this.globalService.prevInspectionValue = inspections[inspections.length - 1];
+        if (hasPreviousInspections) {
+          this.globalService.prevInspectionValue = inspections[inspections.length - 1];
+          this.globalService.lastItems = this.globalService.prevInspectionValue?.items || []; // Assign an empty array if undefined
+      }
+        // alert('hasPreviousInspections' + JSON.stringify(this.globalService.lastItems));
+        this.globalService.mileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
+
+        } else {
+          // alert('no hasPreviousInspections');
       }
   });
 }

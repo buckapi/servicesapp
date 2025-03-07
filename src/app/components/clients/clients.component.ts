@@ -88,6 +88,18 @@ onShowDetail(clientId: string) {
           });
           this.toggleDetail();
       } else {
+        this.global.mileage =0;
+        this.global.lastItems =[];
+        this.global.prevInspectionValue={
+          id:'',
+          mileage:0, 
+          items:[
+
+          ],
+          status:'',
+          date: new Date()
+        };
+
           console.error('Client not found for ID:', clientId);
       }
   });

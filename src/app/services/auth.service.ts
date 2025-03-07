@@ -192,7 +192,7 @@ export class AuthPocketbaseService {
     this.global.setRoute('login');
 
     return new Observable<any>((observer) => {
-      observer.next(); // Indicar que la operación de cierre de sesión ha completado
+      // observer.next(); // Indicar que la operación de cierre de sesión ha completado
       observer.complete();
     });
   }
