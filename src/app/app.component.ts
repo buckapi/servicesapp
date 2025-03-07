@@ -19,7 +19,7 @@ import { ClientsComponent } from './components/clients/clients.component';
 import { AuthPocketbaseService } from './services/auth.service';
 import { ConfigComponent } from './components/config/config.component';
 import { VisitTrackerService } from './services/visit-tracker.service';
-import { CarDetailComponent } from './car-detail/car-detail.component';
+import { CarDetailComponent } from './components/car-detail/car-detail.component';
 @Component({
   selector: 'app-root',
   standalone: true,

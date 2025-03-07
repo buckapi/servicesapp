@@ -25,6 +25,19 @@ goTohome(){
   this.global.showDetail=!this.global.showDetail;
 }
 goToCarDetail(){
+  this.global.mileage=0;
+  this.global.lastItems=[
+    
+  ]
+  this.global.prevInspectionValue={
+    id:'',
+    mileage:0, 
+    items:[
+
+    ],
+    status:'',
+    date: new Date()
+  };
   this.global.showWinzard=false;
   this.global.showHistorial=true;
 }

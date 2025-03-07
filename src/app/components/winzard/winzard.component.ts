@@ -126,6 +126,37 @@ isItemRegistered(itemId: string): number | undefined {
 
   return undefined; // Devuelve undefined si no se encuentra
 }
+
+// getNextInspectionKm(itemId: string): number {
+//   const inspection = this.inspections.find(i => i.id === itemId);
+//   for (let i=0;i<this.global.lastItems.length;i++) {
+//     if(this.global.lastItems[i].id === itemId){
+//       return this.global.lastItems[i].nextInspection;
+//     }
+//   }
+//   return inspection ? inspection.nextInspectionKm : 0; // Devuelve 0 o un valor predeterminado
+// }
+
+getNextInspectionKm(itemId: string): number | undefined {
+  for (let i=0;i<this.global.lastItems.length;i++) {
+ if(this.global.lastItems[i].id === itemId){
+  return this.global.lastItems[i].nextInspection;
+ }
+  }
+
+  return undefined; // Devuelve undefined si no se encuentra
+}
+getFlag(inspection: any) {
+  const nextInspectionKm = this.getNextInspectionKm(inspection.id);
+  if (nextInspectionKm !== undefined) {
+    if (((this.global.mileage - nextInspectionKm) ) > 0) {
+      return true;
+    }else{
+      return false;
+    }
+  }
+  return false;
+}
 compareInspectionInterval(inspectionId: string): string {
   const prevInspection = this.global.prevInspectionValue; // Accede directamente a la Inspección
 

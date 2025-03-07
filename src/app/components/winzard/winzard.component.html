@@ -1,19 +1,38 @@
 
     <div>
+        <style>
+            /* Ocultar los spinners en todos los navegadores */
+            input[type="number"]::-webkit-outer-spin-button,
+            input[type="number"]::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+    
+            input[type="number"] {
+                -moz-appearance: textfield; /* Firefox */
+            }
+        </style>
         <div class="card-body" style="margin-top: -40px;">
             <div class="row align-items-center">
-                <div class="col">
-                    <span *ngIf="global.mileage==0" style="font-size: 2rem !important;">Ingresa el </span>
-                    <span style="font-size: 2rem !important;">Kilometraje actual del vehículo</span>
-                    <input type="number" class="form-control d-inline " [(ngModel)]="global.mileage"
-                        style="margin-left: 20px; width: 250px !important; font-size: 2rem; background-color: #333; color: #fff;" />
-                    <span style="font-size: 2rem !important;"> Km.</span>
+                <div class="col-lg-6 col-md-12 text-center mb-3">
+                    <span *ngIf="global.mileage == 0" style="font-size: 1.8rem !important;">Ingresa el </span>
+                    <span style="font-size: 1.8rem !important;">Kilometraje actual del vehículo</span>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="assets/img/mileage.png" alt="" style="width: 50px; margin-right: 10px;">
+                        <input type="number" class="form-control d-inline" [(ngModel)]="global.mileage"
+                            style="
+                            align-items: center;
+                            justify-content: center;
+                            text-align: center;
+                            width: 200px !important; font-size: 2rem; background-color: #333; color: #fff;" />
+                        <span style="font-size: 2rem !important;"> Km.</span>
+                    </div>
                 </div>
                 <div class="col">
                     <div >
             <div class="row">
                 <div class="row">
-                    <div class=" gx-3 align-items-center col-6" *ngFor="let inspection of inspections"
+                    <div class=" gx-3 align-items-center col-6 col-md-6" *ngFor="let inspection of inspections"
                         [hidden]="inspection.inspectionType != 'general'">
                         <div class="o py-2 mb-3">
                             <div class="form-check form-switch form-check-md"><input class="form-check-input"
@@ -29,39 +48,13 @@
         </div>
     </div>
     <div class="card-body mb-3" *ngIf="global.mileage!=0">
-        <!-- <div class="row mb-3">
-            <div class="col text-center">
-                <button *ngIf="steep==1" class="btn btn-lg btn-theme " style="font-weight: 900;" (click)="steep = 1">
-                    <img src="assets/img/technician.png" alt="Técnico Mecánica"> Técnico Mecánica
-                </button>
-                <button *ngIf="steep==2" class="btn btn-lg btn-outline-theme " style="font-weight: 900;"
-                    (click)="steep = 1">
-                    <i class="bi bi-gear  me-1"></i> Técnico Mecánica
-                </button>
-            </div>
-            <div class="col mv-3">
-                <div class="text-center">
-                    <button *ngIf="steep==2" class="btn btn-lg btn-theme " style="font-weight: 900;"
-                        (click)="steep = 2">
-                        <i class="bi bi-plus me-1"></i> General
-                    </button>
-                    <button *ngIf="steep==1" class="btn btn-lg btn-outline-theme " style="font-weight: 900;"
-                        (click)="steep = 2">
-                        <i class="bi bi-plus me-1"></i> 
-                        <img src="assets/img/eye.png" alt="General"> General
-                    </button>
-                </div>
-            </div>
-        </div> -->
-        
-        <div class="table-responsive mt-3" >
+        <div class="table-responsive " >
             <table class="table">
                 <thead>
                     <tr>
                         <th style="width: 30%;">Nombre</th>
                         <th style="width: 10%;">Intervalo</th>
                         <th style="width: 30%;">Descripción</th>
-
                         <th style="width: 15%;">Límite</th>
                         <th style="width: 15%;">Próxima Mantención</th>
                     </tr>
@@ -77,17 +70,29 @@
 
                         </td>
                         <td>
-                            <ng-container
-                                *ngIf="(isItemRegistered(inspection.id)+inspection.interval) >  (global.mileage)">
+                            <!-- <ng-container *ngIf="getNextInspectionKm(inspection.id) !== undefined; else noData">
+                                <ng-container *ngIf="getNextInspectionKm(inspection.id) > global.prevMileage">
+                                    <span class="badge bg-success" style="font-size: 1rem!important;">
+                                        {{ getNextInspectionKm(inspection.id) | number : '1.0-0' }} Km (Al día)
+                                    </span>
+                                </ng-container>
+                                <ng-container *ngIf="getNextInspectionKm(inspection.id) < global.prevMileage">
+                                    <span class="badge bg-danger text-white" style="font-size: 1rem;">
+                                        {{ getNextInspectionKm(inspection.id) | number : '1.0-0' }} Km (Atrasada)
+                                    </span>
+                                </ng-container>
+                            </ng-container> -->
+
+                            <ng-container *ngIf="!getFlag(inspection)">
                                 <span class="badge bg-success" style="font-size: 1rem!important; ">
-                                    {{ isItemRegistered(inspection.id)+inspection.interval | number : '1.0-0' }} Km (Al día)
+                                    {{ getNextInspectionKm(inspection.id) | number : '1.0-0' }} Km (Al día)
                                 </span>
                             </ng-container>
                             <ng-container
-                                *ngIf="(isItemRegistered(inspection.id)+inspection.interval) <  (global.mileage)"
-                                style="background-color: red !important;">
+                            *ngIf="getFlag(inspection)"
+                                >
                                 <span class="badge bg-danger text-white " style="font-size: 1rem;" >
-                                    {{ isItemRegistered(inspection.id)+inspection.interval | number : '1.0-0' }} Km (Atrasada)
+                                    {{ isItemRegistered(inspection.id)| number : '1.0-0' }} Km (Atrasada)
                                 </span>
                               
                             </ng-container>
@@ -103,8 +108,9 @@
             </table>
         </div>
         <div class="text-end">
-            <button  class="btn btn-lg btn-theme  " style="font-weight: 900;"
+            <button  class="btn btn-lg btn-outline-theme  " style="font-weight: 900;"
             >
+            <i class="bi bi-plus me-1"></i> 
         <i class="bi bi-check"></i> Aceptar
     </button>
         

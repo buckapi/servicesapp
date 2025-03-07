@@ -110,11 +110,13 @@ getMileage(clientId: string): void {
         this.globalService.prevInspectionValue = inspections[inspections.length - 1];
         if (hasPreviousInspections) {
           this.globalService.prevInspectionValue = inspections[inspections.length - 1];
+        this.globalService.prevMileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
+
           this.globalService.lastItems = this.globalService.prevInspectionValue?.items || []; // Assign an empty array if undefined
       }
         // alert('hasPreviousInspections' + JSON.stringify(this.globalService.lastItems));
         this.globalService.mileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
-
+        this.globalService.prevMileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
         } else {
           // alert('no hasPreviousInspections');
       }

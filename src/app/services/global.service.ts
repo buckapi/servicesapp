@@ -48,6 +48,7 @@ interface ClienteDetail{
 export class GlobalService  {
   carId:string='';
   prevInspection=true;
+  prevMileage=0;
   // prevInspectionValue:Inspection[]=[];
   prevInspectionValue: Inspection | undefined; // Asegúrate de que sea un solo objeto
   lastItems:Item[]=[];
