@@ -20,10 +20,12 @@ import { AuthPocketbaseService } from './services/auth.service';
 import { ConfigComponent } from './components/config/config.component';
 import { VisitTrackerService } from './services/visit-tracker.service';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
+import { UsersComponent } from './components/users/users.component';
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
+    UsersComponent,
     ConfigComponent,
     ClientsComponent,
     NewRecordComponent,
@@ -52,6 +54,10 @@ export class AppComponent {
 goconfig(){
   this.globalService.flag='app';
   this.globalService.setRoute('config');
+}
+goUsers(){
+  this.globalService.flag='app';
+  this.globalService.setRoute('users');
 }
   toggleTheme() {
     this.theme = this.theme === 'light' ? 'dark' : 'light';

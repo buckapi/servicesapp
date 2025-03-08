@@ -56,7 +56,7 @@ export class GlobalService  {
   totalClientes=0;
   flag='';
   totalCars=0;
-  activeRoute = 'home';
+  activeRoute = 'users';
   theme: string = 'light';
   showDetail = false;
   showHistorial = false;

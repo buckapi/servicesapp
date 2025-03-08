@@ -53,7 +53,7 @@
             </div>
             <ul class="nav flex-column menu-active-line">
                 <li class="nav-item">
-                    <a class="nav-link">
+                    <a class="nav-link" style="cursor: pointer;" (click)="goUsers()">
                         <i class="menu-icon" data-feather="users"></i> 
                         <span class="menu-name">Usuarios</span>
                     </a>
@@ -67,6 +67,7 @@
             </ul>
         </div>
     </div>
+    <app-users [hidden]="globalService.activeRoute!='users'"></app-users>
     <app-car-detail [hidden]="globalService.activeRoute!='car-detail'"></app-car-detail>
     <app-config [hidden]="globalService.activeRoute!='config'"></app-config>
     <app-clients [hidden]="globalService.activeRoute!='clients'"></app-clients>

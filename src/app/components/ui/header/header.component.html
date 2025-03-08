@@ -16,10 +16,10 @@
 				</div>
 			</a>
 			<div class="ms-auto">
-				<button class="btn btn-link btn-square btn-icon btn-link-header" type="button"
+				<!-- <button class="btn btn-link btn-square btn-icon btn-link-header" type="button"
 					onclick="openSearch()">
 					<i class="bi bi-search" data-feather="search"></i>
-				</button> 
+				</button>  -->
 				<button *ngIf="global.theme == 'dark'"	class="btn btn-link btn-square btnsunmoon btn-link-header" id="btn-layout-modes-dark-page" (click)="toggleTheme()">
 				
 					<img  class=" mx-auto" src="assets/img/moon.png" alt="Icono" style="width: 24px; height: 24px; margin-right: 5px;" data-feather="moon" (click)="global.toggleThemeP('dark')">
@@ -31,7 +31,7 @@
 
 				
 			
-				<div class="dropdown d-none d-sm-inline-block"><button
+				<!-- <div class="dropdown d-none d-sm-inline-block"><button
 						class="btn btn-link btn-square btn-icon btn-link-header dropdown-toggle no-caret"
 						type="button" data-bs-toggle="dropdown" aria-expanded="false"><i
 							class="bi bi-translate"></i></button>
@@ -41,8 +41,8 @@
 						<li><a class="dropdown-item" data-value="CH">CH - Chinese</a></li>
 						<li><a class="dropdown-item" data-value="HI">HI - Hindi</a></li>
 					</ul>
-				</div>
-				<div class="dropdown d-inline-block"><button
+				</div> -->
+				<!-- <div class="dropdown d-inline-block"><button
 						class="btn btn-link btn-square btn-icon btn-link-header dropdown-toggle no-caret"
 						type="button" data-bs-toggle="dropdown" aria-expanded="false">
 						<i class="bi bi-bell" data-feather="bell"></i>
@@ -115,7 +115,7 @@
 								class="btn btn-link text-center">View all <i
 									class="bi bi-arrow-right fs-14"></i></a></li>
 					</ul>
-				</div>
+				</div> -->
 				<div class="dropdown d-inline-block"><a
 						class="dropdown-toggle btn btn-link btn-square btn-link-header style-none no-caret px-0"
 						id="userprofiledd" data-bs-toggle="dropdown" aria-expanded="false" role="button">
@@ -146,7 +146,7 @@
 						<div class="px-2">
 						
 							<div><a class="dropdown-item" style="cursor: pointer;" (click)="goConfig()"><i data-feather="settings"
-										class="avatar avatar-18 me-1"></i> Ajustes de aplicación</a></div>
+										class="avatar avatar-18 me-1"></i> Ajustes de interfaz</a></div>
 							<div><a class="dropdown-item theme-red" style="cursor: pointer;" (click)="auth.logoutUser()	"><i
 										data-feather="power" class="avatar avatar-18 me-1"></i> Salir</a></div>
 						</div>

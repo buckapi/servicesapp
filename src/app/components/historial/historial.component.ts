@@ -6,6 +6,7 @@ import { RealtimeCarsService } from '@app/services/realtime-cars.service';
 declare var $: any; // Asegúrate de declarar jQuery
 import { FilterInspectionsPipe } from '@app/pipes/filter-inspections';
 import { Observable, } from 'rxjs';
+import { DetailService } from '@app/services/detail-service.service';
 
 
 
@@ -50,15 +51,19 @@ cars$: Observable<Car[]>;
   constructor(
     public realtimeInspections: RealtimeInspectionsService,
     public realtimeCars: RealtimeCarsService,
-    public global: GlobalService
+    public global: GlobalService,
+    public detailService: DetailService // Inyecta el servicio
+
   ) {
     this.inspections$ = this.realtimeInspections.inspections$;
     this.cars$  = this.realtimeCars.cars$;
   }
   onShowWizard() {
+
     this.global.showWinzard = true;
     const inspections = this.realtimeInspections.inspections$;
     const filteredInspections = this.realtimeInspections.getInspectionsByCarId(this.global.clienteDetail.cars?.[0]?.id);
+    // this.detailService.onShowDetail(this.global.clienteDetail.id);
 
 }
   ngAfterViewInit(): void {

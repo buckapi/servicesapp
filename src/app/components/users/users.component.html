@@ -1,0 +1,71 @@
+<main class="adminuiux-content has-sidebar" onclick="contentClick()">
+    <div class="container-fluid mt-3">
+        <div class="row gx-3 align-items-center">
+            <div class="col col-sm pb-3">
+                <h5>Mecanicos   </h5>
+            </div>
+        </div>
+        <div class="text-end">
+            <button class="btn btn-md btn-theme" data-bs-toggle="modal"
+                data-bs-target="#createuser"><i class="bi bi-plus me-1"></i> Create
+                User</button>
+        </div>
+        <div class="row gx-3">
+            <div class="col-12 col-md-6 col-lg-3" *ngFor="let mecanico of realtimeMecanicosService.mecanicos$ | async">
+                <div class="card adminuiux-card border mb-3">
+                    <div class="card-body">
+                     
+                        <div class="text-center">
+                            <div
+                                class="">
+                                <img src="assets/img/tech.png"
+                                    alt="" ></div>
+                            <h6 class="mb-0"><span class="position-relative">{{mecanico.name}} <span
+                                        class="position-absolute top-50 start-100 translate-middle p-1 bg-success rounded-circle mx-2"><span
+                                            class="visually-hidden">New
+                                            alerts</span></span></span></h6>
+                            <span
+                                class="badge badge-light rounded-pill text-bg-theme-accent-1"><i
+                                    class="bi bi-key me-2"></i>{{mecanico.password}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+       
+</div>
+</main>
+<div class="modal adminuiux-modal fade" id="createuser" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xs modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="" style="font-size: 1.5rem">Creación cuenta de usuario</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body pt-0">
+                <div class="card adminuiux-card overflow-hidden mb-4 pt-5">
+                    <div class="row gx-3 ">
+                        <div class="col-12 col-md-6 col-lg-12">
+                            <div class="form-floating mb-3"><input placeholder="Nombre completo"
+                                    value="" required="" class="form-control is-valid" [(ngModel)]="newUser.name">
+                                <label>Nombre completo</label></div>
+                            <div class="invalid-feedback">Please enter valid input</div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-12">
+                            <div class="form-floating mb-3"><input placeholder="Usuario" value=""
+                                    required="" class="form-control" [(ngModel)]="newUser.username">
+                                <label>Usuario</label></div>
+                            <div class="invalid-feedback">Please enter valid input</div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col"><button type="button" class="btn btn-link"
+                    data-bs-dismiss="modal">Cancelar</button></div>
+                <div class="col-auto"><button type="button" class="btn btn-theme" (click)="createUser(newUser)">Crear</button></div>
+                
+            </div>
+        </div>
+    </div>
+</div>
