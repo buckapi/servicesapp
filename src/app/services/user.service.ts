@@ -16,7 +16,7 @@ export class UserService {
         password: password,
         type: type
       };
-      const record = await this.pb.collection('mecanicos').create(mechanicData);
+      const record = await this.pb.collection('mechanics').create(mechanicData);
       return record;
     } catch (error) {
       console.error('Error creating mechanic:', error);

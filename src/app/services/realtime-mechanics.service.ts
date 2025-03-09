@@ -6,20 +6,20 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class RealtimeMecanicosService implements OnDestroy {
+export class RealtimeMechanicsService implements OnDestroy {
   private pb: PocketBase;
-  private mecanicosSubject = new BehaviorSubject<any[]>([]);
+  private mechanicsSubject = new BehaviorSubject<any[]>([]);
 
   // Esta es la propiedad que expondrá el Observable para que los componentes puedan suscribirse a ella
-  public mecanicos$: Observable<any[]> =
-    this.mecanicosSubject.asObservable();
+  public mechanics$: Observable<any[]> =
+    this.mechanicsSubject.asObservable();
 
   constructor() {
     this.pb = new PocketBase('https://db.buckapi.lat:8095');
-    this.subscribeToMecanicos();
+    this.subscribeToMechanics();
   }
 
-  private async subscribeToMecanicos() {
+  private async subscribeToMechanics() {
     // (Opcional) Autenticación
     await this.pb
       .collection('users')
@@ -27,12 +27,12 @@ export class RealtimeMecanicosService implements OnDestroy {
 
 
     // Suscribirse a cambios en cualquier registro de la colección 'members'
-    this.pb.collection('mecanicos').subscribe('*', (e) => {
+    this.pb.collection('mechanics').subscribe('*', (e) => {
       this.handleRealtimeEvent(e);
     });
 
     // Inicializar la lista de esntrieas
-    this.updateMecanicosList();
+    this.updateMechanicsList();
   }
 
   private handleRealtimeEvent(event: any) {
@@ -41,21 +41,21 @@ export class RealtimeMecanicosService implements OnDestroy {
     console.log(event.record);
 
     // Actualizar la lista de esntrieas
-    this.updateMecanicosList();
+    this.updateMechanicsList();
   }
 
-  private async updateMecanicosList() {
+  private async updateMechanicsList() {
     // Obtener la lista actualizada de esntrieas
     const records = await this.pb
-      .collection('mecanicos')
+      .collection('mechanics')
       .getFullList(200 /* cantidad máxima de registros */, {
         sort: '-created', // Ordenar por fecha de creación
       });
-    this.mecanicosSubject.next(records);
+    this.mechanicsSubject.next(records);
   }
 
   ngOnDestroy() {
     // Desuscribirse cuando el servicio se destruye
-    this.pb.collection('mecanicos').unsubscribe('*');
+    this.pb.collection('mechanics').unsubscribe('*');
   }
 }

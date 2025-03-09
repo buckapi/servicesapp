@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RealtimeMecanicosService } from '@app/services/realtime-mecanicos.service';
+import { RealtimeMechanicsService } from '@app/services/realtime-mechanics.service';
 import { UserService } from '@app/services/user.service';
 import Swal from 'sweetalert2'; // Importa SweetAlert
 
@@ -23,7 +23,7 @@ export class UsersComponent {
 
   constructor(private userService: UserService,
 
-    public realtimeMecanicosService: RealtimeMecanicosService
+    public realtimeMechanicsService: RealtimeMechanicsService
   ) {
 
   }
@@ -56,7 +56,7 @@ export class UsersComponent {
       const userRecord = await this.userService.createUser(data);
       console.log('User created:', userRecord);
       
-      // Crear el registro en mecanicos
+      // Crear el registro en mechanics
       await this.userService.createMechanic(userRecord.id, user.name, this.newUser.password,'mecanico');
   
       // Mostrar la alerta de SweetAlert con la contraseña

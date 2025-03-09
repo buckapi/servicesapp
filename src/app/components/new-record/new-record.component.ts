@@ -19,7 +19,7 @@ export class NewRecordComponent {
   nombre: string = '';
   rut: string = '';
   telefono: string = '';
-  patente: string = '';
+  patent: string = '';
   modelo: string = '';
   marca: string = '';
   kilometraje: string = '';
@@ -51,11 +51,11 @@ export class NewRecordComponent {
           const client = await this.clientService.createClient(clientData);
           
           const carData = {
-              patente: this.patente,
+              patent: this.patent,
               brand: this.marca,
               model: this.modelo,
               mileage: this.kilometraje,
-              idUser: client.id,
+              userId: client.id,
               fuelType: this.selectedFuel,
               transmissionType: this.selectedTransmission
           };
@@ -95,7 +95,7 @@ export class NewRecordComponent {
     this.nombre = '';
     this.rut = '';
     this.telefono = '';
-    this.patente = '';
+    this.patent = '';
     this.modelo = '';
     this.marca = '';
     this.kilometraje = '';

@@ -59,9 +59,9 @@ export class RealtimeItemInspectionsService implements OnDestroy {
       });
     this.itemInspectionsSubject.next(records);
   }
-  public async getItemInspectionsByUserId(idUser: string): Promise<any[]> {
+  public async getItemInspectionsByUserId(userId: string): Promise<any[]> {
     const records = await this.pb.collection('itemInspections').getFullList(200, {
-        filter: `idUser = '${idUser}'`,
+        filter: `userId = '${userId}'`,
         sort: '-created',
     });
     return records;

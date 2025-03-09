@@ -54,11 +54,11 @@ export class RealtimeInspectionsService implements OnDestroy {
   }
   public async getInspectionsByCarId(carId: string): Promise<any[]> {
     const records = await this.pb.collection('inspections').getFullList(200, {
-        filter: `carId = '${carId}'`,
-        sort: '-created',
+      filter: `carId = '${carId}'`,
+      sort: '-created',
     });
     return records;
-}
+  }
   ngOnDestroy() {
     // Desuscribirse cuando el servicio se destruye
     this.pb.collection('inspections').unsubscribe('*');

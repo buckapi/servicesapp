@@ -35,7 +35,7 @@ constructor(
 }
 filterResults() {
   this.filteredResults = this.cars.filter(car => 
-    car.patente.includes(this.searchTerm2) // Filtra por patente
+    car.patent.includes(this.searchTerm2) // Filtra por patent
   );
 }
 ngOnInit() {
@@ -60,7 +60,10 @@ onShowDetail(clientId: string) {
           this.carsService.getCarsByUserId(client.id).then(cars => {
               this.globalService.clienteDetail.cars = cars;
               this.globalService.carId=cars[0].id;
-              this.getMileage(client.id);
+    localStorage.setItem('carId', cars[0].id);
+    localStorage.setItem('mileage', JSON.stringify(this.getMileage(client.id)));
+
+    this.getMileage(client.id);
               
           });
           this.toggleDetail();
@@ -77,7 +80,7 @@ toggleDetail(){
   
 }
 // getMileage(clientId: string): number {
-//   const car = this.cars.find(car => car.idUser === clientId);
+//   const car = this.cars.find(car => car.userId === clientId);
 //   this.globalService.mileage= car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
 //   return car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
 // }
@@ -86,7 +89,7 @@ getMileage(clientId: string): void {
       console.log('Inspecciones:', inspections); // Verifica las inspecciones
 
       // Verifica si clienteDetail y cars están definidos
-      if (this.globalService.clienteDetail && this.globalService.clienteDetail.cars && this.globalService.clienteDetail.cars.length > 0) {
+      if (this.globalService.clienteDetail && localStorage.getItem('carId') && this.globalService.clienteDetail.cars.length > 0) {
           // console.log('Car ID:', this.globalService.carId); // Verifica el carId
       } else {
           // console.error('clienteDetail o cars no están definidos o están vacíos.');
@@ -103,7 +106,7 @@ getMileage(clientId: string): void {
           return;
       }
 
-      const hasPreviousInspections = inspections.some(inspection => inspection.carId === this.globalService.carId);
+      const hasPreviousInspections = inspections.some(inspection => inspection.carId === this.globalService.carId && inspection.status === 'completada');
       console.log('¿Hay inspecciones previas?', hasPreviousInspections); // Verifica el resultado de la búsqueda
 
       if (hasPreviousInspections) {
@@ -115,19 +118,19 @@ getMileage(clientId: string): void {
           this.globalService.lastItems = this.globalService.prevInspectionValue?.items || []; // Assign an empty array if undefined
       }
         // alert('hasPreviousInspections' + JSON.stringify(this.globalService.lastItems));
-        this.globalService.mileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
-        this.globalService.prevMileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
+        // this.globalService.mileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
+        // this.globalService.prevMileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
         } else {
           // alert('no hasPreviousInspections');
       }
   });
 }
 
-getClientDetail(idUser:string){
+getClientDetail(userId:string){
   this.clientsService.clients$.subscribe(clients => {
     this.clients = clients;
   })
-  const client = this.clients.find(client => client.id === idUser);
+  const client = this.clients.find(client => client.id === userId);
   return client;
 }
 get filteredClients() {
@@ -137,12 +140,12 @@ get filteredClients() {
           client.email.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
           client.phone.includes(this.searchTerm) ||
           client.rut.includes(this.searchTerm) ||
-          this.getPatente(client.id).includes(this.searchTerm) // Asumiendo que getPatente devuelve la patente
+          this.getPatente(client.id).includes(this.searchTerm) // Asumiendo que getPatente devuelve la patent
       ))
   );
 }
 getPatente(clientId: string): string {
-  const car = this.cars.find(car => car.idUser === clientId);
-  return car ? car.patente : 'Sin patente';
+  const car = this.cars.find(car => car.userId === clientId);
+  return car ? car.patent : 'Sin patent';
 }
 }

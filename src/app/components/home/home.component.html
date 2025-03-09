@@ -9,9 +9,8 @@
 				<div class="card adminuiux-card">
 					<div class="card-body">
 						<p class="text-secondary small mb-2">Total Clientes</p>
-						<h4 class="mb-3">{{globalService.totalClientes}}</h4><span
-							class="badge badge-light text-bg-success"><i
-								class="me-1 bi bi-arrow-up-short"></i>28.50%</span>
+						<h4 class="mb-3">{{globalService.totalClientes}}</h4>
+						
 					</div>
 				</div>
 			</div>
@@ -19,9 +18,8 @@
 				<div class="card adminuiux-card">
 					<div class="card-body">
 						<p class="text-secondary small mb-2">Total vehículos</p>
-						<h4 class="mb-3">{{globalService.totalCars}}</h4><span
-							class="badge badge-light text-bg-success"><i
-								class="me-1 bi bi-arrow-up-short"></i>54.35%</span>
+						<h4 class="mb-3">{{globalService.totalCars}}</h4>
+						
 					</div>
 				</div>
 			</div>
@@ -48,7 +46,7 @@
 									class="avatar avatar-30 rounded-circle bg-theme-1-subtle text-theme-1"><i
 										class="bi bi-search"></i></span></div>
 							<div class="col px-0">
-								<h6>Búsqueda de vehículo por patente</h6>
+								<h6>Búsqueda de vehículo por patent</h6>
 							</div>
 							<div class="col-auto"><button class="btn btn-sm btn-square btn-link"><i
 										class="bi bi-arrow-clockwise"></i></button></div>
@@ -77,7 +75,7 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col-lg-4 col-md-6 col-sm-12" style="cursor:pointer;"
-										(click)="onShowDetail(result.idUser)" *ngFor="let result of filteredResults">
+										(click)="onShowDetail(result.userId)" *ngFor="let result of filteredResults">
 										<div class="card mb-3 elevate">
 											<div class="card-body">
 												<h5 class="card-title">{{ result.name }}</h5>
@@ -89,7 +87,7 @@
 															style="width: 48px; height: 48px; margin-left: 2px;">
 														<span class="text-secondary small"
 															style="margin-left: 5px; margin-right: 25px; font-size: 1.7rem;">
-															{{ result.patente | uppercase }}
+															{{ result.patent  }}
 														</span>
 													</span>
 												</div>
@@ -98,7 +96,7 @@
 													<span class="badge badge-light rounded-pill text-bg-theme-1 mb-2"
 														style="font-size: 1rem;">
 														<i class="bi bi-circle-info"></i> {{
-														getClientDetail(result.idUser)?.name | uppercase }}
+														getClientDetail(result.userId)?.name | uppercase }}
 													</span>
 												</div>
 											</div>

@@ -51,7 +51,7 @@ export class ClientsComponent implements OnInit {
             client.email.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
             client.phone.includes(this.searchTerm) ||
             client.rut.includes(this.searchTerm) ||
-            this.getPatente(client.id).includes(this.searchTerm) // Asumiendo que getPatente devuelve la patente
+            this.getPatente(client.id).includes(this.searchTerm) // Asumiendo que getPatente devuelve la patent
         ))
     );
 }
@@ -72,7 +72,7 @@ getMileage(clientId: string): number {
       }
   });
 
-  const car = this.cars.find(car => car.idUser === clientId);
+  const car = this.cars.find(car => car.userId === clientId);
   mileage = (car && typeof car.mileage === 'number') ? car.mileage : mileage; // Asegúrate de que car.mileage sea un número
   return mileage; // Devuelve el kilometraje
 }
@@ -105,14 +105,14 @@ onShowDetail(clientId: string) {
   });
 }
 // getMileage(clientId: string): number {
-//   const car = this.cars.find(car => car.idUser === clientId);
+//   const car = this.cars.find(car => car.userId === clientId);
 //   this.global.mileage= car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
 //   return car ? car.mileage : 0; // Asegúrate de que car.mileage sea un número
 // }
 
 
   getPatente(clientId: string): string {
-    const car = this.cars.find(car => car.idUser === clientId);
-    return car ? car.patente : 'Sin patente';
+    const car = this.cars.find(car => car.userId === clientId);
+    return car ? car.patent : 'Sin patent';
   }
 }

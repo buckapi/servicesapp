@@ -15,23 +15,13 @@ export class DetailService {
 
   onShowDetail(clientId: string) {
     this.globalService.showHistorial = true;
-  
-    // Inicializa clienteDetail como un objeto vacío que cumpla con la estructura de ClienteDetail
     this.globalService.clienteDetail = {
       id: '',
       name: '',
       email: '',
-      rut: '',
-      telefono: '',
-      cars: [], // Asegúrate de que 'cars' sea un arreglo
-      patente: '', // Agrega las propiedades que faltan
-      modelo: '',
       phone: '',
-      marca: '',
-      transmissionType: '',
-      mileage: 0,
-      fuelType: '',
-      // Agrega otras propiedades según la definición de ClienteDetail
+      rut: '',
+      cars: [], 
     };
   
     this.clientsService.clients$.subscribe(clients => {

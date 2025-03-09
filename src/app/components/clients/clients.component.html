@@ -88,7 +88,7 @@
                                         <div class="col-12 col-md-6 col-lg-3">
                                             <div class="card adminuiux-card border mb-3">
                                                 <div class="card-body">
-                                                    <div class="row gx-3">
+                                                    <!-- <div class="row gx-3">
                                                         <div class="col"></div>
                                                         <div class="col-auto">
                                                             <div class="dropdown d-inline-block"><a
@@ -108,7 +108,7 @@
                                                                 </ul>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="text-center" *ngIf="global.clienteDetail">
                                                         <div
                                                             class="avatar avatar-80 rounded-circle  mb-3 mx-auto" style="display:block !important">
@@ -130,11 +130,11 @@
                                                                     class="bi bi-telephone me-2"></i>{{global.clienteDetail.phone}}</span>
                                                        
                                                               
-                                                                    <span *ngFor="let car of global.clienteDetail.cars" (click)="global.showHistorialComponent(car.patente)"
+                                                                    <span *ngFor="let car of global.clienteDetail.cars" (click)="global.showHistorialComponent(car.patent)"
                                                                     class="badge badge-light rounded-pill text-bg-theme-accent-1 elevate" style="font-size: 1rem;">
                                                                   <img src="assets/img/drive.png" style="width: 48px; height: 48px; margin-left: 5px;">
                                                                   <span class="text-secondary small" style="margin-left: 5px; margin-right: 25px; font-size: 1.5rem; cursor: pointer;">
-                                                                      {{ car.patente }}
+                                                                      {{ car.patent }}
                                                                       <i class="bi bi-eye-fill " style="color: black;" [hidden]="!global.showHistorial"></i>
                                                                       <i class="bi bi-eye " [hidden]="global.showHistorial"></i>
 

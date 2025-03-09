@@ -12,99 +12,86 @@ interface Item {
   id: string;
   name: string;
   nextInspection: number;
+  mechanicId  : string;
   interval: number;
 }
-interface Car{
-
-  id:string,
-  idUser:string;
-  patente:string;
-  modelo:string;
-  phone:string;
-  marca:string;
-  mileage:number;
-  fuelType:string;
-  transmissionType:string;
+interface Car {
+  id: string,
+  userId: string;
+  patent: string;
+  modelo: string;
+  marca: string;
+  mileage: number;
+  fuelType: string;
+  transmissionType: string;
 }
 
-interface ClienteDetail{
-  id:string;
-  email:string;
-  cars:Car[];
-  name:string;
-  rut:string;
-  telefono:string;
-  patente:string;
-  modelo:string;
-  phone:string;
-  marca:string;
-  mileage:number;
-  fuelType:string;
-  transmissionType:string;
+interface ClienteDetail {
+  id: string;
+  email: string;
+  cars: Car[];
+  name: string;
+  rut: string;
+  phone: string;
 }
 @Injectable({
   providedIn: 'root'
 })
-export class GlobalService  {
-  carId:string='';
-  prevInspection=true;
-  prevMileage=0;
-  // prevInspectionValue:Inspection[]=[];
-  prevInspectionValue: Inspection | undefined; // Asegúrate de que sea un solo objeto
-  lastItems:Item[]=[];
-  mileage=0;
-  totalClientes=0;
-  flag='';
-  totalCars=0;
-  activeRoute = 'users';
+export class GlobalService {
+  activeOrder: Inspection | undefined;
+  carId: string = '';
+  prevInspection = true;
+  prevMileage = 0;
+  prevInspectionValue: Inspection | undefined;
+  lastItems: Item[] = [];
+  mileage = 0;
+  totalClientes = 0;
+  flag = '';
+  totalCars = 0;
+  activeRoute = 'home';
   theme: string = 'light';
   showDetail = false;
   showHistorial = false;
   showWinzard = false;
-  patente = '';
-  clienteDetail:ClienteDetail={
-    cars:[],
-    email:'',
-    id:'',
-    rut:'',
-    name:'',
-    phone:'',
-    telefono:'',
-    patente:'',
-    modelo:'',
-    marca:'',
-    mileage:0,
-    fuelType:'',
-    transmissionType:''
+  
+  patent = '';
+  clienteDetail: ClienteDetail = {
+    cars: [],
+    email: '',
+    id: '',
+    rut: '',
+    name: '',
+    phone: '',
   }
   toggleTheme() {
     this.theme = this.theme === 'dark' ? 'light' : 'dark';
   }
-  toggleThemeP(P  :any) {
-    this.theme = P  ;
+  toggleThemeP(P: any) {
+    this.theme = P;
   }
+getOrderId() {
+  const inspection = localStorage.getItem('inspeccionId');
 
-routeName=""
-entityName = '';
-entityCaption = '';
+  return inspection ;
+}
 
-  constructor() { 
-    // this.applyTheme();
+  routeName = ""
+  entityName = '';
+  entityCaption = '';
 
-
-  }
+  constructor() { }
 
   setRoute(route: string) {
     this.routeName = route;
-    this.entityName = ''; 
+    this.entityName = '';
     this.activeRoute = route;
   }
 
-  showHistorialComponent(patente:string){
+  showHistorialComponent(patent: string) {
     this.showHistorial = !this.showHistorial;
-    this.patente = patente;
+    this.patent = patent;
   }
-  hideHistorialComponent(){
+  hideHistorialComponent() {
     this.showHistorial = false;
   }
   getRoute() {
@@ -115,6 +102,6 @@ entityCaption = '';
     const route = this.activeRoute;
     const routeData = await import(`./../components/${route}/${route}.json`);
     return routeData;
-}
-  
+  }
+
 }

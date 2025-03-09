@@ -52,9 +52,9 @@ export class RealtimeCarinspectionsService implements OnDestroy {
       });
     this.carinspectionsSubject.next(records);
   }
-  public async getCarinspectionsByUserId(idUser: string): Promise<any[]> {
+  public async getCarinspectionsByUserId(userId: string): Promise<any[]> {
     const records = await this.pb.collection('carinspections').getFullList(200, {
-        filter: `idUser = '${idUser}'`,
+        filter: `userId = '${userId}'`,
         sort: '-created',
     });
     return records;

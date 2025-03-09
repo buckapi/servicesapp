@@ -52,9 +52,9 @@ export class RealtimeCarsService implements OnDestroy {
       });
     this.carsSubject.next(records);
   }
-  public async getCarsByUserId(idUser: string): Promise<any[]> {
+  public async getCarsByUserId(userId: string): Promise<any[]> {
     const records = await this.pb.collection('cars').getFullList(200, {
-        filter: `idUser = '${idUser}'`,
+        filter: `userId = '${userId}'`,
         sort: '-created',
     });
     return records;
