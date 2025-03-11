@@ -74,10 +74,9 @@ onShowDetail(clientId: string) {
   });
 }
 toggleDetail(){
-  this.globalService.showDetail=!this.globalService.showDetail;
+  this.globalService.showDetail==true?this.globalService.showDetail=false:this.globalService.showDetail=true;
   this.globalService.setRoute('car-detail');
-
-  
+ 
 }
 // getMileage(clientId: string): number {
 //   const car = this.cars.find(car => car.userId === clientId);

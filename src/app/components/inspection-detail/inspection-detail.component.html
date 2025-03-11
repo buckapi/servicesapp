@@ -17,7 +17,7 @@
                     <img *ngIf="loading" src="assets/img/loading.gif" alt="" style="width: 50px; margin-right: 10px;">
                     <input type="number" class="form-control d-inline" 
                     [(ngModel)]="global.mileage" 
-                    (ngModelChange)="onMileageChange()" 
+                   
                     style="align-items: center; justify-content: center; text-align: center; width: 200px !important; font-size: 2rem; background-color: #333; color: #fff;" />
                     <span style="font-size: 2rem !important; padding-left: 10px;"> Km.</span>
                 </div>
@@ -54,9 +54,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let inspection of inspections; let i = index"
-                    [hidden]="inspection.inspectionType != 'tecnica'" style="cursor: pointer;" class="elevate"
-                    [ngClass]="getInspectionClass((isItemRegistered(inspection.id)+inspection.interval) ,global.mileage)">
+                <tr *ngFor="let inspection of global.items; let i = index"
+                    [hidden]="inspection.interval == 0" style="cursor: pointer;" class="elevate"
+                    [ngClass]="getInspectionClass((isItemRegistered(inspection.id) ?? 0 + inspection.interval), global.mileage)">
                     <td>{{ inspection.name }}</td>
                     <td>{{ inspection.interval | number : '1.0-0' }} Km</td>
                     <td>
@@ -68,7 +68,17 @@
                         </div>
                     </td>
                     <td>
-                        <ng-container *ngIf="!getFlag(inspection)">
+                        <ng-container *ngIf="!getFlag(inspection.limit)">
+                            <span class="badge bg-success" style="font-size: 1rem!important; ">
+                                {{inspection.limit}}
+                            </span>
+                        </ng-container>
+                        <ng-container *ngIf="getFlag(inspection.limit)">
+                            <span class="badge bg-danger" style="font-size: 1rem!important; ">
+                                {{inspection.limit}}
+                            </span>
+                        </ng-container>
+                        <!-- <ng-container *ngIf="!getFlag(inspection)">
                             <span class="badge bg-success" style="font-size: 1rem!important; ">
                                 {{ getNextInspectionKm(inspection.id) | number : '1.0-0' }} Km (Al día)
                             </span>
@@ -77,11 +87,11 @@
                             <span class="badge bg-danger text-white " style="font-size: 1rem;">
                                 {{ isItemRegistered(inspection.id)| number : '1.0-0' }} Km (Atrasada)
                             </span>
-                        </ng-container>
+                        </ng-container> -->
                     </td>
                     <td>
                         <span>
-                            {{ inspection.interval + (global.mileage) | number : '1.0-0' }} Km.
+                            {{ (inspection.interval + global.mileage) | number : '1.0-0' }} Km.
                         </span>
                     </td>
                 </tr>

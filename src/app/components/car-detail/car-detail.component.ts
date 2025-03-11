@@ -22,7 +22,7 @@ export class CarDetailComponent {
   ) { }
 goTohome(){
   this.global.activeRoute='home';
-  this.global.showDetail=!this.global.showDetail;
+  this.global.showDetail=false;
 }
 goToCarDetail(){
   this.global.mileage=0;

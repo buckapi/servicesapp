@@ -59,6 +59,7 @@ export class WinzardComponent {
     const items = this.inspections.map(inspection => ({
         id: inspection.id,
         name: inspection.name,
+        limit:    this.getNextInspectionKm(inspection.id),
         description: inspection.description,
         nextInspection: this.getNextInspectionKm(inspection.id),
         mechanicId: this.global.getOrderId(),
@@ -68,7 +69,6 @@ export class WinzardComponent {
     const data = {
         status: "pendiente",
         items: JSON.stringify(items),
-        description: this.description,
         carId: this.global.clienteDetail.cars?.[0]?.id,
         date: new Date().toISOString(),
         mileage: this.global.mileage,

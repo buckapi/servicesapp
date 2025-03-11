@@ -10,8 +10,11 @@ interface Inspection {
 
 interface Item {
   id: string;
+  limit: number;
   name: string;
+  description: string;
   nextInspection: number;
+  inspectionType: string;
   mechanicId  : string;
   interval: number;
 }
@@ -53,6 +56,7 @@ export class GlobalService {
   showDetail = false;
   showHistorial = false;
   showWinzard = false;
+items: Item[] = [];
   
   patent = '';
   clienteDetail: ClienteDetail = {
@@ -80,7 +84,19 @@ getOrderId() {
   entityCaption = '';
 
   constructor() { }
+getInspectionsFromLocal() {
+  const items = localStorage.getItem('items');
 
+  return JSON.parse(items || '{}');
+}
+goToDetail(inspection: Inspection) {
+  this.mileage = inspection.mileage;
+  localStorage.setItem('mileage', inspection.mileage.toString());
+localStorage.setItem('items', JSON.stringify(inspection.items));
+  this.setRoute('inspection-detail');
+  this.items = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items') || '{}') : [];
+  this.showDetail = true;
+}
   setRoute(route: string) {
     this.routeName = route;
     this.entityName = '';

@@ -21,10 +21,12 @@ import { ConfigComponent } from './components/config/config.component';
 import { VisitTrackerService } from './services/visit-tracker.service';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { UsersComponent } from './components/users/users.component';
+import { InspectionDetailComponent } from './components/inspection-detail/inspection-detail.component';
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
+    InspectionDetailComponent,
     UsersComponent,
     ConfigComponent,
     ClientsComponent,
