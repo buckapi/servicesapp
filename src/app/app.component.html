@@ -20,7 +20,7 @@
             </div>
             <ul class="nav flex-column menu-active-line">
                 <li class="nav-item" *ngIf="globalService.theme!='sun'">
-                    <a class="nav-link" (click)="globalService.setRoute('home')" style="cursor:pointer;">
+                    <a class="nav-link" (click)="gotohome()" style="cursor:pointer;">
                         <img *ngIf="globalService.theme=='light'" src="assets/img/home-sun.png" alt="Icono"
                             style="width: 24px; height: 24px; margin-right: 5px;">
                         <img *ngIf="globalService.theme=='dark'" src="assets/img/home-moon.png" alt="Icono"

@@ -57,6 +57,16 @@ goconfig(){
   this.globalService.flag='app';
   this.globalService.setRoute('config');
 }
+
+gotohome(){
+  this.globalService.flag='app';
+
+  this.globalService.activeRoute='home';
+  this.globalService.showDetail=false;
+
+  // this.globalService.setRoute('home');
+}
+
 goUsers(){
   this.globalService.flag='app';
   this.globalService.setRoute('users');

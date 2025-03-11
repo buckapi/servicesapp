@@ -55,7 +55,7 @@ export class RealtimeInspectionsService implements OnDestroy {
   public async getInspectionsByCarId(carId: string): Promise<any[]> {
     const records = await this.pb.collection('inspections').getFullList(200, {
       filter: `carId = '${carId}'`,
-      sort: '-created',
+      sort: 'name',
     });
     return records;
   }

@@ -71,6 +71,7 @@ export class HistorialComponent implements AfterViewInit {
           interval: 0
         }
       ]),
+      level: "one",
       carId: this.global.clienteDetail.cars?.[0]?.id,
       date: "2022-01-01 10:00:00.123Z",
       mileage: this.global.mileage
@@ -82,6 +83,7 @@ export class HistorialComponent implements AfterViewInit {
       
       // Guardar el id en localStorage
       localStorage.setItem('inspeccionId', record.id);
+      
     } catch (error) {
       console.error('Error al crear el registro:', error);
     }
@@ -98,6 +100,7 @@ export class HistorialComponent implements AfterViewInit {
     this.global.showWinzard = true;
     const inspections = this.realtimeInspections.inspections$;
     const filteredInspections = this.realtimeInspections.getInspectionsByCarId(this.global.clienteDetail.cars?.[0]?.id);
+    localStorage.setItem('items',JSON.stringify(filteredInspections));
     // this.detailService.onShowDetail(this.global.clienteDetail.id);
   }
   ngAfterViewInit(): void {

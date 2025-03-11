@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 interface Inspection {
   id: string;
   date: Date;
+  level: string;
   mileage: number;
   status: string;
   items: Item[];
@@ -41,6 +42,8 @@ interface ClienteDetail {
   providedIn: 'root'
 })
 export class GlobalService {
+  transmissionType: string = '';
+  fuelType: string = '';
   activeOrder: Inspection | undefined;
   carId: string = '';
   prevInspection = true;
@@ -73,10 +76,27 @@ items: Item[] = [];
   toggleThemeP(P: any) {
     this.theme = P;
   }
+getLevel() {
+  return localStorage.getItem('level') ;
+}
+
+  getCarMileage() { 
+    return localStorage.getItem('mileage') ;
+  }
+
 getOrderId() {
   const inspection = localStorage.getItem('inspeccionId');
 
   return inspection ;
+}
+
+
+getTransmissionType() {
+  return localStorage.getItem('transmissionType') ;
+}
+
+getFuelType() {
+  return localStorage.getItem('fuelType') ;
 }
 
   routeName = ""
@@ -90,11 +110,17 @@ getInspectionsFromLocal() {
   return JSON.parse(items || '{}');
 }
 goToDetail(inspection: Inspection) {
+
+
   this.mileage = inspection.mileage;
   localStorage.setItem('mileage', inspection.mileage.toString());
+  localStorage.setItem('level', inspection.level);
+  // Suponiendo que estás obteniendo o actualizando global.items en algún lugar de tu componente
 localStorage.setItem('items', JSON.stringify(inspection.items));
   this.setRoute('inspection-detail');
   this.items = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items') || '{}') : [];
+  this.items.sort((a, b) => a.name.localeCompare(b.name));
+
   this.showDetail = true;
 }
   setRoute(route: string) {

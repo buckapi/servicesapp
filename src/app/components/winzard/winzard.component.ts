@@ -24,20 +24,20 @@ export class WinzardComponent {
   
   currentInspection: any; // Add this line
   steep = 1;
-  inspectionsFirstHalf: any[] = [];
-  inspectionsSecondHalf: any[] = [];
-  inspections: any[] = [];
+  itemsInspectionsFirstHalf: any[] = [];
+  itemsInspectionsSecondHalf: any[] = [];
+  itemsInspections: any[] = [];
   private updateTimeout: any;
   public cars: any[] = []; // Agregar esta línea para almacenar los coches
   constructor(public global: GlobalService,
     public realtimeCarsService: RealtimeCarsService,
     public realtimeItemInspectionsService: RealtimeItemInspectionsService
   ) {
-    const midpoint = Math.ceil(this.inspections.length / 2);
-    this.inspectionsFirstHalf = this.inspections.slice(0, midpoint);
-    this.inspectionsSecondHalf = this.inspections.slice(midpoint);
+    const midpoint = Math.ceil(this.itemsInspections.length / 2);
+    this.itemsInspectionsFirstHalf = this.itemsInspections.slice(0, midpoint);
+    this.itemsInspectionsSecondHalf = this.itemsInspections.slice(midpoint);
     this.realtimeItemInspectionsService.itemInspections$.subscribe(items => {
-      this.inspections = items;
+      this.itemsInspections = items.sort((a, b) => a.name.localeCompare(b.name));
     });
     this.realtimeCarsService.cars$.subscribe(cars => {
       this.cars = cars;
@@ -56,20 +56,20 @@ export class WinzardComponent {
     this.loading = true; // Inicia el estado de carga
 
     // Obtén la lista actual de items
-    const items = this.inspections.map(inspection => ({
-        id: inspection.id,
-        name: inspection.name,
-        limit:    this.getNextInspectionKm(inspection.id),
-        description: inspection.description,
-        nextInspection: this.getNextInspectionKm(inspection.id),
+    const items = this.itemsInspections.map(itemInspection => ({
+        id: itemInspection.id,
+        name: itemInspection.name,
+        limit:    this.getNextItemInspectionKm(itemInspection.id),
+        description: itemInspection.description,
+        nextInspection: this.getNextItemInspectionKm(itemInspection.id),
         mechanicId: this.global.getOrderId(),
-        interval: inspection.interval,
+        interval: itemInspection.interval,
     }));
 
     const data = {
         status: "pendiente",
         items: JSON.stringify(items),
-        carId: this.global.clienteDetail.cars?.[0]?.id,
+        carId: localStorage.getItem('carId'),
         date: new Date().toISOString(),
         mileage: this.global.mileage,
     };
@@ -89,7 +89,7 @@ onDescriptionChange() {
       this.actualizarInspeccion();
   }, 2000);
 }
-  getInspectionClass(pasado: number, actual: number): string {
+  getItemsInspectionClass(pasado: number, actual: number): string {
     if (pasado < actual) {
       return 'text-green';
     } else {
@@ -152,7 +152,7 @@ onDescriptionChange() {
     return undefined; // Devuelve undefined si no se encuentra
   }
 
-  getNextInspectionKm(itemId: string): number | undefined {
+  getNextItemInspectionKm(itemId: string): number | undefined {
     for (let i = 0; i < this.global.lastItems.length; i++) {
       if (this.global.lastItems[i].id === itemId) {
         return this.global.lastItems[i].nextInspection;
@@ -171,13 +171,13 @@ onDescriptionChange() {
 
     const data = {
         status: "pendiente",
-        items: JSON.stringify(this.inspections.map(inspection => ({
-            id: inspection.id,
-            name: inspection.name,
-            description: inspection.description,
-            nextInspection: inspection.interval+this.global.mileage,
+        items: JSON.stringify(this.itemsInspections.map(itemInspection => ({
+            id: itemInspection.id,
+            name: itemInspection.name,
+            description: itemInspection.description,
+            nextInspection: itemInspection.interval+this.global.mileage,
             mechanicId: this.global.getOrderId(),
-            interval: inspection.interval,
+            interval: itemInspection.interval,
         }))),
         carId: this.global.clienteDetail.cars?.[0]?.id,
         date: new Date().toISOString(),
@@ -207,7 +207,7 @@ localStorage.setItem('mileage', JSON.stringify(this.global.mileage));
   }, 2000);
 }
   getFlag(inspection: any) {
-    const nextInspectionKm = this.getNextInspectionKm(inspection.id);
+    const nextInspectionKm = this.getNextItemInspectionKm(inspection.id);
     if (nextInspectionKm !== undefined) {
       if (((this.global.mileage - nextInspectionKm)) > 0) {
         return true;

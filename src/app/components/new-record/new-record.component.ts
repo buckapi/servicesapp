@@ -60,7 +60,18 @@ export class NewRecordComponent {
               transmissionType: this.selectedTransmission
           };
           
-          await this.carService.createCar(carData);
+          await this.carService.createCar(carData).
+          then((response) => {
+            localStorage.setItem('carId', response.id);
+            this.global.mileage = Number(carData.mileage);
+            localStorage.setItem('mileage', carData.mileage);
+            localStorage.setItem('transmissionType', carData.transmissionType);
+            localStorage.setItem('fuelType', carData.fuelType);
+            this.global.showDetail=true;
+            this.global.showHistorial=true;
+            this.global.clienteDetail=client;
+            this.global.setRoute('car-detail');
+          });
           
           Swal.fire({
               title: 'Cliente y vehículo registrados exitosamente!',
@@ -70,8 +81,11 @@ export class NewRecordComponent {
               customClass: {
                   confirmButton: 'btn btn-success rounded'
               }
-          }).then(() => {
-              this.global.setRoute('clients');
+          }).then((response) => {
+            this.global.showDetail=true;
+            this.global.showHistorial=true;
+            this.global.clienteDetail=client;
+            this.global.setRoute('car-detail');
               this.resetForm();
           });
       } catch (error) {

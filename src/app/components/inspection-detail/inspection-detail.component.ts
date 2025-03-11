@@ -55,6 +55,9 @@ export class InspectionDetailComponent {
   
       // Obtén la lista actual de items
       const items = this.global.items;
+      for(let item of items) {
+        item.nextInspection = this.global.mileage + item.interval;
+      }
   
       const data = {
           status: "pendiente",
@@ -73,7 +76,8 @@ export class InspectionDetailComponent {
           this.loading = false; // Finaliza el estado de carga
       }
   }
-  onDescriptionChange() {
+  onDescriptionChange(i: number) {
+    this.global.items[i].description = this.global.items[i].description.toUpperCase()
     clearTimeout(this.updateTimeout); // Limpia el timeout anterior si existe
     this.updateTimeout = setTimeout(() => {
         this.actualizarInspeccion();

@@ -26,7 +26,7 @@
                 <div>
                     <div class="row">
                         <div class="row">
-                            <div class=" gx-3 align-items-center col-6 col-md-6" *ngFor="let inspection of inspections"
+                            <div class=" gx-3 align-items-center col-6 col-md-6" *ngFor="let inspection of itemsInspections"
                                 [hidden]="inspection.inspectionType != 'general'">
                                 <div class="o py-2 mb-3">
                                     <div class="form-check form-switch form-check-md"><input class="form-check-input"
@@ -54,34 +54,39 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let inspection of inspections; let i = index"
-                    [hidden]="inspection.inspectionType != 'tecnica'" style="cursor: pointer;" class="elevate"
-                    [ngClass]="getInspectionClass((isItemRegistered(inspection.id)+inspection.interval) ,global.mileage)">
-                    <td>{{ inspection.name }}</td>
-                    <td>{{ inspection.interval | number : '1.0-0' }} Km</td>
+                <tr *ngFor="let itemInspection of itemsInspections; let i = index"
+                    [hidden]="
+                    itemInspection.inspectionType!= 'tecnica' 
+                    || (itemInspection.transmissionType != global.getTransmissionType()  && itemInspection.transmissionType !='ambos')
+                    || (itemInspection.fuelType != global.getFuelType() && itemInspection.fuelType != 'ambos')
+                    "
+                    style="cursor: pointer;" class="elevate"
+                    [ngClass]="getItemsInspectionClass((isItemRegistered(itemInspection.id)+itemInspection.interval) ,global.mileage)">
+                    <td>{{ itemInspection.name }}</td>
+                    <td>{{ itemInspection.interval | number : '1.0-0' }} Km</td>
                     <td>
                         <div class="d-flex align-items-center">
                             <input *ngIf="!loading" type="text" class="form-control" 
-                                   [(ngModel)]="inspection.description" 
+                                   [(ngModel)]="itemInspection.description" 
                                    (ngModelChange)="onDescriptionChange()">
                             <img *ngIf="loading" src="assets/img/loading.gif" alt="Cargando..." style="width: 20px; margin-left: 10px;">
                         </div>
                     </td>
-                    <td>
-                        <ng-container *ngIf="!getFlag(inspection)">
+                    <td [hidden]="!itemInspection.nextInspection">
+                        <ng-container *ngIf="!getFlag(itemInspection)">
                             <span class="badge bg-success" style="font-size: 1rem!important; ">
-                                {{ getNextInspectionKm(inspection.id) | number : '1.0-0' }} Km (Al día)
+                                {{ getNextItemInspectionKm(itemInspection.id) | number : '1.0-0' }} Km (Al día)
                             </span>
                         </ng-container>
-                        <ng-container *ngIf="getFlag(inspection)">
+                        <ng-container *ngIf="getFlag(itemInspection)">
                             <span class="badge bg-danger text-white " style="font-size: 1rem;">
-                                {{ isItemRegistered(inspection.id)| number : '1.0-0' }} Km (Atrasada)
+                                {{ isItemRegistered(itemInspection.id)| number : '1.0-0' }} Km (Atrasada)
                             </span>
                         </ng-container>
                     </td>
                     <td>
                         <span>
-                            {{ inspection.interval + (global.mileage) | number : '1.0-0' }} Km.
+                            {{ itemInspection.interval + (global.mileage) | number : '1.0-0' }} Km.
                         </span>
                     </td>
                 </tr>

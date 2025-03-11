@@ -14,7 +14,12 @@ theme='light'
   constructor(public global: GlobalService,
     public auth:AuthPocketbaseService 
   ) {}
-
+gotohome() {
+  this.global.flag='app';
+  this.global.activeRoute='home';
+  this.global.showDetail=false;
+  // this.globalService.setRoute('home');
+}
   ngOnInit() {
     this.toggleTheme();
   }

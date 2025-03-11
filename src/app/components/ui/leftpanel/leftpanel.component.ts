@@ -13,7 +13,9 @@ import { RouterModule } from '@angular/router';
 export class LeftpanelComponent {
 
   constructor(public globalService: GlobalService) {}
-
+goHome() {
+  this.globalService.setRoute('home');
+}
   goConfig() {
     this.globalService.flag='app';
 

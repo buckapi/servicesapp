@@ -50,6 +50,13 @@ ngOnInit() {
     this.filterResults(); // Aplica el filtro inicial
   });
 }
+goToNewRecord() { 
+  localStorage.setItem('carId', '');
+  localStorage.setItem('mileage', JSON.stringify(0));
+  localStorage.setItem('transmissionType', '');
+  localStorage.setItem('fuelType', '');
+  this.globalService.setRoute('new-record');
+}
 onShowDetail(clientId: string) {
   this.globalService.showHistorial = true;
   this.searchTerm2 = ''; // Reinicia el valor de searchTerm2
@@ -61,8 +68,12 @@ onShowDetail(clientId: string) {
               this.globalService.clienteDetail.cars = cars;
               this.globalService.carId=cars[0].id;
     localStorage.setItem('carId', cars[0].id);
-    localStorage.setItem('mileage', JSON.stringify(this.getMileage(client.id)));
-
+    localStorage.setItem('mileage', JSON.stringify(cars[0].mileage));
+    this.globalService.mileage=cars[0].mileage;
+    localStorage.setItem('transmissionType', cars[0].transmissionType);
+    localStorage.setItem('fuelType', cars[0].fuelType);
+            this.globalService.transmissionType=cars[0].transmissionType;
+            this.globalService.fuelType=cars[0].fuelType;
     this.getMileage(client.id);
               
           });
@@ -116,6 +127,7 @@ getMileage(clientId: string): void {
 
           this.globalService.lastItems = this.globalService.prevInspectionValue?.items || []; // Assign an empty array if undefined
       }
+     localStorage.setItem('itemsPrev',JSON.stringify(this.globalService.prevInspectionValue?.items  ));
         // alert('hasPreviousInspections' + JSON.stringify(this.globalService.lastItems));
         // this.globalService.mileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
         // this.globalService.prevMileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje

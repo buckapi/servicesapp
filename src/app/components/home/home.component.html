@@ -10,7 +10,6 @@
 					<div class="card-body">
 						<p class="text-secondary small mb-2">Total Clientes</p>
 						<h4 class="mb-3">{{globalService.totalClientes}}</h4>
-						
 					</div>
 				</div>
 			</div>
@@ -19,12 +18,11 @@
 					<div class="card-body">
 						<p class="text-secondary small mb-2">Total vehículos</p>
 						<h4 class="mb-3">{{globalService.totalCars}}</h4>
-						
 					</div>
 				</div>
 			</div>
 			<div class="col-12 col-sm-4 col-lg-3 col-xl-2 mb-3 d-none d-sm-block" style="cursor:pointer;"
-				(click)="globalService.setRoute('new-record')">
+				(click)="goToNewRecord()">
 				<div class="card adminuiux-card bg-theme-1 mb-3 card-hover"> <!-- Agrega la clase aquí -->
 					<div class="card-body">
 						<!-- <p class="text-secondary small mb-2">Registrar nuevo cliente</p> -->
@@ -58,7 +56,7 @@
 						<p class="text-secondary small" [hidden]="searchTerm2===''"
 							*ngIf="searchTerm2 === '' || filteredResults.length === 0"
 							style="cursor:pointer; padding: 15px">
-							Patente no registrada<b class="text-theme-1" (click)="globalService.setRoute('new-record')"
+							Patente no registrada<b class="text-theme-1" (click)="goToNewRecord()"
 								style="cursor:pointer; padding: 15px"> Procesar registro</b>
 						</p>
 					</div>

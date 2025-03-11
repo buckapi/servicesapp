@@ -92,6 +92,7 @@ onShowDetail(clientId: string) {
         this.global.lastItems =[];
         this.global.prevInspectionValue={
           id:'',
+          level:'one',
           mileage:0, 
           items:[
 
