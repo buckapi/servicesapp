@@ -125,14 +125,15 @@ getMileage(clientId: string): void {
           this.globalService.prevInspectionValue = inspections[inspections.length - 1];
         this.globalService.prevMileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
 
-          this.globalService.lastItems = this.globalService.prevInspectionValue?.items || []; // Assign an empty array if undefined
       }
-     localStorage.setItem('itemsPrev',JSON.stringify(this.globalService.prevInspectionValue?.items  ));
-        // alert('hasPreviousInspections' + JSON.stringify(this.globalService.lastItems));
+     localStorage.setItem('itemsPre',JSON.stringify(inspections[inspections.length - 1].items ));
+     localStorage.setItem('level',JSON.stringify('two')); 
+     // alert('hasPreviousInspections' + JSON.stringify(this.globalService.lastItems));
         // this.globalService.mileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
         // this.globalService.prevMileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
         } else {
-          // alert('no hasPreviousInspections');
+        localStorage.setItem('level',JSON.stringify('one'));
+        // alert('no hasPreviousInspections');
       }
   });
 }

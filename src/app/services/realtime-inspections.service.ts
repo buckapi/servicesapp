@@ -2,6 +2,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import PocketBase from 'pocketbase';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { GlobalService } from './global.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class RealtimeInspectionsService implements OnDestroy {
   public inspections$: Observable<any[]> =
     this.inspectionsSubject.asObservable();
 
-  constructor() {
+  constructor(private globalService: GlobalService) {
     this.pb = new PocketBase('https://db.buckapi.lat:8095');
     this.subscribeToInspections();
   }
@@ -59,6 +60,53 @@ export class RealtimeInspectionsService implements OnDestroy {
     });
     return records;
   }
+
+
+  itemsPrev(){
+    this.inspections$.subscribe(inspections => {
+      console.log('Inspecciones:', inspections); // Verifica las inspecciones
+  
+      // Verifica si clienteDetail y cars están definidos
+      if (this.globalService.clienteDetail && localStorage.getItem('carId') && this.globalService.clienteDetail.cars.length > 0) {
+          // console.log('Car ID:', this.globalService.carId); // Verifica el carId
+      } else {
+          // console.error('clienteDetail o cars no están definidos o están vacíos.');
+          // alert('No se puede obtener el ID del coche.');
+          return; // Sal de la función si no hay coche
+      }
+  
+      // Verifica si hay inspecciones y su estructura
+      if (inspections.length === 0) {
+          console.log('No hay inspecciones disponibles.');
+          this.globalService.mileage =  this.globalService.clienteDetail.cars[0].mileage;
+  
+          alert('No hay inspecciones disponibles. por lo tanto se usara la de registro: ' +this.globalService.clienteDetail.cars[0].mileage );
+          return;
+      }
+  
+      const hasPreviousInspections = inspections.some(inspection => inspection.carId === this.globalService.carId && inspection.status === 'completada');
+      console.log('¿Hay inspecciones previas?', hasPreviousInspections); // Verifica el resultado de la búsqueda
+  
+      if (hasPreviousInspections) {
+        this.globalService.prevInspectionValue = inspections[inspections.length - 1];
+        if (hasPreviousInspections) {
+          this.globalService.prevInspectionValue = inspections[inspections.length - 1];
+        this.globalService.prevMileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
+  
+      }
+     localStorage.setItem('itemsPrev',JSON.stringify(inspections[inspections.length - 2].items ));
+     localStorage.setItem('level',JSON.stringify('two')); 
+     // alert('hasPreviousInspections' + JSON.stringify(this.globalService.lastItems));
+        // this.globalService.mileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
+        // this.globalService.prevMileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
+        } else {
+        localStorage.setItem('level',JSON.stringify('one'));
+        // alert('no hasPreviousInspections');
+      }
+  });
+  }
+
+
   ngOnDestroy() {
     // Desuscribirse cuando el servicio se destruye
     this.pb.collection('inspections').unsubscribe('*');

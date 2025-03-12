@@ -79,7 +79,11 @@ items: Item[] = [];
 getLevel() {
   return localStorage.getItem('level') ;
 }
-
+getPrevItems() {
+  const itemsPrev = localStorage.getItem('itemsPre');
+  console.log('itemsPrev retorno'+(itemsPrev));
+  return itemsPrev ? JSON.parse(itemsPrev) : []; // Devuelve un arreglo vacío si no hay datos
+}
   getCarMileage() { 
     return localStorage.getItem('mileage') ;
   }
@@ -109,6 +113,10 @@ getInspectionsFromLocal() {
 
   return JSON.parse(items || '{}');
 }
+
+
+
+
 goToDetail(inspection: Inspection) {
 
 

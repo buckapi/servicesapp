@@ -61,7 +61,8 @@ export class WinzardComponent {
         name: itemInspection.name,
         limit:    this.getNextItemInspectionKm(itemInspection.id),
         description: itemInspection.description,
-        nextInspection: this.getNextItemInspectionKm(itemInspection.id),
+        // nextInspection: this.getNextItemInspectionKm(itemInspection.id),
+        nextInspection: this.global.mileage + itemInspection.interval,
         mechanicId: this.global.getOrderId(),
         interval: itemInspection.interval,
     }));
@@ -72,6 +73,7 @@ export class WinzardComponent {
         carId: localStorage.getItem('carId'),
         date: new Date().toISOString(),
         mileage: this.global.mileage,
+        level: localStorage.getItem('level'),
     };
 
     try {
