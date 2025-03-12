@@ -8,6 +8,7 @@ import * as bootstrap from 'bootstrap';
 import PocketBase from 'pocketbase';
 const pb = new PocketBase('https://db.buckapi.lat:8095');
 
+import html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-inspection-detail',
@@ -44,6 +45,22 @@ export class InspectionDetailComponent {
     next(steep: number) {
       this.steep = steep;
     }
+    generarPDF() {
+      const element = document.getElementById('detail'); // Asegúrate de que este ID coincida con el contenido que deseas imprimir
+      const options = {
+          margin:       0.3,
+          filename:     'inspeccion.pdf',
+          image:        { type: 'jpeg', quality: 0.98 },
+          html2canvas:  { scale: 2 },
+          jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+
+      if (element) {
+          html2pdf().from(element).set(options).save();
+      } else {
+          console.error('Elemento no encontrado');
+      }
+  }
     async actualizarInspeccion() {
       const inspectionId = localStorage.getItem('inspeccionId');
       if (!inspectionId) {

@@ -22,10 +22,12 @@ import { VisitTrackerService } from './services/visit-tracker.service';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { UsersComponent } from './components/users/users.component';
 import { InspectionDetailComponent } from './components/inspection-detail/inspection-detail.component';
+// import { PrintComponent } from './components/print/print.component';
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
+    // PrintComponent,
     InspectionDetailComponent,
     UsersComponent,
     ConfigComponent,

@@ -22,21 +22,65 @@
                             </tr>
                         </thead>
                         <tbody >
-                            <tr *ngFor="let inspection of (inspections$ | async) ?? [] | filterInspections: (this.global.clienteDetail.cars?.[0]?.id || '')">
+                            <tr *ngFor="let inspection of (inspections$ | async) ?? [] | filterInspections: (this.global.getCarId()|| '')">
                                 <td>{{ formatDate(inspection.date) }}</td>
                                 <td>{{ inspection.mileage | number: '1.0-0' }} Km.</td>
                                 <td [ngClass]="{
                                     'text-success': inspection.status === 'completada',
-                                    'text-primary': inspection.status === 'pendiente'
+                                    'text-dark': inspection.status === 'pendiente'
                                 }">
+                              
+                                <!-- <i data-bs-toggle="modal"   
+                                data-bs-target="#maintenance" 
+                                [hidden]="inspection.status !== 'completada'" 
+                                class="bi bi-eye-fill text-success   " 
+                                (click)="global.goToDetail(inspection)" 
+                                style="cursor: pointer;">
+                            </i> -->
+                                {{ inspection.status | uppercase }} 
+                                   
                                 <i data-bs-toggle="modal"   
-                                data-bs-target="#maintenance" [hidden]="inspection.status === 'completada'" class="bi bi-pencil-fill" (click)="global.goToDetail(inspection)" style="cursor: pointer;"></i>
-                                    {{ inspection.status | uppercase }}
+                                data-bs-target="#maintenance" 
+                                [hidden]="inspection.status === 'completada'" 
+                                class="bi bi-pencil-fill text-primary" 
+                                (click)="global.goToDetail(inspection,'edit')" 
+                                style="cursor: pointer; margin: 5px;">
+                            </i>
+                            <i data-bs-toggle="modal"   
+                            data-bs-target="#printer" 
+                            [hidden]="inspection.status === 'pendiente'" 
+                            class="bi bi-printer" 
+                            (click)="global.goToPrint(inspection)" 
+                            style="cursor: pointer; margin: 5px; color: black !important;">
+                        </i>
+                                <i class="bi bi-trash-fill " 
+                                style="cursor: pointer; color: red !important ; margin: 5px;" (click)="toDelete(inspection.id)"></i>
+                                
+                                
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal adminuiux-modal fade" id="printer" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="" style="font-size: 1.5rem">Mantencion de vehiculo</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="global.activeRoute='car-detail'"></button>
+            </div>
+            <div class="modal-body pt-0">
+                <div class="card adminuiux-card overflow-hidden mb-4 pt-5">
+                    <div class="row gx-3 ">
+                        <app-print></app-print>
+                    </div>
+            </div>
+            <div class="modal-footer">
+             
             </div>
         </div>
     </div>

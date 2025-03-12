@@ -9,6 +9,8 @@ import { DetailService } from '@app/services/detail-service.service';
 import { InspeccionService } from '@app/services/inspection.service';
 import { AuthPocketbaseService } from '@app/services/auth.service';
 import { CarService } from '@app/services/car.service';
+import Swal from 'sweetalert2';
+import { PrintComponent } from '../print/print.component';
 
 declare var $: any;
 
@@ -36,7 +38,8 @@ interface Inspection {
   selector: 'app-historial',
   standalone: true,
   imports: [CommonModule,
-    FilterInspectionsPipe
+    FilterInspectionsPipe,
+    PrintComponent
   ],
   templateUrl: './historial.component.html',
   styleUrls: ['./historial.component.css']
@@ -87,6 +90,30 @@ export class HistorialComponent implements AfterViewInit {
     } catch (error) {
       console.error('Error al crear el registro:', error);
     }
+  }
+
+  toDelete(id: string) {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Quieres eliminar esta inspección?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.delete(id);
+      }
+    });
+  }
+  delete(id : string){
+    this.inspeccionService.eliminarInspeccion(id).then(() => {
+      console.log(`Inspección con ID ${id} eliminada exitosamente.`);
+    }).catch((error) => {
+      console.error('Error al eliminar la inspección:', error);
+    });
   }
   // En HistorialComponent
   isAgregarMantencionVisible(inspections: Inspection[] | null): boolean {

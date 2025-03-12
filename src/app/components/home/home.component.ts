@@ -127,7 +127,9 @@ getMileage(clientId: string): void {
 
       }
      localStorage.setItem('itemsPre',JSON.stringify(inspections[inspections.length - 1].items ));
-     localStorage.setItem('level',JSON.stringify('two')); 
+     localStorage.setItem('level','two'); 
+     localStorage.setItem('inspeccionId',inspections[inspections.length - 2].id); 
+
      // alert('hasPreviousInspections' + JSON.stringify(this.globalService.lastItems));
         // this.globalService.mileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
         // this.globalService.prevMileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje

@@ -1,4 +1,5 @@
-<div>
+<div id="print">
+    <div>
     <style>
         /* Ocultar los spinners en todos los navegadores */
         input[type="number"]::-webkit-outer-spin-button,
@@ -7,31 +8,40 @@
             margin: 0;
         }
     </style>
-    <div class="card-body" style="margin-top: -40px;">
+    <div class="card-body" >
         <div class="row align-items-center">
             <!-- order ID: {{global.getOrderId()}} -->
-            <div class="col-lg-6 col-md-12 text-center mb-3">
-                <span *ngIf="global.mileage == 0" style="font-size: 1.8rem !important;">Ingresa el </span>
-                <span style="font-size: 1.8rem !important;">Kilometraje actual del vehículo</span>
+
+            <div class="col-lg-12 col-md-12 text-center mb-3">
+                <img  src="assets/img/logo-2.png" alt="" style="width: 200px; margin-right: 10px;">
+               
+
+                <span style="font-size: 1rem !important;">Kilometraje actual del vehículo </span>
+                <img *ngIf="loading" src="assets/img/loading.gif" alt="" style="width: 50px; margin-right: 10px;">
+                <input type="number" class="form-control d-inline" 
+                [(ngModel)]="global.mileage" 
+               
+                style="align-items: center; justify-content: center; text-align: center; width: 100px !important;  background-color: #333; color: #fff;" />
+                <span style="font-size: 1rem !important; padding-left: 10px;"> Km.</span>
                 <div class="d-flex align-items-center justify-content-center">
-                    <img *ngIf="loading" src="assets/img/loading.gif" alt="" style="width: 50px; margin-right: 10px;">
-                    <input type="number" class="form-control d-inline" 
-                    [(ngModel)]="global.mileage" 
+                 
                    
-                    style="align-items: center; justify-content: center; text-align: center; width: 200px !important; font-size: 2rem; background-color: #333; color: #fff;" />
-                    <span style="font-size: 2rem !important; padding-left: 10px;"> Km.</span>
                 </div>
             </div>
             <div class="col">
                 <div>
                     <div class="row">
                         <div class="row">
-                            <div class=" gx-3 align-items-center col-6 col-md-6" *ngFor="let inspection of inspections"
+                            <div class="col-6 col-md-4" *ngFor="let inspection of inspections"
                                 [hidden]="inspection.inspectionType != 'general'">
-                                <div class="o py-2 mb-3">
-                                    <div class="form-check form-switch form-check-md"><input class="form-check-input"
+                                <div class="">
+                                    <div class="form-check form-switch form-check-sm"><input class="form-check-input"
                                             type="checkbox" role="switch" id="sundaya"> <label class="form-check-label"
-                                            for="sundaya">{{inspection.name}}</label></div>
+                                            for="sundaya">
+                                            <span style="font-size: 1rem !important;">
+                                                {{inspection.name}}
+                                            </span>
+                                            </label></div>
                                 </div>
                             </div>
                         </div>
@@ -46,9 +56,8 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th style="width: 20%;">Nombre</th>
-                    <th style="width: 10%;">Intervalo</th>
-                    <th style="width: 40%;">Descripción</th>
+                    <th style="width: 30%;">Nombre</th>
+                    <!-- <th style="width: 10%;">Intervalo</th> -->
                     <th style="width: 20%;"  [hidden]="global.getLevel()!='two'">Límite</th>
                     <th style="width: 10%;">Próxima Mantención</th>
                 </tr>
@@ -57,16 +66,9 @@
                 <tr *ngFor="let inspection of global.items; let i = index"
                     [hidden]="inspection.interval == 0" style="cursor: pointer;" class="elevate"
                     [ngClass]="getInspectionClass((isItemRegistered(inspection.id) ?? 0 + inspection.interval), global.mileage)">
-                    <td>{{ inspection.name }}</td>
-                    <td>{{ inspection.interval | number : '1.0-0' }} Km</td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <input *ngIf="!loading" type="text" uppercase="uppercase" class="form-control" 
-                                   [(ngModel)]="inspection.description " 
-                                   (ngModelChange)="onDescriptionChange(i)">
-                            <img *ngIf="loading" src="assets/img/loading.gif" alt="Cargando..." style="width: 20px; margin-left: 10px;">
-                        </div>
-                    </td>
+                    <td style="font-size: 0.9rem !important;">{{ inspection.name }}</td>
+                    <!-- <td >{{ inspection.interval | number : '1.0-0' }} Km</td> -->
+                   
                     <td *ngIf="global.getLevel()=='one'">
                         <ng-container *ngIf="!getFlag(inspection.limit)">
                             <span class="badge bg-success" style="font-size: 1rem!important; ">
@@ -80,13 +82,13 @@
                         </ng-container>
                     </td>
                     <td *ngIf="global.getLevel()=='two'">
-                        <ng-container *ngIf="!getFlag(global.getPrevItems()[i].nextInspection)">
-                            <span class="badge bg-success" style="font-size: 1rem!important; ">
+                        <ng-container *ngIf="global.getPrevItems()[i] && !getFlag(global.getPrevItems()[i].nextInspection)">
+                            <span class="badge bg-success" style="font-size: 1rem!important;">
                                 {{global.getPrevItems()[i].nextInspection | number : '1.0-0' }} AL DIA
                             </span>
                         </ng-container>
-                        <ng-container *ngIf="getFlag(global.getPrevItems()[i].nextInspection)">
-                            <span class="badge bg-danger" style="font-size: 1rem!important; ">
+                        <ng-container *ngIf="global.getPrevItems()[i] && getFlag(global.getPrevItems()[i].nextInspection)">
+                            <span class="badge bg-danger" style="font-size: 1rem!important;">
                                 {{global.getPrevItems()[i].nextInspection | number : '1.0-0' }} ATRASADA
                             </span>
                         </ng-container>
@@ -100,8 +102,17 @@
             </tbody>
         </table>
     </div>
-    <div class="text-end">
-        <button class="btn btn-lg btn-outline-theme  " style="font-weight: 900;">
-            <i class="bi bi-check"></i> FINALIZAR
-        </button>
-    </div>
+    Kurt Moller 985, Linares - 73 2 227032
+La pauta se basa en promedios de mantencion. Revisar el manual de su vehiculo ante cualquier duda
+</div>
+
+</div>
+
+<button (click)="generarPDF()" class="btn btn-lg btn-outline-theme" style="font-weight: 900;">
+    <i class="bi bi-file-earmark-pdf"></i> Imprimir a PDF
+</button>
+<div class="text-end">
+    <button class="btn btn-lg btn-outline-theme  " style="font-weight: 900;">
+        <i class="bi bi-check "></i> FINALIZAR
+    </button>
+</div>

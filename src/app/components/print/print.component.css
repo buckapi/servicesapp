@@ -1,0 +1,7 @@
+.table td, .table th {
+    padding: 0 !important;
+    height: 5px !important;
+}
+.form-control{
+    max-height: 30px;
+}

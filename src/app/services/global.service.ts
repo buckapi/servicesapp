@@ -79,9 +79,12 @@ items: Item[] = [];
 getLevel() {
   return localStorage.getItem('level') ;
 }
+getCarId() {
+  return localStorage.getItem('carId') ;
+}
 getPrevItems() {
   const itemsPrev = localStorage.getItem('itemsPre');
-  console.log('itemsPrev retorno'+(itemsPrev));
+  // console.log('itemsPrev retorno'+(itemsPrev));
   return itemsPrev ? JSON.parse(itemsPrev) : []; // Devuelve un arreglo vacío si no hay datos
 }
   getCarMileage() { 
@@ -117,7 +120,7 @@ getInspectionsFromLocal() {
 
 
 
-goToDetail(inspection: Inspection) {
+goToDetail(inspection: Inspection,view:string) {
 
 
   this.mileage = inspection.mileage;
@@ -126,6 +129,20 @@ goToDetail(inspection: Inspection) {
   // Suponiendo que estás obteniendo o actualizando global.items en algún lugar de tu componente
 localStorage.setItem('items', JSON.stringify(inspection.items));
   this.setRoute('inspection-detail');
+  this.items = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items') || '{}') : [];
+  this.items.sort((a, b) => a.name.localeCompare(b.name));
+
+  this.showDetail = true;
+}
+goToPrint(inspection: Inspection) {
+
+
+  this.mileage = inspection.mileage;
+  localStorage.setItem('mileage', inspection.mileage.toString());
+  localStorage.setItem('level', inspection.level);
+  // Suponiendo que estás obteniendo o actualizando global.items en algún lugar de tu componente
+localStorage.setItem('items', JSON.stringify(inspection.items));
+  // this.setRoute('print');
   this.items = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items') || '{}') : [];
   this.items.sort((a, b) => a.name.localeCompare(b.name));
 

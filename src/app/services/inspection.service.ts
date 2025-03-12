@@ -20,4 +20,14 @@ export class InspeccionService {
       throw error; // Re-lanzar el error para que pueda ser manejado en el componente
     }
   }
+
+  async eliminarInspeccion(id: string) {
+    try {
+      await this.pb.collection('inspections').delete(id);
+      console.log(`Inspección con ID ${id} eliminada exitosamente.`);
+    } catch (error) {
+      console.error('Error al eliminar la inspección:', error);
+      throw error; // Re-lanzar el error para que pueda ser manejado en el componente
+    }
+  }
 }

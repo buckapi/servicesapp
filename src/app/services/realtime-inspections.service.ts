@@ -94,8 +94,10 @@ export class RealtimeInspectionsService implements OnDestroy {
         this.globalService.prevMileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
   
       }
-     localStorage.setItem('itemsPrev',JSON.stringify(inspections[inspections.length - 2].items ));
+     localStorage.setItem('itemsPre',JSON.stringify(inspections[inspections.length - 2].items ));
      localStorage.setItem('level',JSON.stringify('two')); 
+     localStorage.setItem('inspectionId',JSON.stringify(inspections[inspections.length - 1].id)); 
+     
      // alert('hasPreviousInspections' + JSON.stringify(this.globalService.lastItems));
         // this.globalService.mileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
         // this.globalService.prevMileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
