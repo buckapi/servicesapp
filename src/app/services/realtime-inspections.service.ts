@@ -80,7 +80,7 @@ export class RealtimeInspectionsService implements OnDestroy {
           console.log('No hay inspecciones disponibles.');
           this.globalService.mileage =  this.globalService.clienteDetail.cars[0].mileage;
   
-          alert('No hay inspecciones disponibles. por lo tanto se usara la de registro: ' +this.globalService.clienteDetail.cars[0].mileage );
+          // alert('No hay inspecciones disponibles. por lo tanto se usara la de registro: ' +this.globalService.clienteDetail.cars[0].mileage );
           return;
       }
   

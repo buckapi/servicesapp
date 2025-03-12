@@ -109,10 +109,10 @@ getMileage(clientId: string): void {
 
       // Verifica si hay inspecciones y su estructura
       if (inspections.length === 0) {
-          console.log('No hay inspecciones disponibles.');
+          // console.log('No hay inspecciones disponibles.');
           this.globalService.mileage =  this.globalService.clienteDetail.cars[0].mileage;
 
-          alert('No hay inspecciones disponibles. por lo tanto se usara la de registro: ' +this.globalService.clienteDetail.cars[0].mileage );
+          // alert('No hay inspecciones disponibles. por lo tanto se usara la de registro: ' +this.globalService.clienteDetail.cars[0].mileage );
           return;
       }
 
