@@ -122,7 +122,7 @@ getInspectionsFromLocal() {
 
 goToDetail(inspection: Inspection,view:string) {
 
-
+localStorage.setItem('inspeccionId', inspection.id);
   this.mileage = inspection.mileage;
   localStorage.setItem('mileage', inspection.mileage.toString());
   localStorage.setItem('level', inspection.level);

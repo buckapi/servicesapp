@@ -74,7 +74,7 @@ export class HistorialComponent implements AfterViewInit {
           interval: 0
         }
       ]),
-      level: "one", 
+      level: "two", 
       carId: this.global.clienteDetail.cars?.[0]?.id,
       date: "2022-01-01 10:00:00.123Z",
       mileage: this.global.mileage

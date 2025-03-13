@@ -7,6 +7,8 @@ import { RealtimeItemInspectionsService } from '@app/services/realtime-iteminspe
 import * as bootstrap from 'bootstrap';
 import PocketBase from 'pocketbase';
 const pb = new PocketBase('https://db.buckapi.lat:8095');
+import { InspeccionService } from '@app/services/inspection.service';
+import Swal from 'sweetalert2'; // Add this import at the top of your file
 
 
 @Component({
@@ -30,6 +32,8 @@ export class WinzardComponent {
   private updateTimeout: any;
   public cars: any[] = []; // Agregar esta línea para almacenar los coches
   constructor(public global: GlobalService,
+    public inspectionService: InspeccionService,
+
     public realtimeCarsService: RealtimeCarsService,
     public realtimeItemInspectionsService: RealtimeItemInspectionsService
   ) {
@@ -85,6 +89,7 @@ export class WinzardComponent {
         this.loading = false; // Finaliza el estado de carga
     }
 }
+
 onDescriptionChange() {
   clearTimeout(this.updateTimeout); // Limpia el timeout anterior si existe
   this.updateTimeout = setTimeout(() => {
@@ -98,7 +103,22 @@ onDescriptionChange() {
       return 'text-red';
     }
   }
-
+  finish() {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "¿Deseas cambiar el estado de la inspección a 'completada'?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, completar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.inspectionService.toEnd(localStorage.getItem('inspeccionId')!, 'completada');
+      }
+    });
+  }
   isMayor(a: number, b: number) {
     return a > b;
   }

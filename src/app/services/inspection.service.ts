@@ -20,7 +20,16 @@ export class InspeccionService {
       throw error; // Re-lanzar el error para que pueda ser manejado en el componente
     }
   }
-
+  async toEnd(id: string, status: string, level: string = "two") {
+    try {
+      const updatedRecord = await this.pb.collection('inspections').update(id, { status, level });
+      console.log(`Estado de la inspección con ID ${id} cambiado a ${status} y nivel a ${level}.`);
+      return updatedRecord;
+    } catch (error) {
+      console.error('Error al cambiar el estado de la inspección:', error);
+      throw error; // Re-lanzar el error para que pueda ser manejado en el componente
+    }
+  }
   async eliminarInspeccion(id: string) {
     try {
       await this.pb.collection('inspections').delete(id);

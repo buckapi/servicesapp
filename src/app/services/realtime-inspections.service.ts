@@ -95,7 +95,7 @@ export class RealtimeInspectionsService implements OnDestroy {
   
       }
      localStorage.setItem('itemsPre',JSON.stringify(inspections[inspections.length - 2].items ));
-     localStorage.setItem('level',JSON.stringify('two')); 
+     localStorage.setItem('level','two'); 
      localStorage.setItem('inspectionId',JSON.stringify(inspections[inspections.length - 1].id)); 
      
      // alert('hasPreviousInspections' + JSON.stringify(this.globalService.lastItems));

@@ -96,50 +96,33 @@ toggleDetail(){
 // }
 getMileage(clientId: string): void {
   this.realtimeInspectionsService.inspections$.subscribe(inspections => {
-      console.log('Inspecciones:', inspections); // Verifica las inspecciones
+      console.log('Inspecciones:', inspections);
 
-      // Verifica si clienteDetail y cars están definidos
-      if (this.globalService.clienteDetail && localStorage.getItem('carId') && this.globalService.clienteDetail.cars.length > 0) {
-          // console.log('Car ID:', this.globalService.carId); // Verifica el carId
-      } else {
-          // console.error('clienteDetail o cars no están definidos o están vacíos.');
-          // alert('No se puede obtener el ID del coche.');
+      if (!this.globalService.clienteDetail || !localStorage.getItem('carId') || this.globalService.clienteDetail.cars.length === 0) {
           return; // Sal de la función si no hay coche
       }
 
-      // Verifica si hay inspecciones y su estructura
       if (inspections.length === 0) {
-          // console.log('No hay inspecciones disponibles.');
-          this.globalService.mileage =  this.globalService.clienteDetail.cars[0].mileage;
-
-          // alert('No hay inspecciones disponibles. por lo tanto se usara la de registro: ' +this.globalService.clienteDetail.cars[0].mileage );
+          this.globalService.mileage = this.globalService.clienteDetail.cars[0].mileage;
           return;
       }
 
-      const hasPreviousInspections = inspections.some(inspection => inspection.carId === this.globalService.carId && inspection.status === 'completada');
-      console.log('¿Hay inspecciones previas?', hasPreviousInspections); // Verifica el resultado de la búsqueda
+      const previousInspections = inspections.filter(inspection => inspection.carId === this.globalService.carId && inspection.status === 'completada');
+      const hasPreviousInspections = previousInspections.length > 0;
 
       if (hasPreviousInspections) {
-        this.globalService.prevInspectionValue = inspections[inspections.length - 1];
-        if (hasPreviousInspections) {
-          this.globalService.prevInspectionValue = inspections[inspections.length - 1];
-        this.globalService.prevMileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
+          const lastInspection = previousInspections[previousInspections.length - 1];
+          this.globalService.prevInspectionValue = lastInspection;
+          this.globalService.prevMileage = lastInspection.mileage;
 
-      }
-     localStorage.setItem('itemsPre',JSON.stringify(inspections[inspections.length - 1].items ));
-     localStorage.setItem('level','two'); 
-     localStorage.setItem('inspeccionId',inspections[inspections.length - 2].id); 
-
-     // alert('hasPreviousInspections' + JSON.stringify(this.globalService.lastItems));
-        // this.globalService.mileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
-        // this.globalService.prevMileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
-        } else {
-        localStorage.setItem('level',JSON.stringify('one'));
-        // alert('no hasPreviousInspections');
+          localStorage.setItem('itemsPre', JSON.stringify(lastInspection.items));
+          localStorage.setItem('level', previousInspections.length <= 1 ? 'two' : lastInspection.level.toString());
+          localStorage.setItem('inspeccionId', inspections[inspections.length - 2]?.id || '');
+      } else {
+          localStorage.setItem('level', JSON.stringify('one'));
       }
   });
 }
-
 getClientDetail(userId:string){
   this.clientsService.clients$.subscribe(clients => {
     this.clients = clients;
