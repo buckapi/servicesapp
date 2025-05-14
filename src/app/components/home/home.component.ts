@@ -3,6 +3,7 @@ import { Component,OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthPocketbaseService } from '@app/services/auth.service';
 import { GlobalService } from '@app/services/global.service';
+import { InspeccionService } from '@app/services/inspection.service';
 import { RealtimeCarsService } from '@app/services/realtime-cars.service';
 import { RealtimeClientsService } from '@app/services/realtime-clients.service';
 import { RealtimeInspectionsService } from '@app/services/realtime-inspections.service';
@@ -29,13 +30,14 @@ constructor(
   public auth:AuthPocketbaseService,
   public clientsService: RealtimeClientsService,
   public carsService: RealtimeCarsService,
-  public globalService: GlobalService
+  public globalService: GlobalService,
+  public inspeccionService: InspeccionService
 ) {
   
 }
 filterResults() {
   this.filteredResults = this.cars.filter(car => 
-    car.patent.includes(this.searchTerm2) // Filtra por patent
+    car.patent.toLowerCase().includes(this.searchTerm2.toLowerCase()) // Filtra sin distinción de mayúsculas y minúsculas
   );
 }
 ngOnInit() {
@@ -53,16 +55,49 @@ ngOnInit() {
 goToNewRecord() { 
   localStorage.setItem('carId', '');
   localStorage.setItem('mileage', JSON.stringify(0));
-  localStorage.setItem('transmissionType', '');
+  localStorage.setItem('tractionType', '');
   localStorage.setItem('fuelType', '');
   this.globalService.setRoute('new-record');
+} 
+async crearInspeccion() {
+  const data = {
+    status: "pendiente",
+    items: JSON.stringify([
+      {
+        id: "",
+        name: "",
+        nextInspection: 0,
+        mechanicId: "",
+        interval: 0
+      }
+    ]),
+    level: "two", 
+    carId: this.globalService.clienteDetail.cars?.[0]?.id,
+    date: "2022-01-01 10:00:00.123Z",
+    mileage: this.globalService.mileage
+  };
+
+  try {
+    const record = await this.inspeccionService.crearInspeccion(data);
+    // console.log('Registro creado:', record);
+    localStorage.setItem('level', 'one');
+    // Guardar el id en localStorage
+    localStorage.setItem('inspeccionId', record.id);
+    
+  } catch (error) {
+    console.error('Error al crear el registro:', error);
+  }
 }
+
 onShowDetail(clientId: string) {
+  this.crearInspeccion();
   this.globalService.showHistorial = true;
   this.searchTerm2 = ''; // Reinicia el valor de searchTerm2
   this.clientsService.clients$.subscribe(clients => {
       const client = clients.find(c => c.id === clientId);
       if (client) {
+    localStorage.setItem('clientId', clientId);
+
           this.globalService.clienteDetail = client;
           this.carsService.getCarsByUserId(client.id).then(cars => {
               this.globalService.clienteDetail.cars = cars;
@@ -70,9 +105,10 @@ onShowDetail(clientId: string) {
     localStorage.setItem('carId', cars[0].id);
     localStorage.setItem('mileage', JSON.stringify(cars[0].mileage));
     this.globalService.mileage=cars[0].mileage;
-    localStorage.setItem('transmissionType', cars[0].transmissionType);
+    localStorage.setItem('tractionType', cars[0].tractionType);
     localStorage.setItem('fuelType', cars[0].fuelType);
-            this.globalService.transmissionType=cars[0].transmissionType;
+    localStorage.setItem('firstTime', cars[0].firstTime);
+            this.globalService.tractionType=cars[0].tractionType;
             this.globalService.fuelType=cars[0].fuelType;
     this.getMileage(client.id);
               

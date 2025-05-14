@@ -6,7 +6,7 @@ import { RealtimeCarsService } from '@app/services/realtime-cars.service';
 import { RealtimeItemInspectionsService } from '@app/services/realtime-iteminspections.service';
 import * as bootstrap from 'bootstrap';
 import PocketBase from 'pocketbase';
-const pb = new PocketBase('https://db.buckapi.lat:8095');
+const pb = new PocketBase('https://db.buckapi.lat:8085');
 import { InspeccionService } from '@app/services/inspection.service';
 import Swal from 'sweetalert2'; // Add this import at the top of your file
 
@@ -31,9 +31,9 @@ export class WinzardComponent {
   itemsInspections: any[] = [];
   private updateTimeout: any;
   public cars: any[] = []; // Agregar esta línea para almacenar los coches
-  constructor(public global: GlobalService,
+  constructor(
+    public global: GlobalService,
     public inspectionService: InspeccionService,
-
     public realtimeCarsService: RealtimeCarsService,
     public realtimeItemInspectionsService: RealtimeItemInspectionsService
   ) {

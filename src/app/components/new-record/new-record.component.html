@@ -76,16 +76,17 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="modelo" [(ngModel)]="modelo" placeholder="Modelo">
-                                    <label for="modelo">Modelo</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-floating mb-3">
                                     <input class="form-control" id="marca" [(ngModel)]="marca" placeholder="Marca">
                                     <label for="marca">Marca</label>
                                 </div>
                             </div>
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="modelo" [(ngModel)]="modelo" placeholder="Modelo">
+                                    <label for="modelo">Modelo</label>
+                                </div>
+                            </div>
+                          
                         </div>
                         <div class="row">
                             <div class="col">
@@ -108,14 +109,14 @@
                             <div class="col">
 
                             <div class="row gx-2 mb-3">
-                                <h6 class="mb-3">Tipo de transmisión <small class="text-secondary fw-normal"></small></h6>
-                                <div class="col-auto" (click)="transmissionType = '2wd'; selectedTransmission = '2wd'">
+                                <h6 class="mb-3">Tipo de tracción <small class="text-secondary fw-normal"></small></h6>
+                                <div class="col-auto" (click)="tractionType = '2wd'; selectedTransmission = '2wd'">
                                     <div class="img-hover" [ngClass]="{'selected': selectedTransmission === '2wd'}" style="padding: 5px;">
                                         <img src="assets/img/2wd.png" width="70" style="padding: 5px;" alt="2WD">
                                         <div class="overlay"></div>
                                     </div>
                                 </div>
-                                <div class="col-auto" (click)="transmissionType = '4wd';selectedTransmission = '4wd'">
+                                <div class="col-auto" (click)="tractionType = '4wd';selectedTransmission = '4wd'">
                                     <div class="img-hover" [ngClass]="{'selected': selectedTransmission === '4wd'}" style="padding: 5px;">
                                         <img src="assets/img/4wd.png" width="70" style="padding: 5px;" alt="4WD">
                                         <div class="overlay"></div>

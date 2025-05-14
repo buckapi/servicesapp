@@ -6,7 +6,7 @@ import { RealtimeItemInspectionsService } from '@app/services/realtime-iteminspe
 import PocketBase from 'pocketbase';
 import Swal from 'sweetalert2';
 
-const pb = new PocketBase('https://db.buckapi.lat:8095');
+const pb = new PocketBase('https://db.buckapi.lat:8085');
 
 @Component({
   selector: 'app-config',
@@ -22,7 +22,7 @@ export class ConfigComponent {
     inspectionsType: '',
     status: '',
     fuelType: '',
-    transmissionType: 'ambos',
+    tractionType: 'ambos',
     inspectionTypeId: 'ambos'
   };
 inspections: any[] = [];
@@ -95,9 +95,9 @@ this.isFuelChecked = true;
     this.isGasolineChecked = false;
     this.isDieselChecked = false;
 }
-  selectTransmissionType(type: string): void {
+  selecttractionType(type: string): void {
     this.selectedTransmission = type; // Asigna el tipo de transmisión seleccionado
-    (document.getElementById('transmissionType') as HTMLInputElement).value = type; // Actualiza el valor oculto
+    (document.getElementById('tractionType') as HTMLInputElement).value = type; // Actualiza el valor oculto
     this.is4wdChecked = false; // Desmarcar 4WD
 this.isTransmissionChecked = true;
     // Desmarcar el checkbox correspondiente
@@ -166,7 +166,7 @@ toggle4wdCheckbox(): void {
 
     // Asignar "ambos" si no se selecciona nada
     const fuelType = this.selectedFuel || 'ambos';
-    const transmissionType = this.selectedTransmission || 'ambos';
+    const tractionType = this.selectedTransmission || 'ambos';
     
     // Obtener el tipo de inspección seleccionado
     const inspectionType = (document.querySelector('input[name="inspectionType"]:checked') as HTMLInputElement)?.value;
@@ -175,7 +175,7 @@ toggle4wdCheckbox(): void {
         name,
         interval,
         fuelType,
-        transmissionType,
+        tractionType,
         inspectionType
     };
 

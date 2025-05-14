@@ -6,7 +6,7 @@ import { RealtimeCarsService } from '@app/services/realtime-cars.service';
 import { RealtimeItemInspectionsService } from '@app/services/realtime-iteminspections.service';
 import * as bootstrap from 'bootstrap';
 import PocketBase from 'pocketbase';
-const pb = new PocketBase('https://db.buckapi.lat:8095');
+const pb = new PocketBase('https://db.buckapi.lat:8085');
 
 import html2pdf from 'html2pdf.js';
 import { InspeccionService } from '@app/services/inspection.service';

@@ -81,7 +81,16 @@
                                                 </div>
                                             </div>
                                         </div>
+                                 
+                                     
                                         <div class="col">
+                                            <button class="btn btn-md btn-theme"
+                                            style="font-weight: 900;"
+                                            data-bs-toggle="modal" data-bs-target="#clients-add-inspection"
+                                           *ngIf="global.isFirstInspection()"
+                                            >
+                                                <i class="bi bi-plus me-1" ></i> Agregar Primera Mantención
+                                            </button>
                                             <app-historial [hidden]="!global.showHistorial || global.showWinzard"></app-historial>
                                             <app-winzard [hidden]="!global.showWinzard"></app-winzard>
                                         </div>
@@ -103,3 +112,5 @@
     </div>
    
 </main>
+<!-- <app-modal-inspection></app-modal-inspection> -->
+<app-clients-add-inspection></app-clients-add-inspection>

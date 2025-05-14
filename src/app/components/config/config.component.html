@@ -1,5 +1,4 @@
 <div class="adminuiux-wrap">
-  
     <main class="adminuiux-content has-sidebar" onclick="contentClick()">
         <div class="container-fluid mt-3">
             <div class="row gx-1 align-items-center">
@@ -7,7 +6,6 @@
                     <h5 [hidden]="global.flag !== 'app'">Ajustes de Aplicación</h5>
                     <h5 [hidden]="global.flag !== 'ui'">Ajustes de Interfaz</h5>
                 </div>
-           
             </div>
         </div>
         <div class="container mt-3" id="main-content">
@@ -26,7 +24,7 @@
                                 class="h6 fw-bold">
                                 Elige tu color de tema deseado y amado</span></button></div>
                     <div id="personalizeAccordOne" class="accordion-collapse collapse show"
-                        aria-labelledby="personalizeAccordHOne" data-bs-parent="#personalizeAccord" style="">
+                        aria-labelledby="personalizeAccordHOne" data-bs-parent="#personalizeAccord" >
                         <div class="accordion-body">
                             <p class="text-secondary">El color de tema en el diseño web es fundamental ya que influye en las emociones, percepciones y acciones. El color de tema en el diseño web es fundamental ya que influye en las emociones, percepciones y acciones.
                                 influence user emotions, perceptions, and actions.</p>
@@ -130,16 +128,9 @@
                     <div class="accordion-header" id="personalizeAccordHTwo"><button class="accordion-button"
                             type="button" data-bs-toggle="collapse" data-bs-target="#personalizeAccordTwo"
                             aria-expanded="true" aria-controls="personalizeAccordTwo"><span
-                                class="h6 fw-bold">Items de inspección
-                            
-                            
-                            </span></button>
-                            
-                            
-                            
-                            </div>
+                                class="h6 fw-bold">Items de inspección</span></button></div>
                     <div id="personalizeAccordTwo" class="accordion-collapse collapse show"
-                        aria-labelledby="personalizeAccordHTwo" data-bs-parent="#personalizeAccord" style="">
+                        aria-labelledby="personalizeAccordHTwo" data-bs-parent="#personalizeAccord">
                         <div class="accordion-body row">
                             <div class="text-end">
                                 <button class="btn btn-sm btn-outline-theme" data-bs-toggle="modal" data-bs-target="#scrollingmodal">
@@ -179,7 +170,7 @@
                                             <div class="row gx-3 align-items-center">
                                                 <div class="col-auto"><i class="bi bi-gear avatar avatar-40 h5 rounded-circle border"></i></div>
                                                 <div class="col">
-                                                    <p class="mb-1 fw-medium"> {{ inspection.name }}</p>
+                                                    <p class="mb-1 fw-medium"> {{ inspection.name }} ({{ inspection.tractionType }})  </p>
                                                     <p class="small text-secondary">INTERVALO: {{ inspection.interval }}</p>
                                                 </div>
                                             </div>
@@ -206,8 +197,7 @@
                                     aria-controls="personalizeAccordThree"><span class="h6 fw-bold">Sidebar fill
                                         color</span></button></div>
                             <div id="personalizeAccordThree" class="accordion-collapse collapse show"
-                                aria-labelledby="personalizeAccordHThree" data-bs-parent="#personalizeAccord"
-                                style="">
+                                aria-labelledby="personalizeAccordHThree" data-bs-parent="#personalizeAccord">
                                 <div class="accordion-body">
                                     <div class="row" id="personalise-preview-sidebar">
                                         <div class="col-auto">
@@ -265,7 +255,7 @@
                                         layout</span></button></div>
                             <div id="personalizeAccordFive" class="accordion-collapse collapse show"
                                 aria-labelledby="personalizeAccordHFive" data-bs-parent="#personalizeAccord"
-                                style="">
+                               >
                                 <div class="accordion-body">
                                     <div class="row sidebar-layout">
                                         <div class="col-auto">
@@ -314,7 +304,7 @@
                                         color</span></button></div>
                             <div id="personalizeAccordFour" class="accordion-collapse collapse show"
                                 aria-labelledby="personalizeAccordHFour" data-bs-parent="#personalizeAccord"
-                                style="">
+                               >
                                 <div class="accordion-body">
                                     <div class="row" id="personalise-preview-header">
                                         <div class="col-auto">
@@ -372,7 +362,7 @@
                                         layout</span></button></div>
                             <div id="personalizeAccordSix" class="accordion-collapse collapse show"
                                 aria-labelledby="personalizeAccordHSix" data-bs-parent="#personalizeAccord"
-                                style="">
+                               >
                                 <div class="accordion-body">
                                     <div class="row" id="header-layout">
                                         <div class="col-auto">
@@ -507,12 +497,12 @@
                 </div>
             </h6>
             <h6 class="mb-3">o aplica para</h6>
-            <div class="col-auto" (click)="selectTransmissionType('2wd')">
+            <div class="col-auto" (click)="selecttractionType('2wd')">
                 <div class="img-hover" [ngClass]="{'selected': selectedTransmission === '2wd'}" style="padding: 5px;">
                     <img src="assets/img/2wd.png" width="70" alt="2WD">
                 </div>
             </div>
-            <div class="col-auto" (click)="selectTransmissionType('4wd')">
+            <div class="col-auto" (click)="selecttractionType('4wd')">
                 <div class="img-hover" [ngClass]="{'selected': selectedTransmission === '4wd'}" style="padding: 5px;">
                     <img src="assets/img/4wd.png" width="70" alt="4WD">
                 </div>
@@ -526,7 +516,7 @@
                 
                 
 <input type="hidden" id="fuelType" value="">
-                <input type="hidden" id="transmissionType" value="">
+                <input type="hidden" id="tractionType" value="">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

@@ -10,7 +10,7 @@
     <div class="card-body" style="margin-top: -40px;">
         <div class="row align-items-center">
             <!-- order ID: {{global.getOrderId()}} -->
-            <div class="col-lg-6 col-md-12 text-center mb-3">
+            <div class="col-lg-6 col-md-12 text-center mb-3"  >
                 <span *ngIf="global.mileage == 0" style="font-size: 1.8rem !important;">Ingresa el </span>
                 <span style="font-size: 1.8rem !important;">Kilometraje actual del vehículo</span>
                 <div class="d-flex align-items-center justify-content-center">
@@ -22,6 +22,18 @@
                     <span style="font-size: 2rem !important; padding-left: 10px;"> Km.</span>
                 </div>
             </div>
+            <!-- <div class="col-lg-6 col-md-12 text-center mb-3"  *ngIf="global.getFirstTime() === 'true'">
+                <span  style="font-size: 1.8rem !important;">Ingresa el </span>
+                <span style="font-size: 1.8rem !important;">Kilometraje de ingreso del vehículo</span>
+                <div class="d-flex align-items-center justify-content-center">
+                    <img *ngIf="loading" src="assets/img/loading.gif" alt="" style="width: 50px; margin-right: 10px;">
+                    <input type="number" class="form-control d-inline" 
+                    [(ngModel)]="global.mileage" 
+                    (ngModelChange)="onMileageChange()" 
+                    style="align-items: center; justify-content: center; text-align: center; width: 200px !important; font-size: 2rem; background-color: #333; color: #fff;" />
+                    <span style="font-size: 2rem !important; padding-left: 10px;"> Km.</span>
+                </div>
+            </div> -->
             <div class="col">
                 <div>
                     <div class="row">
@@ -58,7 +70,7 @@
                 <tr *ngFor="let itemInspection of itemsInspections; let i = index"
                     [hidden]="
                     itemInspection.inspectionType!= 'tecnica' 
-                    || (itemInspection.transmissionType != global.getTransmissionType()  && itemInspection.transmissionType !='ambos')
+                    || (itemInspection.tractionType != global.gettractionType()  && itemInspection.tractionType !='ambos')
                     || (itemInspection.fuelType != global.getFuelType() && itemInspection.fuelType != 'ambos')
                     "
                     style="cursor: pointer;" class="elevate"

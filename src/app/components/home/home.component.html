@@ -9,7 +9,10 @@
 				<div class="card adminuiux-card">
 					<div class="card-body">
 						<p class="text-secondary small mb-2">Total Clientes</p>
-						<h4 class="mb-3">{{globalService.totalClientes}}</h4>
+						<div class="d-flex align-items-center">
+							<h4 class="mb-3">{{globalService.totalClientes}}</h4>
+							<button	class="mx-2 btn btn-sm btn-theme card-hover" style="font-weight: 900;" (click)="globalService.setRoute('clients')">ver listado</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -17,7 +20,10 @@
 				<div class="card adminuiux-card">
 					<div class="card-body">
 						<p class="text-secondary small mb-2">Total vehículos</p>
-						<h4 class="mb-3">{{globalService.totalCars}}</h4>
+						<div class="d-flex align-items-center">
+							<h4 class="mb-3">{{globalService.totalCars}}</h4>
+							<button	class="mx-2 btn btn-sm btn-theme card-hover" style="font-weight: 900;" (click)="globalService.setRoute('cars')">ver listado</button>
+						</div>
 					</div>
 				</div>
 			</div>

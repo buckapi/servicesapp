@@ -120,40 +120,52 @@
                                                                     </span>
                                                                 </h6>
                                                                 <p class="text-secondary small" style="font-size: 1rem;">
+                                                                    <i class="bi bi-people me-2"></i>
                                                                     Rut. {{ global.clienteDetail ? global.clienteDetail.rut : 'Sin rut' }}
                                                                 </p>
-                                                        <span
-                                                            class="badge badge-light rounded-pill text-bg-theme-1 mb-2" style="font-size: 1rem;"><i
-                                                                class="bi bi-envelope me-2"></i>{{global.clienteDetail.email}}</span>
-                                                                <span
-                                                                class="badge badge-light rounded-pill text-bg-theme-1 mb-2" style="font-size: 1rem;"><i
-                                                                    class="bi bi-telephone me-2"></i>{{global.clienteDetail.phone}}</span>
-                                                       
-                                                              
+                                                                <p class="text-secondary small" style="font-size: 1rem;">
+                                                                    <i class="bi bi-envelope me-2"></i>
+                                                                    Email. {{ global.clienteDetail ? global.clienteDetail.email : 'Sin email' }}
+                                                                </p>
+                                                                <p class="text-secondary small" style="font-size: 1rem;">
+                                                                    <i class="bi bi-telephone me-2"></i>
+                                                                    Telefono. {{ global.clienteDetail ? global.clienteDetail.phone : 'Sin telefono' }}
+                                                                </p>                                   
                                                                     <span *ngFor="let car of global.clienteDetail.cars" (click)="global.showHistorialComponent(car.patent)"
-                                                                    class="badge badge-light rounded-pill text-bg-theme-accent-1 elevate" style="font-size: 1rem;">
+                                                                    class="badge badge-light rounded text-bg-theme-accent-1 elevate" style="font-size: 1rem; padding: 20px;">
                                                                   <img src="assets/img/drive.png" style="width: 48px; height: 48px; margin-left: 5px;">
-                                                                  <span class="text-secondary small" style="margin-left: 5px; margin-right: 25px; font-size: 1.5rem; cursor: pointer;">
-                                                                      {{ car.patent }}
-                                                                      <i class="bi bi-eye-fill " style="color: black;" [hidden]="!global.showHistorial"></i>
-                                                                      <i class="bi bi-eye " [hidden]="global.showHistorial"></i>
-
-
-                                                                  </span>
                                                                   
-                                                              </span>
-
-                                                              <!-- Kilometraje: {{getMileage(global.clienteDetail.id)}} -->
-    
-
-    
-
-                                                                
+                                                                  <span class="text-secondary small" style=" margin-left: 5px; margin-right: 25px; font-size: 1.5rem; cursor: pointer;">
+                                                                      {{ car.patent }}
+                                                                      <br>
+                                                                      
+                                                                      <div style="display: flex; align-items: center;">
+                                                                        <i class="bi bi-eye-fill text-primary" [hidden]="!global.showHistorial"></i>
+                                                                        <i class="bi bi-eye text-primary" [hidden]="global.showHistorial"> </i> 
+                                                                        <span class="font-weight-bold text-primary ms-2" style="font-weight: 900; cursor: pointer; ">
+                                                                            mantenciones
+                                                                        </span>
+                                                                      </div>
+                                                                  </span>
+                                                              </span>      
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
+                                            <!-- <button class="btn btn-md btn-theme"style="font-weight: 900;"
+                                           
+                                           
+                                            data-bs-toggle="modal" data-bs-target="#fullscreenmodal" >
+                                                <i class="bi bi-plus me-1" *ngIf="global.isFirstInspection()"></i> Agregar 1ra Mantención 
+                                            </button> -->
+                                            <button class="btn btn-md btn-theme"
+                                            style="font-weight: 900;"
+                                            data-bs-toggle="modal" data-bs-target="#clients-add-inspection"
+                                           *ngIf="global.isFirstInspection()"
+                                            >
+                                                <i class="bi bi-plus me-1" ></i> Agregar 1ra Mantención
+                                            </button>
                                             <app-historial [hidden]="!global.showHistorial || global.showWinzard"></app-historial>
                                             <app-winzard [hidden]="!global.showWinzard"></app-winzard>
                                         </div>
@@ -173,5 +185,6 @@
             </div>
         </div>
     </div>
-   
 </main>
+<!-- <app-modal-inspection></app-modal-inspection> -->
+<app-clients-add-inspection></app-clients-add-inspection>

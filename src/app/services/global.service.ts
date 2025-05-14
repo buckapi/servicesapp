@@ -27,7 +27,7 @@ interface Car {
   marca: string;
   mileage: number;
   fuelType: string;
-  transmissionType: string;
+  tractionType: string;
 }
 
 interface ClienteDetail {
@@ -42,7 +42,7 @@ interface ClienteDetail {
   providedIn: 'root'
 })
 export class GlobalService {
-  transmissionType: string = '';
+  tractionType: string = '';
   fuelType: string = '';
   activeOrder: Inspection | undefined;
   carId: string = '';
@@ -54,7 +54,7 @@ export class GlobalService {
   totalClientes = 0;
   flag = '';
   totalCars = 0;
-  activeRoute = 'home';
+  activeRoute = 'login';
   theme: string = 'light';
   showDetail = false;
   showHistorial = false;
@@ -75,6 +75,9 @@ items: Item[] = [];
   }
   toggleThemeP(P: any) {
     this.theme = P;
+  }
+  isFirstInspection(){
+    return localStorage.getItem('firstTime') === 'true';
   }
 getLevel() {
   return localStorage.getItem('level') ;
@@ -98,12 +101,19 @@ getOrderId() {
 }
 
 
-getTransmissionType() {
-  return localStorage.getItem('transmissionType') ;
+gettractionType() {
+  return localStorage.getItem('tractionType') ;
 }
 
 getFuelType() {
   return localStorage.getItem('fuelType') ;
+}
+getFirstTime() {
+if (localStorage.getItem('firstTime')){
+  localStorage.setItem('mileage', '0');
+}
+  return localStorage.getItem('firstTime') ;
+
 }
 
   routeName = ""
@@ -154,6 +164,9 @@ localStorage.setItem('items', JSON.stringify(inspection.items));
     this.activeRoute = route;
   }
 
+  setFirstTime(firstTime: string) {
+    localStorage.setItem('firstTime', firstTime);
+  } 
   showHistorialComponent(patent: string) {
     this.showHistorial = !this.showHistorial;
     this.patent = patent;

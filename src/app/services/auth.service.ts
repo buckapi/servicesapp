@@ -1,11 +1,8 @@
 import PocketBase from 'pocketbase';
-import { Injectable, Inject, PLATFORM_ID, Renderer2 } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Injectable } from '@angular/core';
 import { GlobalService } from './global.service';
 import { Observable, from, tap, map } from 'rxjs';
 import { UserInterface  } from '@app/interfaces/user-interface';
-
-import { RecordModel } from 'pocketbase';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +12,7 @@ export class AuthPocketbaseService {
   complete: boolean = false;
 
   constructor(public global: GlobalService) {
-    this.pb = new PocketBase('https://db.buckapi.lat:8095');
+    this.pb = new PocketBase('https://db.buckapi.lat:8085');
   }
   async updateUserField(userId: string, updateData: any): Promise<void> {
     await this.pb.collection('users').update(userId, updateData);
@@ -91,7 +88,6 @@ export class AuthPocketbaseService {
       name: name,
     };
 
-    // Crear usuario y luego crear el registro en clinics
     return from(
       this.pb
         .collection('users')
@@ -136,14 +132,12 @@ export class AuthPocketbaseService {
       name: name,
     };
 
-    // Crear usuario y devolver el observable con el usuario creado
     return from(
       this.pb
         .collection('users')
         .create(userData)
         .then((user) => {
-          // No se necesita crear ningún registro adicional en clinics aquí
-          return user; // Devolver los datos del usuario creado
+          return user;
         })
     );
   }
@@ -156,7 +150,7 @@ export class AuthPocketbaseService {
           const user: UserInterface = {
             id: pbUser.id,
             email: pbUser['email'],
-            password: '', // No almacenamos la contraseña por seguridad
+            password: '',
             full_name: pbUser['name'],
             days: pbUser['days'] || {},
             images: pbUser['images'] || {},
@@ -168,7 +162,6 @@ export class AuthPocketbaseService {
             avatar: pbUser['avatar'] || '',
             status: pbUser['status'] || 'active',
             biography: pbUser['biography'],
-            // Añade aquí cualquier otro campo necesario
           };
           return { ...authData, user };
         }),

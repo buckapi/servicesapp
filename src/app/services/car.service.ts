@@ -8,7 +8,7 @@ export class CarService {
   private pb: PocketBase;
 
   constructor() {
-    this.pb = new PocketBase('https://db.buckapi.lat:8095/');
+    this.pb = new PocketBase('https://db.buckapi.lat:8085/');
   }
 
   // Create a new car

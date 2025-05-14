@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NewRecordComponent } from '../new-record/new-record.component';
 import { GlobalService } from '@app/services/global.service';
 import { RealtimeCarsService } from '@app/services/realtime-cars.service';
 import { RealtimeClientsService } from '@app/services/realtime-clients.service';
-import { map } from 'rxjs/operators'; // Asegúrate de importar map
+import { map } from 'rxjs/operators'; 
 import { FormsModule } from '@angular/forms';
 import { HistorialComponent } from '../historial/historial.component';
 import { WinzardComponent } from '../winzard/winzard.component';
 import { RealtimeInspectionsService } from '@app/services/realtime-inspections.service';
+import { ModalInspectionComponent } from '../modal-inspection/modal-inspection.component';
+import { ClientsAddInspectionComponent } from '../modales/clients-add-inspection/clients-add-inspection.component';
 
 @Component({
   selector: 'app-clients',
@@ -17,7 +18,9 @@ import { RealtimeInspectionsService } from '@app/services/realtime-inspections.s
     HistorialComponent,
     WinzardComponent,
     // NewRecordComponent,
-    FormsModule
+    FormsModule,
+    //  ModalInspectionComponent
+    ClientsAddInspectionComponent
   ],
   templateUrl: './clients.component.html',
   styleUrl: './clients.component.css',
@@ -44,6 +47,10 @@ export class ClientsComponent implements OnInit {
     this.global.setRoute('clients')
   }
 
+  onShowWizard(){
+    this.global.showWinzard=true
+    this.global.showHistorial=false
+  }
   get filteredClients() {
     return this.realtimeClientsService.clients$.pipe(
         map(clients => clients.filter(client => 
@@ -58,10 +65,8 @@ export class ClientsComponent implements OnInit {
 
 toggleDetail(){
   this.global.showDetail=!this.global.showDetail;
-  this.getMileage(this.global.clienteDetail.id);
-  
+  // this.getMileage(this.global.clienteDetail.id);
 }
-
 
 getMileage(clientId: string): number {
   let mileage = 0; // Valor temporal para almacenar el kilometraje
@@ -71,12 +76,14 @@ getMileage(clientId: string): number {
           this.global.mileage = inspections[inspections.length - 1].mileage; // Asigna el último kilometraje
       }
   });
-
   const car = this.cars.find(car => car.userId === clientId);
   mileage = (car && typeof car.mileage === 'number') ? car.mileage : mileage; // Asegúrate de que car.mileage sea un número
   return mileage; // Devuelve el kilometraje
 }
+
+
 onShowDetail(clientId: string) {
+  localStorage.setItem('clientId', clientId);
   this.realtimeClientsService.clients$.subscribe(clients => {
       console.log('Clients:', clients); // Verifica los clientes disponibles
       const client = clients.find(c => c.id === clientId);
@@ -85,8 +92,11 @@ onShowDetail(clientId: string) {
           this.realtimeCarsService.getCarsByUserId(client.id).then(cars => {
               this.global.clienteDetail.cars = cars;
               this.global.carId=cars[0].id;
+              this.global.mileage=cars[0].mileage;
+              this.global.setFirstTime(cars[0].firstTime);
           });
           this.toggleDetail();
+          this.global.setRoute('car-detail');
       } else {
         this.global.mileage =0;
         this.global.lastItems =[];
@@ -100,7 +110,6 @@ onShowDetail(clientId: string) {
           status:'',
           date: new Date()
         };
-
           console.error('Client not found for ID:', clientId);
       }
   });

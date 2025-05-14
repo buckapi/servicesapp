@@ -21,7 +21,7 @@ interface Item {
   nextInspection: number,
   inspectionType: string,
   fuelType: string,
-  transmissionType: string,
+  tractionType: string,
 }
 interface Car {
   id: string
@@ -39,7 +39,8 @@ interface Inspection {
   standalone: true,
   imports: [CommonModule,
     FilterInspectionsPipe,
-    PrintComponent
+    PrintComponent,
+    
   ],
   templateUrl: './historial.component.html',
   styleUrls: ['./historial.component.css']

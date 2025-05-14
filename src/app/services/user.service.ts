@@ -5,7 +5,7 @@ import PocketBase from 'pocketbase';
   providedIn: 'root'
 })
 export class UserService {
-  private pb = new PocketBase('https://db.buckapi.lat:8095');
+  private pb = new PocketBase('https://db.buckapi.lat:8085');
 
   constructor() {}
   async createMechanic(userId: string, name: string, password: string, type: string) {

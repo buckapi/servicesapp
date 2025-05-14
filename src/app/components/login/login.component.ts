@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { AuthPocketbaseService } from '../../services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [
+  imports: [CommonModule,
     FormsModule // Agrega FormsModule aquí
   ],
 
@@ -14,10 +15,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class LoginComponent {
   email: string = '';
+  showPassword: boolean = false;
+
   password: string = '';
 
   constructor(public authService: AuthPocketbaseService) {}
-
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
   login() {
     // alert('datos: ' + this.email + ' ' + this.password);
     this.authService.loginUser(this.email, this.password).subscribe({

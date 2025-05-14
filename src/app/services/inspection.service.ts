@@ -8,7 +8,7 @@ export class InspeccionService {
   private pb: PocketBase;
 
   constructor() {
-    this.pb = new PocketBase('https://db.buckapi.lat:8095');
+    this.pb = new PocketBase('https://db.buckapi.lat:8085');
   }
 
   async crearInspeccion(data: { status: string; items: string; carId: string; date: string; mileage: number; }) {

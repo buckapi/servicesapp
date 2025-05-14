@@ -15,7 +15,7 @@ export class RealtimeCarinspectionsService implements OnDestroy {
     this.carinspectionsSubject.asObservable();
 
   constructor() {
-    this.pb = new PocketBase('https://db.buckapi.lat:8095');
+    this.pb = new PocketBase('https://db.buckapi.lat:8085');
     this.subscribeToSars();
   }
 

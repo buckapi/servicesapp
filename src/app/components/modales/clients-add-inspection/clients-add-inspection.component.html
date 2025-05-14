@@ -1,0 +1,88 @@
+<div class="modal fade" id="clients-add-inspection" tabindex="-1" aria-labelledby="fullscreenmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-title h5" id="fullscreenmodalLabel">Kilometraje de ingreso del vehiculo
+
+                    <input type="number" class="form-control" [(ngModel)]="global.mileage">
+
+                </p>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card-body mb-3">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%;">Nombre</th>
+                                <th style="width: 10%;">Intervalo</th>
+                                <th style="width: 40%;">Descripción</th>
+                                <!-- <th style="width: 15%;">Límite</th> -->
+                                <th style="width: 15%;">Próxima Mantención a los</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngIf="filteredItems.length > 0; else noData">
+                                <tr *ngFor="let itemInspection of filteredItems"
+                                    style="cursor: pointer;" class="elevate"
+                                    [ngClass]="{'text-green': (getItemStatus(itemInspection)?.nextInspection || 0) + itemInspection.interval > global.mileage, 
+                                               'text-red': (getItemStatus(itemInspection)?.nextInspection || 0) + itemInspection.interval <= global.mileage}"
+                                               (click)="onRowClick(itemInspection)"
+                                               >
+                                    
+                                    <td>{{ itemInspection.name }}</td>
+                                    <td>{{ itemInspection.interval | number : '1.0-0' }} Km</td>
+                                    
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <input *ngIf="!loading" type="text" class="form-control" 
+                                                   [(ngModel)]="itemInspection.description" 
+                                                   (ngModelChange)="onDescriptionChange()">
+                                            <img *ngIf="loading" src="assets/img/loading.gif" alt="Cargando..." style="width: 20px; margin-left: 10px;">
+                                        </div>
+                                    </td>
+                                    
+                                    <!-- <td>
+                                        <ng-container *ngIf="getItemStatus(itemInspection) as status">
+                                            <span *ngIf="status" class="badge" 
+                                                  [class.bg-success]="!status.isOverdue"
+                                                  [class.bg-danger]="status.isOverdue">
+                                                {{ status.nextInspection | number : '1.0-0' }} Km 
+                                                ({{ status.isOverdue ? 'Atrasada' : 'Al día' }})
+                                            </span>
+                                        </ng-container>
+                                    </td>
+                                     -->
+                                    <td>
+                                        <ng-container *ngIf="selectedRows.has(itemInspection)">
+                                            {{ (itemInspection.interval + global.mileage) | number : '1.0-0' }} Km.
+                                        </ng-container>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            
+                            <ng-template #noData>
+                                <tr>
+                                    <td colspan="5" class="text-center">No hay inspecciones disponibles</td>
+                                </tr>
+                            </ng-template>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-outline-theme" data-bs-dismiss="modal">
+                    <i class="bi bi-printer-fill"></i>
+                    Imprimir
+                </button>
+                <button type="button" class="btn btn-theme">
+                    <i class="bi bi-save"></i>
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

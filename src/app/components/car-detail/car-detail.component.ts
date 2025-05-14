@@ -3,13 +3,19 @@ import { Component } from '@angular/core';
 import { HistorialComponent } from '@app/components/historial/historial.component';
 import { WinzardComponent } from '@app/components/winzard/winzard.component';
 import { GlobalService } from '@app/services/global.service';
+import { ModalInspectionComponent } from '../modal-inspection/modal-inspection.component';
+import { CarrDetailAddInspectionComponent } from '../modales/carr-detail-add-inspection/carr-detail-add-inspection.component';
+import { ClientsAddInspectionComponent } from '../modales/clients-add-inspection/clients-add-inspection.component';
 
 @Component({
   selector: 'app-car-detail',
   imports: [
 HistorialComponent,
 WinzardComponent,
-CommonModule
+CommonModule,
+// ModalInspectionComponent
+CarrDetailAddInspectionComponent,
+ClientsAddInspectionComponent
 
 
   ],
@@ -23,6 +29,11 @@ export class CarDetailComponent {
 goTohome(){
   this.global.activeRoute='home';
   this.global.showDetail=false;
+}
+onShowWizard(){
+  this.global.showWinzard=true;
+  this.global.showHistorial=false;
+  
 }
 goToCarDetail(){
   this.global.mileage=0;

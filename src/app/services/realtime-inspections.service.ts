@@ -16,7 +16,7 @@ export class RealtimeInspectionsService implements OnDestroy {
     this.inspectionsSubject.asObservable();
 
   constructor(private globalService: GlobalService) {
-    this.pb = new PocketBase('https://db.buckapi.lat:8095');
+    this.pb = new PocketBase('https://db.buckapi.lat:8085');
     this.subscribeToInspections();
   }
 

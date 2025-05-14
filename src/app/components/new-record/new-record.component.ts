@@ -25,10 +25,7 @@ export class NewRecordComponent {
   kilometraje: string = '';
   email: string = '';
   fuelType: string = '';
-  transmissionType: string = '';
-  
-
-
+  tractionType: string = '';
   selectedFuel: string = '';
   selectedTransmission: string = '';
 
@@ -57,7 +54,8 @@ export class NewRecordComponent {
               mileage: this.kilometraje,
               userId: client.id,
               fuelType: this.selectedFuel,
-              transmissionType: this.selectedTransmission
+              tractionType: this.selectedTransmission,
+              firstTime: true
           };
           
           await this.carService.createCar(carData).
@@ -65,8 +63,9 @@ export class NewRecordComponent {
             localStorage.setItem('carId', response.id);
             this.global.mileage = Number(carData.mileage);
             localStorage.setItem('mileage', carData.mileage);
-            localStorage.setItem('transmissionType', carData.transmissionType);
+            localStorage.setItem('tractionType', carData.tractionType);
             localStorage.setItem('fuelType', carData.fuelType);
+            localStorage.setItem('firstTime', carData.firstTime.toString());
             this.global.showDetail=true;
             this.global.showHistorial=true;
             this.global.clienteDetail=client;
@@ -115,7 +114,7 @@ export class NewRecordComponent {
     this.kilometraje = '';
     this.email = '';
     this.fuelType = '';
-    this.transmissionType = '';
+    this.tractionType = '';
     this.selectedFuel = '';
     this.selectedTransmission = '';
   }
